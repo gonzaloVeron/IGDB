@@ -1,3 +1,10 @@
+package service.impl;
+
+import dao.impl.HibernatePruebaDAO;
+import model.Prueba;
+import service.Runner;
+import service.interf.PruebaService;
+
 public class PruebaServiceImpl implements PruebaService {
 
     private HibernatePruebaDAO pruebaDao;

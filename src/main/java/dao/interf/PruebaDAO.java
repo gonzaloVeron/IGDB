@@ -1,3 +1,7 @@
+package dao.interf;
+
+import model.Prueba;
+
 public interface PruebaDAO {
 
     void guardar(Prueba prueba);

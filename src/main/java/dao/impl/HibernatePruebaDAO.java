@@ -1,4 +1,9 @@
+package dao.impl;
+
+import dao.interf.PruebaDAO;
+import model.Prueba;
 import org.hibernate.Session;
+import service.Runner;
 
 
 public class HibernatePruebaDAO implements PruebaDAO {

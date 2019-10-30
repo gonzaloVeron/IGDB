@@ -1,6 +1,12 @@
+package service;
+
+
+import dao.impl.HibernatePruebaDAO;
+import model.Prueba;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import service.impl.PruebaServiceImpl;
 
 import static org.junit.Assert.*;
 
