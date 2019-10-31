@@ -5,3 +5,4 @@ Integrantes de proyecto -> **IGDB**
 * Alejandro Mamani
 * Juan
 * Cristian Aranguren
+* Nahuel 
