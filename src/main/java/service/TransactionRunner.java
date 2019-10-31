@@ -6,25 +6,25 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import service.SessionFactoryProvider;
 
-public class Runner {
+public class TransactionRunner {
+    private static Session session;
 
     private static final ThreadLocal<Session> CONTEXTO = new ThreadLocal<>();
 
-    public static <T> T runInSession(Supplier<T> bloque) {
-        // permite anidar llamadas a service.Runner sin abrir una nueva
-        // Sessino cada vez (usa la que abrio la primera vez)
-        if (CONTEXTO.get() != null) {
-            return bloque.get();
-        }
+    public static void run(Runnable bloque) {
+        run(()->{
+            bloque.run();
+            return null;
+        });
+    }
 
-        Session session = null;
+
+    public static <T> T run(Supplier<T> bloque) {
         Transaction tx = null;
 
         try {
             session = SessionFactoryProvider.getInstance().createSession();
             tx = session.beginTransaction();
-
-            CONTEXTO.set(session);
 
             //codigo de negocio
             T resultado = bloque.get();
@@ -40,14 +40,13 @@ public class Runner {
             throw e;
         } finally {
             if (session != null) {
-                CONTEXTO.set(null);
                 session.close();
+                session = null;
             }
         }
     }
 
     public static Session getCurrentSession() {
-        Session session = CONTEXTO.get();
         if (session == null) {
             throw new RuntimeException("No hay ninguna session en el contexto");
         }
