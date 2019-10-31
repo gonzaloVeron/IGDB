@@ -19,6 +19,8 @@ hs_err_pid*
 *.iml
 *.iws
 
+src/main/resources/*
+
 # Mac
 .DS_Store
 
@@ -35,6 +37,3 @@ bin/
 build/
 /bin1/
 java/build/**
-
-# Hibernate
-.src/main/resources/
