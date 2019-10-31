@@ -37,4 +37,4 @@ build/
 java/build/**
 
 # Hibernate
-./src/main/resources/hibernate.cfg.xml
+.src/main/resources/
