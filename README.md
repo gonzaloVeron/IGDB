@@ -6,6 +6,3 @@ Integrantes de proyecto -> **IGDB**
 * Juan
 * Cristian Aranguren
 * Nahuel 
-
-
-
