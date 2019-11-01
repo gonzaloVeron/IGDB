@@ -13,21 +13,14 @@ import './App.css';
 
 export default class App extends Component {
   render() {
+    console.log(this.props)
     return (
       <Router>
         <Switch>
-          <Route path='/' exact>
-            <Home />
-          </Route>
-          <Route path='/index' exact>
-            <Home />
-          </Route>
-          <Route path='/game/:id'>
-            <GameFile />
-          </Route>
-          <Route path='/search'>
-            <Search />
-          </Route>
+          <Route path='/' exact component={Home}/>
+          <Route path='/index' exact component={Home}/>
+          <Route path='/game/:id' component={GameFile}/>
+          <Route path='/search' component={Search}/>
         </Switch>
     </Router>
     );
