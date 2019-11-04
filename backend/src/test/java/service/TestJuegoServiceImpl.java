@@ -1,7 +1,7 @@
 package service;
 
-import dao.impl.HibernateJuegoDAO;
 import dao.impl.HibernateDataDAO;
+import dao.impl.HibernateJuegoDAO;
 import dao.impl.HibernateSearchDAO;
 import dao.interf.DataDAO;
 import dao.interf.JuegoDAO;
@@ -78,9 +78,9 @@ public class TestJuegoServiceImpl {
 
     }
 
-    @After
-    public void eliminarDatos(){
-        dataService.eliminarDatos();
-   }
+//    @After
+//    public void eliminarDatos(){
+//        dataService.eliminarDatos();
+//   }
 
 }

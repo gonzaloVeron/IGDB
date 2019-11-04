@@ -46,15 +46,15 @@ public class DataServiceImpl implements DataService {
             residentEvil = new Juego();
             residentEvil.setNombre("Resident Evil");
             residentEvil.setGenero(Genero.SurvivalHorror);
-            residentEvil.setPlataforma(Plataforma.PS1);
+            residentEvil.addPlataforma(Plataforma.PS1);
             resident = new Juego();
             resident.setNombre("Resident Evil 2");
             resident.setGenero(Genero.SurvivalHorror);
-            resident.setPlataforma(Plataforma.PS1);
+            resident.addPlataforma(Plataforma.PS1);
             residentEvil3 = new Juego();
             residentEvil3.setNombre("Resident Evil 3");
             residentEvil3.setGenero(Genero.SurvivalHorror);
-            residentEvil3.setPlataforma(Plataforma.PS1);
+            residentEvil3.addPlataforma(Plataforma.PS1);
 
             //DAOS
             juegoDAO.guardar(lol);
