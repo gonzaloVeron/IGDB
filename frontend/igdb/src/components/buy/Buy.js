@@ -1,6 +1,5 @@
 import React from 'react';
 import MenuCardsGeneratorForBuy from '../cardGenerator/menuCardsGenerator/MenuCardsGeneratorForBuy.js';
-import { deliver } from '../../api/api';
 import './Buy.css';
 
 class Buy extends React.Component {

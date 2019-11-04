@@ -1,6 +1,5 @@
 import React from 'react';
 import '../login/Login.css';
-import { register } from '../../api/api';
 import { Link } from 'react-router-dom';
 
 class Register extends React.Component {

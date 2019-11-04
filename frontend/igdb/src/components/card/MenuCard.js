@@ -1,6 +1,6 @@
 import React from 'react';
 import './card.css';
-import { getRestaurant } from '../../api/api';
+
 
 
 class MenuCard extends React.Component {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './card.css';
 import { Link } from 'react-router-dom';
-import { voteOrder } from '../../api/api';
+
 
 
 class OrderCard extends React.Component {
@@ -40,11 +40,11 @@ class OrderCard extends React.Component {
       )
     }
 
-    vote(score) {
+    /*vote(score) {
         voteOrder(this.props.order.code)({user: this.props.username, rating: score})
             .then( () => this.setState({rated: true}) )
             .catch(e => this.setState({ error: e.message }))
-    }
+    }*/
 
     renderVote() {
         return (
