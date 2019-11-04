@@ -11,8 +11,8 @@ class NavBar extends React.Component {
         super(props);
         this.state = {
             search: '',
-            genre: "",
-            platform: '',
+            genre: "Any",
+            platform: "Any",
             error: '',
         };
         this.changeSearch = this.changeSearch.bind(this);
@@ -49,35 +49,54 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <nav className="navbar navbar-light bg-light">
+            <nav className="navbar navbar-light">
                 <Link to={"/home"} className="navbar-brand">IGDB</Link>
 
                 <form>
                     <div className="form-row">
                         <div className="col-9">
                             <input type="search" className="form-control" placeholder="What game do you want ?" onChange={this.changeSearch}/>
-                            <select className="btn btn-danger dropdown-toggle" value={this.state.genre} onChange={this.changeGenre}>
-                                <option value={"Any"}>Any</option>
-                                <option value={"Survival"}>Survival</option>
-                                <option value={"RPG"}>RPG</option>
-                                <option value={"FPS"}>FPS</option>
-                            </select>
-                            <select className="btn btn-danger dropdown-toggle" value={this.state.platform} onChange={this.changePlatform}>
-                                <option value={"Any"}>Any</option>
-                                <option value={"PlayStation"}>PlayStation</option>
-                                <option value={"Xbox"}>Xbox</option>
-                                <option value={"PC"}>PC</option>
-                            </select>
+                            <div className='row'>
+                              <select className="col btn btn-danger dropdown-toggle" value={this.state.genre} onChange={this.changeGenre}>
+                                  <option value={"Any"}>Genre</option>
+                                  <option value={"Adventure"}>Adventure</option>
+                                  <option value={"Shooter"}>Shooter</option>
+                                  <option value={"Strategy"}>Strategy</option>
+                                  <option value={"SurvivalHorror"}>Survival Horror</option>
+                                  <option value={"Rol"}>Rol</option>
+                                  <option value={"PartyGames"}>PartyGames</option>
+                                  <option value={"Simulation"}>Simulation</option>
+                                  <option value={"Sports"}>Sports</option>
+                                  <option value={"Race"}>Race</option>
+                                  <option value={"Music"}>Music</option>
+                                  <option value={"Fighting"}>Fighting</option>
+                              </select>
+                              <select className="col btn btn-danger dropdown-toggle" value={this.state.platform} onChange={this.changePlatform}>
+                                  <option value={"Any"}>Platform</option>
+                                  <option value={"PS4"}>PS4</option>
+                                  <option value={"Xbox"}>XBOXONE</option>
+                                  <option value={"PC"}>PC</option>
+                                  <option value={"SWITCH"}>SWITCH</option>
+                                  <option value={"WII"}>WII</option>
+                                  <option value={"PSVITA"}>PSVITA</option>
+                                  <option value={"PS2"}>PS2</option>
+                                  <option value={"PS3"}>PS3</option>
+                                  <option value={"XBOX360"}>XBOX360</option>
+                                  <option value={"WIIU"}>WIIU</option>
+                                  <option value={"PS1"}>PS1</option>
+                              </select>
+                            </div>
                         </div>
                         <div className="col">
                             <button onClick={this.doSearch} className="btn searchButton" type="submit">&#x1F50D;</button>
+                            
                         </div>
                         
                     </div>
                 </form>
 
                 <div>
-                    {this.renderProfileDropdown()}
+                    {/*this.renderProfileDropdown()*/}
                     {/*
                     <button active onClick={this.goHome} className="buttonNavBar" >Mis ordenes</button>
                     <button active onClick={this.logOut} className="buttonNavBar" >Cerrar sesion</button>

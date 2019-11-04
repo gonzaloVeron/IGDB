@@ -1,14 +1,18 @@
 package api_rest;
 
+import dao.impl.HibernateDataDAO;
 import dao.impl.HibernateJuegoDAO;
 import dao.impl.HibernateSearchDAO;
+import dao.interf.DataDAO;
 import io.javalin.Context;
 import io.javalin.json.JavalinJson;
 import model.Genero;
 import model.Juego;
 import model.Plataforma;
+import service.impl.DataServiceImpl;
 import service.impl.JuegoServiceImpl;
 import service.impl.SearchService;
+import service.interf.DataService;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -39,45 +43,23 @@ public class AppController {
 
     public Context buscarJuegosPorNombreGeneroPlataforma(Context ctx){
         String gameName = ctx.pathParam("name");
-        String gameGender = ctx.pathParam("gender");
+        String gameGenre = ctx.pathParam("genre");
         String gamePlatform = ctx.pathParam("platform");
 
-        ArrayList<Juego> games = new ArrayList<>();
-        games.addAll(searchService.busquedaPorNombre(gameName));
-        games.addAll(searchService.busquedaPorgenero(Genero.valueOf(gameGender)));
-        games.addAll(searchService.busquedaPorPlataforma(Plataforma.valueOf(gamePlatform)));
+        ArrayList<Juego> games = new ArrayList<>(searchService.busquedaPorNombre(gameName));
+        if (!gameGenre.equals("Any")){
+            games.addAll(searchService.busquedaPorgenero(Genero.valueOf(gameGenre)));
+        }
+        if (!gamePlatform.equals("Any")){
+            games.addAll(searchService.busquedaPorPlataforma(Plataforma.valueOf(gamePlatform)));
+        }
 
         return ctx.json(this.sinRepetidos(games));
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private List<Juego> sinRepetidos(List<Juego> lista){
         List<Juego> nuevaLista = new ArrayList<>();
-        List<String> listaDeNombres = lista.stream().map(e -> e.getNombre()).collect(Collectors.toList());
+        List<String> listaDeNombres = lista.stream().map(Juego::getNombre).collect(Collectors.toList());
         for(int i = 0; i < lista.size(); i++){
             if(listaDeNombres.contains(lista.get(i).getNombre())){
                 nuevaLista.add(lista.get(i));
@@ -88,4 +70,10 @@ public class AppController {
         return nuevaLista;
     }
 
+    public void initializeDatabase() {
+        DataDAO dataDAO = new HibernateDataDAO();
+        DataService dataService = new DataServiceImpl(dataDAO);
+        dataService.eliminarDatos();
+        dataService.crearDatosIniciales();
+    }
 }

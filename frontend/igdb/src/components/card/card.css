@@ -53,3 +53,26 @@ tr:hover td {
 }
 
 .hidden { display:none; }
+
+.card-container {
+    background-color: black;
+}
+
+.header {
+    color: orangered;
+    text-transform: uppercase;
+    padding-left: 3%;
+    padding-top: 2%;
+    font-weight: bold;
+}
+
+.body {
+    background-color: darkgray;
+    color: black;
+    padding-left: 2%;
+    font-weight: 100;
+}
+
+.go-to-button {
+    margin-top: 1%;
+}

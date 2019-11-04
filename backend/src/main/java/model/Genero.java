@@ -3,13 +3,13 @@ package model;
 public enum  Genero {
     Adventure,
     Shooter,
-    Estrategy,
+    Strategy,
     SurvivalHorror,
     Rol,
     PartyGames,
     Simulation,
-    Deports,
-    Race,
+    Sports,
+    Racing,
     Music,
     Fighting,
 }
