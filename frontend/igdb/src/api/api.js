@@ -8,4 +8,4 @@ const request = (type, path, body) => axios
 
 export const getGame = gameId => request('get', `/game/${gameId}`)
 
-export const getSearch = (searchValue, platform, genre) => request('get', `search?name=${searchValue}&platform=${platform}&genre=${genre}`)
+export const getSearch = (searchValue, platform, genre) => request('get', `/search?name=${searchValue}&platform=${platform}&genre=${genre}`)

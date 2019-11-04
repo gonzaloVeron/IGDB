@@ -56,21 +56,24 @@ class NavBar extends React.Component {
                     <div className="form-row">
                         <div className="col-9">
                             <input type="search" className="form-control" placeholder="What game do you want ?" onChange={this.changeSearch}/>
-                            <select className="btn btn-danger dropdown-toggle" value={this.state.genre} onChange={this.changeGenre}>
-                                <option value={"Any"}>Any</option>
-                                <option value={"Survival"}>Survival</option>
-                                <option value={"RPG"}>RPG</option>
-                                <option value={"FPS"}>FPS</option>
-                            </select>
-                            <select className="btn btn-danger dropdown-toggle" value={this.state.platform} onChange={this.changePlatform}>
-                                <option value={"Any"}>Any</option>
-                                <option value={"PlayStation"}>PlayStation</option>
-                                <option value={"Xbox"}>Xbox</option>
-                                <option value={"PC"}>PC</option>
-                            </select>
+                            <div className="row">
+                                <select className="btn btn-danger dropdown-toggle" value={this.state.genre} onChange={this.changeGenre}>
+                                    <option value={"Any"}>Any</option>
+                                    <option value={"Survival"}>Survival</option>
+                                    <option value={"RPG"}>RPG</option>
+                                    <option value={"FPS"}>FPS</option>
+                                </select>
+                                <select className="btn btn-danger dropdown-toggle" value={this.state.platform} onChange={this.changePlatform}>
+                                    <option value={"Any"}>Any</option>
+                                    <option value={"PlayStation"}>PlayStation</option>
+                                    <option value={"Xbox"}>Xbox</option>
+                                    <option value={"PC"}>PC</option>
+                                </select>
+                            </div>
                         </div>
                         <div className="col">
                             <button onClick={this.doSearch} className="btn searchButton" type="submit">&#x1F50D;</button>
+                            
                         </div>
                         
                     </div>
