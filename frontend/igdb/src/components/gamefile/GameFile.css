@@ -1,0 +1,68 @@
+body {font-family: Arial, Helvetica, sans-serif;}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 17px;    
+    margin: 10px;     
+    width: 480px; 
+    text-align: left;    
+    border-collapse: collapse; 
+}
+
+th {     
+    font-size: 13px;     
+    font-weight: normal;     
+    padding: 8px;     
+    background: #b9c9fe;
+    border-top: 4px solid #aabcfe;    
+    border-bottom: 1px solid #fff; 
+    color: #039; 
+}
+
+td {    
+    padding: 8px;     
+    background: #e8edff;     
+    border-bottom: 1px solid #fff;
+    color: #669;    
+    border-top: 1px solid transparent; 
+}
+
+tr:hover td { 
+    background: #d0dafd; 
+    color: #339; 
+}
+
+.cardStyle{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.title-container {
+    background-color: black;
+    color: white;
+}
+
+.title {
+    color: orangered;
+    text-transform: uppercase;
+    padding-left: 3%;
+    font-weight: bold;
+}
+
+.file-content {
+    background-color: gray;
+    padding-top: 1%;
+    padding-bottom: 3%;
+}
+
+.file-content-element {
+    margin-top: 1%;
+    margin-left: 2%;
+    color: lavender;
+    font-size: 110%;
+    text-shadow: black;
+}
+
+.container {
+    margin-top: 3%;
+}
