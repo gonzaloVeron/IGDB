@@ -6,16 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import service.TransactionRunner;
 
-public class HibernateJuegoDAO implements JuegoDAO {
+public class HibernateJuegoDAO extends HibernateDAO<Juego> implements JuegoDAO {
 
     public HibernateJuegoDAO(){
+        super(Juego.class);
 
-    }
-
-    @Override
-    public void guardar(Juego juego) {
-        Session session = TransactionRunner.getCurrentSession();
-        session.save(juego);
     }
 
     @Override
@@ -28,32 +23,5 @@ public class HibernateJuegoDAO implements JuegoDAO {
         return this.validacion(query.uniqueResult());
     }
 
-    @Override
-    public Juego recuperarJuegoPorId(Long id) {
-        return null;
-    }
 
-    public Juego validacion(Juego juego){
-        if(juego==null){
-            throw  new RuntimeException("No esta persistido en la BD");
-        }else{
-            return juego;
-        }
-
-    }
-
-
-    /*@Override
-    public Juego recuperarJuegoPorId(Long id) {
-        Session session = TransactionRunner.getCurrentSession();
-        return this.validacion(session.get(id));
-    }
-     */
-
-    @Override
-    public void actualizar(Juego juego) {
-        Session session = TransactionRunner.getCurrentSession();
-        session.update(juego);
-
-    }
 }

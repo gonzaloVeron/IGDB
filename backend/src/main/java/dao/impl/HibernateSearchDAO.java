@@ -10,6 +10,7 @@ import service.TransactionRunner;
 import java.util.List;
 
 public class HibernateSearchDAO implements SearchDAO {
+
     @Override
     public List<Juego> busquedaPorGenero(Genero genero) {
         Session session = TransactionRunner.getCurrentSession();

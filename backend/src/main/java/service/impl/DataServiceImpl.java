@@ -1,11 +1,11 @@
 package service.impl;
 
+import dao.impl.HibernateDesarrollador;
 import dao.impl.HibernateJuegoDAO;
 import dao.interf.DataDAO;
+import dao.interf.DesarrolladorDAO;
 import dao.interf.JuegoDAO;
-import model.Genero;
-import model.Juego;
-import model.Plataforma;
+import model.*;
 import service.interf.DataService;
 import static service.TransactionRunner.run;
 
@@ -18,6 +18,17 @@ public class DataServiceImpl implements DataService {
     private DataDAO dataDAO;
     private Juego resident;
     private Juego residentEvil3;
+
+
+    //Desarrollador
+    private DesarrolladorDAO desarrolladorDAO;
+    private Desarrollador pedro;
+    private Desarrollador alan;
+
+    //ESTUDIOS
+    private Estudio riot;
+
+
 
     public DataServiceImpl(DataDAO dataDAO){
         this.dataDAO = dataDAO;
@@ -35,6 +46,18 @@ public class DataServiceImpl implements DataService {
     @Override
     public void crearDatosIniciales() {
         run(() -> {
+            //Estudios
+            riot = new Estudio();
+
+            //DESARROLLADOR
+            desarrolladorDAO = new HibernateDesarrollador();
+            pedro = new Desarrollador();
+            pedro.setNombre("Pedro");
+            alan = new Desarrollador();
+            alan.setNombre("Alan");
+
+
+
             juegoDAO = new HibernateJuegoDAO();
             //JUEGOS
             lol = new Juego();
@@ -55,6 +78,9 @@ public class DataServiceImpl implements DataService {
             residentEvil3.setNombre("Resident Evil 3");
             residentEvil3.setGenero(Genero.SurvivalHorror);
             residentEvil3.addPlataforma(Plataforma.PS1);
+            //DESARROLLADORES Y ESTUDIOS
+            riot.addJuego(lol);
+            alan.addStudy(riot);
 
             //DAOS
             juegoDAO.guardar(lol);
@@ -62,6 +88,10 @@ public class DataServiceImpl implements DataService {
             juegoDAO.guardar(residentEvil);
             juegoDAO.guardar(resident);
             juegoDAO.guardar(residentEvil3);
+
+            //DESARROLLADOR
+            desarrolladorDAO.guardar(pedro);
+            desarrolladorDAO.guardar(alan);
 
 
 
