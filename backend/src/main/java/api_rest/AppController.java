@@ -3,17 +3,14 @@ package api_rest;
 import dao.impl.HibernateJuegoDAO;
 import dao.impl.HibernateSearchDAO;
 import io.javalin.Context;
-import io.javalin.json.JavalinJson;
-import model.Genero;
-import model.Juego;
-import model.Plataforma;
+import model.Genre;
+import model.Game;
+import model.Platform;
 import service.impl.JuegoServiceImpl;
 import service.impl.SearchService;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
@@ -30,11 +27,11 @@ public class AppController {
     }
 
     public Context buscarPorGenero(Context ctx){
-        return ctx.json(searchService.busquedaPorgenero(Genero.valueOf(ctx.pathParam("gender"))));
+        return ctx.json(searchService.busquedaPorgenero(Genre.valueOf(ctx.pathParam("gender"))));
     }
 
     public Context buscarPorPlataforma(Context ctx){
-        return ctx.json(searchService.busquedaPorPlataforma(Plataforma.valueOf(ctx.pathParam("platform"))));
+        return ctx.json(searchService.busquedaPorPlataforma(Platform.valueOf(ctx.pathParam("platform"))));
     }
 
     public Context buscarJuegosPorNombreGeneroPlataforma(Context ctx){
@@ -42,10 +39,10 @@ public class AppController {
         String gameGender = ctx.pathParam("gender");
         String gamePlatform = ctx.pathParam("platform");
 
-        ArrayList<Juego> games = new ArrayList<>();
+        ArrayList<Game> games = new ArrayList<>();
         games.addAll(searchService.busquedaPorNombre(gameName));
-        games.addAll(searchService.busquedaPorgenero(Genero.valueOf(gameGender)));
-        games.addAll(searchService.busquedaPorPlataforma(Plataforma.valueOf(gamePlatform)));
+        games.addAll(searchService.busquedaPorgenero(Genre.valueOf(gameGender)));
+        games.addAll(searchService.busquedaPorPlataforma(Platform.valueOf(gamePlatform)));
 
         return ctx.json(this.sinRepetidos(games));
     }
@@ -75,8 +72,8 @@ public class AppController {
 
 
 
-    private List<Juego> sinRepetidos(List<Juego> lista){
-        List<Juego> nuevaLista = new ArrayList<>();
+    private List<Game> sinRepetidos(List<Game> lista){
+        List<Game> nuevaLista = new ArrayList<>();
         List<String> listaDeNombres = lista.stream().map(e -> e.getNombre()).collect(Collectors.toList());
         for(int i = 0; i < lista.size(); i++){
             if(listaDeNombres.contains(lista.get(i).getNombre())){

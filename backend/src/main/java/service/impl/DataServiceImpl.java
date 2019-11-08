@@ -11,22 +11,22 @@ import static service.TransactionRunner.run;
 
 public class DataServiceImpl implements DataService {
 
-    private Juego lol;
-    private Juego residentEvil;
-    private Juego dragonBallZ;
+    private Game lol;
+    private Game residentEvil;
+    private Game dragonBallZ;
     private JuegoDAO juegoDAO;
     private DataDAO dataDAO;
-    private Juego resident;
-    private Juego residentEvil3;
+    private Game resident;
+    private Game residentEvil3;
 
 
-    //Desarrollador
+    //Developer
     private DesarrolladorDAO desarrolladorDAO;
-    private Desarrollador pedro;
-    private Desarrollador alan;
+    private Developer pedro;
+    private Developer alan;
 
     //ESTUDIOS
-    private Estudio riot;
+    private Study riot;
 
 
 
@@ -47,47 +47,46 @@ public class DataServiceImpl implements DataService {
     public void crearDatosIniciales() {
         run(() -> {
             //Estudios
-            riot = new Estudio();
+            riot = new Study();
 
             //DESARROLLADOR
             desarrolladorDAO = new HibernateDesarrollador();
-            pedro = new Desarrollador();
-            pedro.setNombre("Pedro");
-            alan = new Desarrollador();
-            alan.setNombre("Alan");
+            pedro = new Developer();
+            pedro.setName("Pedro");
+            alan = new Developer();
+            alan.setName("Alan");
 
 
 
             juegoDAO = new HibernateJuegoDAO();
             //JUEGOS
-            lol = new Juego();
+            lol = new Game();
             lol.setNombre("league of legends");
-            lol.setGenero(Genero.Estrategy);
-            dragonBallZ = new Juego();
+            lol.setGenre(Genre.Estrategy);
+            dragonBallZ = new Game();
             dragonBallZ.setNombre("Dragon ball Z");
-            dragonBallZ.setGenero(Genero.Fighting);
-            residentEvil = new Juego();
+            dragonBallZ.setGenre(Genre.Fighting);
+            residentEvil = new Game();
             residentEvil.setNombre("Resident Evil");
-            residentEvil.setGenero(Genero.SurvivalHorror);
-            residentEvil.addPlataforma(Plataforma.PS1);
-            resident = new Juego();
+            residentEvil.setGenre(Genre.SurvivalHorror);
+            residentEvil.addPlataforma(Platform.PS1);
+            resident = new Game();
             resident.setNombre("Resident Evil 2");
-            resident.setGenero(Genero.SurvivalHorror);
-            resident.addPlataforma(Plataforma.PS1);
-            residentEvil3 = new Juego();
+            resident.setGenre(Genre.SurvivalHorror);
+            resident.addPlataforma(Platform.PS1);
+            residentEvil3 = new Game();
             residentEvil3.setNombre("Resident Evil 3");
-            residentEvil3.setGenero(Genero.SurvivalHorror);
-            residentEvil3.addPlataforma(Plataforma.PS1);
+            residentEvil3.setGenre(Genre.SurvivalHorror);
+            residentEvil3.addPlataforma(Platform.PS1);
             //DESARROLLADORES Y ESTUDIOS
             riot.addJuego(lol);
             alan.addStudy(riot);
 
             //DAOS
-            juegoDAO.guardar(lol);
-            juegoDAO.guardar(dragonBallZ);
-            juegoDAO.guardar(residentEvil);
-            juegoDAO.guardar(resident);
-            juegoDAO.guardar(residentEvil3);
+//            juegoDAO.guardar(dragonBallZ);
+//            juegoDAO.guardar(residentEvil);
+//            juegoDAO.guardar(resident);
+//            juegoDAO.guardar(residentEvil3);
 
             //DESARROLLADOR
             desarrolladorDAO.guardar(pedro);

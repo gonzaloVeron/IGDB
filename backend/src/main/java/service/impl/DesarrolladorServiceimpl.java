@@ -1,9 +1,10 @@
 package service.impl;
 
 import dao.interf.DesarrolladorDAO;
-import model.Desarrollador;
-import model.Juego;
+import model.Developer;
+import model.Game;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static service.TransactionRunner.run;
@@ -17,11 +18,15 @@ public class DesarrolladorServiceimpl {
     }
     public DesarrolladorServiceimpl(){ }
 
-    public List<Juego> juegosDesarrollados(String nombre){
-        return run(()->{ return this.desarrolladorDAO.juegosDesarrollados(nombre);});
+    public List<Game> juegosDesarrollados(String nombre){
+        return run(()->{return this.desarrolladorDAO.juegosDesarrollados(nombre);});
     }
 
-    public Desarrollador buscarDesarrollador(String nombre){
+    public Developer buscarDesarrollador(String nombre){
         return run(()->{return this.desarrolladorDAO.recuperarJuegoPorNombre(nombre);});
+    }
+
+    public Developer searchByID(Long id) {
+        return run(()->{return this.desarrolladorDAO.recuperar(id);});
     }
 }

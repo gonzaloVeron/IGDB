@@ -4,8 +4,8 @@ import dao.impl.HibernateDataDAO;
 import dao.impl.HibernateDesarrollador;
 import dao.interf.DataDAO;
 import dao.interf.DesarrolladorDAO;
-import model.Desarrollador;
-import model.Juego;
+import model.Developer;
+import model.Game;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,24 +33,24 @@ public class TestDesarrollador {
 
     @Test
     public void juegos_desarrollados_por_pedro(){
-        List<Juego>juegosDesarrollados = desarrolladorServiceimpl.juegosDesarrollados("Pedro");
+        List<Game>juegosDesarrollados = desarrolladorServiceimpl.juegosDesarrollados("Pedro");
         Assert.assertEquals(0,juegosDesarrollados.size());
     }
 
     @Test
     public void juegos_desarrollados_por_Alan(){
-        List<Juego>juegosDesarrollados = desarrolladorServiceimpl.juegosDesarrollados("Alan");
+        List<Game>juegosDesarrollados = desarrolladorServiceimpl.juegosDesarrollados("Alan");
         Assert.assertEquals(1,juegosDesarrollados.size());
-        Juego juegoDesarrollado = juegosDesarrollados.get(0);
-        Assert.assertEquals("league of legends",juegoDesarrollado.getNombre());
+        Game gameDesarrollado = juegosDesarrollados.get(0);
+        Assert.assertEquals("league of legends", gameDesarrollado.getNombre());
     }
 
 
 
     @Test
     public void recupero_Pedro(){
-        Desarrollador pedroRecuperado = desarrolladorServiceimpl.buscarDesarrollador("Pedro");
-        Assert.assertEquals("Pedro",pedroRecuperado.getNombre());
+        Developer pedroRecuperado = desarrolladorServiceimpl.buscarDesarrollador("Pedro");
+        Assert.assertEquals("Pedro",pedroRecuperado.getName());
     }
 
     @After

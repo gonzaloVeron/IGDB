@@ -1,25 +1,25 @@
 package dao.impl;
 
 import dao.interf.DesarrolladorDAO;
-import model.Desarrollador;
-import model.Juego;
+import model.Developer;
+import model.Game;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import service.TransactionRunner;
 
 import java.util.List;
 
-public class HibernateDesarrollador extends HibernateDAO<Desarrollador> implements DesarrolladorDAO {
+public class HibernateDesarrollador extends HibernateDAO<Developer> implements DesarrolladorDAO {
 
  public HibernateDesarrollador(){
-     super(Desarrollador.class);
+     super(Developer.class);
  }
 
     @Override
-    public Desarrollador recuperarJuegoPorNombre(String nombre) {
+    public Developer recuperarJuegoPorNombre(String nombre) {
         Session session = TransactionRunner.getCurrentSession();
-        String hql = " from Desarrollador as d"+" where d.nombre = :nombre";
-        Query<Desarrollador> query = session.createQuery(hql, Desarrollador.class);
+        String hql = " from Developer as d"+" where d.name = :nombre";
+        Query<Developer> query = session.createQuery(hql, Developer.class);
         query.setParameter("nombre", nombre);
 
         return this.validacion(query.uniqueResult());
@@ -27,16 +27,15 @@ public class HibernateDesarrollador extends HibernateDAO<Desarrollador> implemen
     }
 
     @Override
-    public List<Juego>juegosDesarrollados(String nombre){
+    public List<Game>juegosDesarrollados(String nombre){
        Session session = TransactionRunner.getCurrentSession();
 
-       String hql = "select j " +
-                    " from Desarrollador as d" +
-                    " join d.previousStudies as dp " +
-                    " join dp.juegosDesarrolladros as j" +
-                    " where d.nombre = :nombre";
+       String hql = "select dg" +
+                    " from Developer as d" +
+                    " join d.games as dg " +
+                    " where d.name = :nombre";
 
-       Query<Juego> query = session.createQuery(hql,Juego.class);
+       Query<Game> query = session.createQuery(hql, Game.class);
        query.setParameter("nombre",nombre);
 
        return query.getResultList();

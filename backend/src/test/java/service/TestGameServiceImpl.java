@@ -6,9 +6,9 @@ import dao.impl.HibernateSearchDAO;
 import dao.interf.DataDAO;
 import dao.interf.JuegoDAO;
 import dao.interf.SearchDAO;
-import model.Genero;
-import model.Juego;
-import model.Plataforma;
+import model.Genre;
+import model.Game;
+import model.Platform;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -22,12 +22,12 @@ import service.interf.JuegoService;
 
 import java.util.List;
 
-public class TestJuegoServiceImpl {
+public class TestGameServiceImpl {
     private JuegoDAO juegoDAO;
     private JuegoService juegoService;
     private DataService dataService;
     private DataDAO dataDAO;
-    private Juego lol;
+    private Game lol;
     private ServiceHibernate serviceHibernate;
     private SearchDAO searchDAO;
     private SearchService searchService;
@@ -53,34 +53,34 @@ public class TestJuegoServiceImpl {
     @Test
     public void lista_de_juegos_por_nombre(){
 
-        List<Juego> juegos = searchService.busquedaPorNombre("Resident");
-        Assert.assertEquals(3,juegos.size());
-        Assert.assertEquals("Resident Evil",juegos.get(0).getNombre());
-        Assert.assertEquals("Resident Evil 2",juegos.get(1).getNombre());
-        Assert.assertEquals("Resident Evil 3", juegos.get(2).getNombre());
+        List<Game> games = searchService.busquedaPorNombre("Resident");
+        Assert.assertEquals(3, games.size());
+        Assert.assertEquals("Resident Evil", games.get(0).getNombre());
+        Assert.assertEquals("Resident Evil 2", games.get(1).getNombre());
+        Assert.assertEquals("Resident Evil 3", games.get(2).getNombre());
 
     }
     @Test
     public void lista_de_juegos_por_Genero(){
-        List<Juego> juegos = searchService.busquedaPorgenero(Genero.Fighting);
-        Assert.assertEquals(1,juegos.size());
-        Assert.assertEquals("Dragon ball Z",juegos.get(0).getNombre());
+        List<Game> games = searchService.busquedaPorgenero(Genre.Fighting);
+        Assert.assertEquals(1, games.size());
+        Assert.assertEquals("Dragon ball Z", games.get(0).getNombre());
 
 
     }
     @Test
     public void lista_de_juegos_por_Plataforma(){
-        List<Juego> juegos = searchService.busquedaPorPlataforma(Plataforma.PS1);
-        Assert.assertEquals(3,juegos.size());
-        Assert.assertEquals("Resident Evil", juegos.get(0).getNombre());
-        Assert.assertEquals("Resident Evil 2", juegos.get(1).getNombre());
-        Assert.assertEquals("Resident Evil 3", juegos.get(2).getNombre());
+        List<Game> games = searchService.busquedaPorPlataforma(Platform.PS1);
+        Assert.assertEquals(3, games.size());
+        Assert.assertEquals("Resident Evil", games.get(0).getNombre());
+        Assert.assertEquals("Resident Evil 2", games.get(1).getNombre());
+        Assert.assertEquals("Resident Evil 3", games.get(2).getNombre());
 
     }
 
-//    @After
-//    public void eliminarDatos(){
-//        dataService.eliminarDatos();
-//   }
+    @After
+    public void eliminarDatos(){
+        dataService.eliminarDatos();
+   }
 
 }

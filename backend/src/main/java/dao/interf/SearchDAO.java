@@ -1,13 +1,13 @@
 package dao.interf;
 
-import model.Genero;
-import model.Juego;
-import model.Plataforma;
+import model.Genre;
+import model.Game;
+import model.Platform;
 
 import java.util.List;
 
 public interface SearchDAO {
-    List<Juego> busquedaPorGenero(Genero genero);
-    List<Juego> busquedaPorPlataforma(Plataforma plataforma);
-    List<Juego> busquedaPorNombre(String nombre);
+    List<Game> busquedaPorGenero(Genre genre);
+    List<Game> busquedaPorPlataforma(Platform platform);
+    List<Game> busquedaPorNombre(String nombre);
 }

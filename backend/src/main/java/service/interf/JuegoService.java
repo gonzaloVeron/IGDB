@@ -1,7 +1,7 @@
 package service.interf;
 
-import model.Juego;
+import model.Game;
 
 public interface JuegoService {
-    Juego buscarJuego(String nombre);
+    Game buscarJuego(String nombre);
 }

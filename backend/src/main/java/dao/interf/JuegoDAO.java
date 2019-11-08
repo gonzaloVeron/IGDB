@@ -1,10 +1,10 @@
 package dao.interf;
 
-import model.Juego;
+import model.Game;
 
 public interface JuegoDAO {
-    void guardar(Juego juego);
-    Juego recuperarJuegoPorNombre(String nombre);
-    void actualizar(Juego juego);
+    void guardar(Game game);
+    Game recuperarJuegoPorNombre(String nombre);
+    void actualizar(Game game);
 
 }

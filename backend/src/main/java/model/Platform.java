@@ -1,6 +1,6 @@
 package model;
 
-public enum Plataforma {
+public enum Platform {
     PS4,
     XBOXONE,
     PC,

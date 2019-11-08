@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Estudio {
+public class Study {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,20 +21,20 @@ public class Estudio {
 
     @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<Desarrollador> desarrolladoresActuales;
+    private List<Developer> desarrolladoresActuales;
 
     @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<Desarrollador> desarrolladoresHistoricos;
+    private List<Developer> desarrolladoresHistoricos;
 
 
     @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<Juego> juegosDesarrolladros;
+    private List<Game> juegosDesarrolladros;
 
 
 
-    public Estudio(){
+    public Study(){
         this.desarrolladoresActuales = new ArrayList<>();
         this.desarrolladoresHistoricos = new ArrayList<>();
         this.juegosDesarrolladros = new ArrayList<>();
@@ -73,11 +73,11 @@ public class Estudio {
         this.estaActivo = estaActivo;
     }
 
-    public List<Juego> getJuegosDesarrolladros() {
+    public List<Game> getJuegosDesarrolladros() {
         return juegosDesarrolladros;
     }
 
-    public void addJuego(Juego juego) {
-        this.juegosDesarrolladros.add(juego);
+    public void addJuego(Game game) {
+        this.juegosDesarrolladros.add(game);
     }
 }

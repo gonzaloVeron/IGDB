@@ -4,9 +4,9 @@ import dao.impl.HibernateJuegoDAO;
 import dao.impl.HibernateSearchDAO;
 import dao.interf.JuegoDAO;
 import dao.interf.SearchDAO;
-import model.Genero;
-import model.Juego;
-import model.Plataforma;
+import model.Genre;
+import model.Game;
+import model.Platform;
 import service.interf.JuegoService;
 
 import java.util.List;
@@ -25,21 +25,21 @@ public class Facade {
         this.searchService = new SearchService();
     }
 
-    public Juego buscarPorNombre(String nombre){
+    public Game buscarPorNombre(String nombre){
         return this.juegoService.buscarJuego(nombre);
     }
 
-    public List<Juego>buscarListaDeJuegosPorNormbre(String nombre){
+    public List<Game>buscarListaDeJuegosPorNormbre(String nombre){
         return  this.searchService.busquedaPorNombre(nombre);
     }
 
 
-    public List<Juego>buscarListaDeJuegosPorGenero(Genero genero){
-        return  this.searchService.busquedaPorgenero(genero);
+    public List<Game>buscarListaDeJuegosPorGenero(Genre genre){
+        return  this.searchService.busquedaPorgenero(genre);
     }
 
-    public List<Juego>buscarListaDeJuegosPorNormbre(Plataforma plataforma){
-        return  this.searchService.busquedaPorPlataforma(plataforma);
+    public List<Game>buscarListaDeJuegosPorNormbre(Platform platform){
+        return  this.searchService.busquedaPorPlataforma(platform);
     }
 
 

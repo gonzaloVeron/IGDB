@@ -1,7 +1,7 @@
 package service.impl;
 
 import dao.interf.JuegoDAO;
-import model.Juego;
+import model.Game;
 import static service.TransactionRunner.run;
 
 public class ServiceHibernate {
@@ -12,9 +12,9 @@ public class ServiceHibernate {
 
     public ServiceHibernate(){}
 
-    public void guardarJuego(Juego juego){
+    public void guardarJuego(Game game){
         run(() -> {
-            this.juegoDAO.guardar(juego);
+            this.juegoDAO.guardar(game);
         });
     }
 
