@@ -18,7 +18,7 @@ public class HibernateDesarrollador extends HibernateDAO<Developer> implements D
     @Override
     public Developer recuperarJuegoPorNombre(String nombre) {
         Session session = TransactionRunner.getCurrentSession();
-        String hql = " from Developer as d"+" where d.name = :nombre";
+        String hql = " from Developer as d "+" where d.name = :nombre";
         Query<Developer> query = session.createQuery(hql, Developer.class);
         query.setParameter("nombre", nombre);
 
@@ -30,10 +30,10 @@ public class HibernateDesarrollador extends HibernateDAO<Developer> implements D
     public List<Game>juegosDesarrollados(String nombre){
        Session session = TransactionRunner.getCurrentSession();
 
-       String hql = "select dg" +
-                    " from Developer as d" +
+       String hql = "select dg " +
+                    " from Developer as d " +
                     " join d.games as dg " +
-                    " where d.name = :nombre";
+                    " where d.name = :nombre ";
 
        Query<Game> query = session.createQuery(hql, Game.class);
        query.setParameter("nombre",nombre);

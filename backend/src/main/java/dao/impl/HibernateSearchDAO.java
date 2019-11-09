@@ -15,8 +15,8 @@ public class HibernateSearchDAO implements SearchDAO {
     public List<Game> busquedaPorGenero(Genre genre) {
         Session session = TransactionRunner.getCurrentSession();
 
-        String hql = "from Game as g " +
-                "where g.genre = :genre";
+        String hql = " from Game as g " +
+                     " where g.genre = :genre";
 
         return session.createQuery(hql, Game.class).setParameter("genre", genre).getResultList();
 
@@ -39,7 +39,7 @@ public class HibernateSearchDAO implements SearchDAO {
         Session session = TransactionRunner.getCurrentSession();
 
         String hql = "from Game as g " +
-                "where g.nombre  LIKE CONCAT('%',?1,'%')";
+                      "where g.nombre  LIKE CONCAT('%',?1,'%')";
 
         return session.createQuery(hql, Game.class).setParameter(1, nombre).getResultList();
     }

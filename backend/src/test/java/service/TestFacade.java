@@ -3,6 +3,7 @@ package service;
 import dao.impl.HibernateDataDAO;
 import dao.interf.DataDAO;
 import model.Game;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,10 +33,10 @@ public class TestFacade {
     }
 
 
-   // @After
-    //public void clear(){
-    //    dataService.eliminarDatos();
-   // }
+    @After
+    public void clear(){
+        dataService.eliminarDatos();
+    }
 
 
 

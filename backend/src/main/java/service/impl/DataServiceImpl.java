@@ -81,12 +81,13 @@ public class DataServiceImpl implements DataService {
             //DESARROLLADORES Y ESTUDIOS
             riot.addJuego(lol);
             alan.addStudy(riot);
+            alan.addGame(lol);
 
             //DAOS
-//            juegoDAO.guardar(dragonBallZ);
-//            juegoDAO.guardar(residentEvil);
-//            juegoDAO.guardar(resident);
-//            juegoDAO.guardar(residentEvil3);
+            juegoDAO.guardar(dragonBallZ);
+            juegoDAO.guardar(residentEvil);
+            juegoDAO.guardar(resident);
+            juegoDAO.guardar(residentEvil3);
 
             //DESARROLLADOR
             desarrolladorDAO.guardar(pedro);
