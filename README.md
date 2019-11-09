@@ -3,6 +3,6 @@ Integrantes de proyecto -> **IGDB**
 -----------------------
 * Gonzalo Verón
 * Alejandro Mamani
-* Juan
+* Juan Garay
 * Cristian Aranguren
-* Nahuel 
+* Nahuel Moscatelli
