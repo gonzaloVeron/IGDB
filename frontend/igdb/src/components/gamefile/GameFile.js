@@ -58,7 +58,7 @@ export default class GameFile extends React.Component {
                 <NavBar/>
                 <div className="container">
                     {this.fileTitle()}
-                    {this.fileContent()}
+                    {this.fileContent()} 
                 </div>
             </div>
         )
