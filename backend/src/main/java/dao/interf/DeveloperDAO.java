@@ -7,6 +7,7 @@ import model.Study;
 import java.util.List;
 
 public interface DeveloperDAO {
+    List<Developer> busquedaPorNombre(String nombre);
     void guardar(Developer desarrollador);
     Developer recuperarJuegoPorNombre(String nombre);
     void actualizar(Developer desarrolador);

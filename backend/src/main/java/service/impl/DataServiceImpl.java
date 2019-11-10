@@ -80,6 +80,11 @@ public class DataServiceImpl implements DataService {
 
 
     //Desarrolladores
+    private Developer hideoKojima;
+    private Developer markusPersson;
+    private Developer johnRomero;
+    private Developer johnCarmack;
+    private DeveloperDAO developerDAO;
 
 
 
@@ -116,6 +121,7 @@ public class DataServiceImpl implements DataService {
             //DAOS
             gameDAO = new HibernateGameDAO();
             studyDAO = new HibernateStudyDAO();
+            developerDAO = new HibernateDeveloper();
 
             //Estudios
             //NINTENDO
@@ -168,11 +174,40 @@ public class DataServiceImpl implements DataService {
             generation.setFechaDeFundacion(fundaciongeneration);
             //DESARROLLADOR
 
+            //hideoKojima
+            hideoKojima = new Developer();
+            hideoKojima.setName("Hideo");
+            hideoKojima.setLastName("Kojima");
+            hideoKojima.setActuallyWorking(Boolean.FALSE);
+            hideoKojima.setUrlPhoto("Ninguna");
+            Date nacimiento = new Date(1975,25,5);
+            hideoKojima.setDateOfBirth(nacimiento);
+            //markusPersson
+            markusPersson = new Developer();
+            markusPersson.setName("Markus");
+            markusPersson.setLastName("Persson");
+            markusPersson.setActuallyWorking(Boolean.TRUE);
+            markusPersson.setUrlPhoto("Ninguna");
+            Date nacimientoo = new Date(1971,25,5);
+            markusPersson.setDateOfBirth(nacimientoo);
 
+            //johnRomero
+            johnRomero = new Developer();
+            johnRomero.setName("John");
+            johnRomero.setLastName("Romero");
+            johnRomero.setActuallyWorking(Boolean.FALSE);
+            johnRomero.setUrlPhoto("Ninguna");
+            Date fechanacimiento = new Date(1980,25,6);
+            johnRomero.setDateOfBirth(fechanacimiento);
 
-
-
-
+            //johnCarmack
+            johnCarmack = new Developer();
+            johnCarmack.setName("John");
+            johnCarmack.setLastName("Caramack");
+            johnCarmack.setActuallyWorking(Boolean.TRUE);
+            johnCarmack.setUrlPhoto("Ninguna");
+            Date fechana = new Date(1985,29,1);
+            johnCarmack.setDateOfBirth(fechana);
 
 
             //JUEGOS
@@ -410,6 +445,29 @@ public class DataServiceImpl implements DataService {
             generation.addJuego(bayonetta);
             generation.addJuego(invisibleInc);
             generation.addJuego(devilMayCry);
+            //DESARROLLADORES
+            hideoKojima.addGame(dragonBallZ);
+            hideoKojima.addGame(dragonBallZXenoverse);
+            hideoKojima.addGame(dragonAgeOrigins);
+            hideoKojima.addGame(resident);
+            hideoKojima.addGame(residentEvil);
+            hideoKojima.addGame(residentEvil3);
+            //
+            markusPersson.addGame(minecraft);
+            markusPersson.addGame(diablo3);
+            markusPersson.addGame(digimon);
+            markusPersson.addGame(lol);
+
+            ////
+            johnRomero.addGame(godOfWar);
+            johnRomero.addGame(godOfWar2);
+            johnRomero.addGame(godOfWar3);
+            johnRomero.addGame(godOfWarAscension);
+            //////
+            johnCarmack.addGame(marioBros);
+            johnCarmack.addGame(sonicMania);
+            johnCarmack.addGame(sonic);
+            johnCarmack.addGame(fifa2019);
 
             //DAOS ESTUDIOS
             studyDAO.guardar(nintendo);
@@ -421,67 +479,11 @@ public class DataServiceImpl implements DataService {
             studyDAO.guardar(sCESantaMonicaStudio);
             studyDAO.guardar(generation);
 
-
-
-            //DAOS JUEGO
-//            gameDAO.guardar(lol);
-//            gameDAO.guardar(dragonBallZ);
-//            gameDAO.guardar(residentEvil);
-//            gameDAO.guardar(resident);
-//            gameDAO.guardar(residentEvil3);
-  //          gameDAO.guardar(marioBros);
-    ///        gameDAO.guardar(sonic);
-//            gameDAO.guardar(digimon);
-   //         gameDAO.guardar(fifa2019);
-//            gameDAO.guardar(minecraft);
-//            gameDAO.guardar(theLastOfUs);
-//            gameDAO.guardar(batman);
-//            gameDAO.guardar(superman);
-//            gameDAO.guardar(iroMan);
-//            gameDAO.guardar(theSimpsons);
-//            gameDAO.guardar(assassinsCreed);
-//            gameDAO.guardar(braid);
-//            gameDAO.guardar(invisibleInc);
-         //   gameDAO.guardar(sonicMania);
-//            gameDAO.guardar(bastion);
-//            gameDAO.guardar(batmanArkhamKnight);
-//            gameDAO.guardar(bayonetta);
-//            gameDAO.guardar(devilMayCry);
-//            gameDAO.guardar(dragonAgeOrigins);
-//            gameDAO.guardar(metroExodus);
-//            gameDAO.guardar(tombRaider);
-//            gameDAO.guardar(outlast);
-//            gameDAO.guardar(outlast2);
-//            gameDAO.guardar(outlastWhistleblower);
-//            gameDAO.guardar(godOfWar);
-//            gameDAO.guardar(godOfWar2);
-//            gameDAO.guardar(godOfWar3);
-//            gameDAO.guardar(godOfWarAscension);
-//            gameDAO.guardar(superHot);
-//            gameDAO.guardar(callofDutyBlackOps);
-//            gameDAO.guardar(callofDutyBlackOps2);
-//            gameDAO.guardar(callofDutyBlackOps3);
-//            gameDAO.guardar(callofDutyBlackOps4);
-//            gameDAO.guardar(leftOfDead);
-//            gameDAO.guardar(leftOfDead2);
-//            gameDAO.guardar(halfLife);
-//            gameDAO.guardar(halfLife2);
-        //    gameDAO.guardar(legendOfZelda);
-          //  gameDAO.guardar(luigiMansion);
-           // gameDAO.guardar(tetris);
-//            gameDAO.guardar(deathStranding);
-//            gameDAO.guardar(naruto);
-//            gameDAO.guardar(narutoShippudenUltimate);
-//            gameDAO.guardar(dragonBallZXenoverse);
-//            gameDAO.guardar(battlefield);
-//            gameDAO.guardar(battlefield1);
-//            gameDAO.guardar(battlefield2);
-//            gameDAO.guardar(battlefield3);
-//            gameDAO.guardar(battlefield4);
-//            gameDAO.guardar(diablo3);
-
-
-
+            //DAOS DEVELODER
+            developerDAO.guardar(hideoKojima);
+            developerDAO.guardar(markusPersson);
+            developerDAO.guardar(johnRomero);
+            developerDAO.guardar(johnCarmack);
 
 
 

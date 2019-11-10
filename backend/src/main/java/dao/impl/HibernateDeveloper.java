@@ -61,4 +61,15 @@ public class HibernateDeveloper extends HibernateDAO<Developer> implements Devel
     }
 
 
+    @Override
+    public List<Developer> busquedaPorNombre(String name) {
+        Session session = TransactionRunner.getCurrentSession();
+
+        String hql = " from Developer as d " +
+                " where d.name  LIKE CONCAT('%',?1,'%')";
+
+        return session.createQuery(hql, Developer.class).setParameter(1, name).getResultList();
+    }
+
+
 }
