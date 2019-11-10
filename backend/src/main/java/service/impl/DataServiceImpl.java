@@ -2,11 +2,17 @@ package service.impl;
 
 import dao.impl.HibernateDeveloper;
 import dao.impl.HibernateGameDAO;
+import dao.impl.HibernateStudyDAO;
 import dao.interf.DataDAO;
 import dao.interf.DeveloperDAO;
 import dao.interf.GameDAO;
+import dao.interf.StudyDAO;
 import model.*;
 import service.interf.DataService;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static service.TransactionRunner.run;
 
 public class DataServiceImpl implements DataService {
@@ -14,11 +20,13 @@ public class DataServiceImpl implements DataService {
     private Game lol;
     private Game residentEvil;
     private Game dragonBallZ;
+    //DAOS
     private GameDAO gameDAO;
     private DataDAO dataDAO;
+    private StudyDAO studyDAO;
+    //
     private Game resident;
     private Game residentEvil3;
-    //GAMES NEWS
     private Game marioBros;
     private Game sonic;
     private Game digimon;
@@ -71,13 +79,21 @@ public class DataServiceImpl implements DataService {
     private Game diablo3;
 
 
-    //Developer
-    private DeveloperDAO developerDAO;
-    private Developer pedro;
-    private Developer alan;
+    //Desarrolladores
+
+
+
 
     //ESTUDIOS
-    private Study riot;
+    private Study redBarrels;
+    private Study nintendo;
+    private Study activision;
+    private Study valve;
+    private Study eaDigitalIllusionsCe;
+    private Study capcom;
+    private Study sCESantaMonicaStudio;
+    private Study generation;
+
 
 
 
@@ -97,19 +113,68 @@ public class DataServiceImpl implements DataService {
     @Override
     public void crearDatosIniciales() {
         run(() -> {
-            //Estudios
-            riot = new Study();
-
-            //DESARROLLADOR
-            developerDAO = new HibernateDeveloper();
-            pedro = new Developer();
-            pedro.setName("Pedro");
-            alan = new Developer();
-            alan.setName("Alan");
-
-
-
+            //DAOS
             gameDAO = new HibernateGameDAO();
+            studyDAO = new HibernateStudyDAO();
+
+            //Estudios
+            //NINTENDO
+            nintendo = new Study();
+            nintendo.setNombre("Nintendo");
+            Date fundacion = new Date(1889,9,23);
+            nintendo.setFechaDeFundacion(fundacion);
+            nintendo.setEstaActivo(Boolean.TRUE);
+            //RED
+            redBarrels = new Study();
+            redBarrels.setNombre("Red Barrels");
+            Date fundacionred = new Date(2011,5,8);
+            redBarrels.setFechaDeFundacion(fundacionred);
+            redBarrels.setEstaActivo(Boolean.FALSE);
+            //Activision
+            activision = new Study();
+            activision.setNombre("Activision");
+            Date fundacionactivision= new Date(1978,10,1);
+            activision.setFechaDeFundacion(fundacionactivision);
+            activision.setEstaActivo(Boolean.TRUE);
+            //Valve
+            valve = new Study();
+            valve.setNombre("Valve");
+            Date fundacionValve= new Date(1996,5,1);
+            valve.setFechaDeFundacion(fundacionValve);
+            valve.setEstaActivo(Boolean.TRUE);
+            // EaDigitalIllusionsCe
+            eaDigitalIllusionsCe = new Study();
+            eaDigitalIllusionsCe.setNombre("EaDigitalIllusionsCe");
+            eaDigitalIllusionsCe.setEstaActivo(Boolean.TRUE);
+            Date fundacionDigital = new Date(1992,6,23);
+            eaDigitalIllusionsCe.setFechaDeFundacion(fundacionDigital);
+            //Capcom
+            capcom = new Study();
+            capcom.setNombre("Capcom");
+            capcom.setEstaActivo(Boolean.TRUE);
+            Date fundacionCapcom = new Date(1979,4,30);
+            capcom.setFechaDeFundacion(fundacionCapcom);
+            //sCESantaMonicaStudio
+            sCESantaMonicaStudio = new Study();
+            sCESantaMonicaStudio.setNombre("SCE Santa Monica Studio");
+            sCESantaMonicaStudio.setEstaActivo(Boolean.FALSE);
+            Date fundacionmonica = new Date(2005,5,25);
+            sCESantaMonicaStudio.setFechaDeFundacion(fundacionmonica);
+            //generation
+            generation = new Study();
+            generation.setNombre("Generation");
+            generation.setEstaActivo(Boolean.TRUE);
+            Date fundaciongeneration = new Date(1985,30,30);
+            generation.setFechaDeFundacion(fundaciongeneration);
+            //DESARROLLADOR
+
+
+
+
+
+
+
+
             //JUEGOS
             lol = new Game();
             lol.setNombre("league of legends");
@@ -132,7 +197,7 @@ public class DataServiceImpl implements DataService {
             //Game news
             marioBros = new Game();
             marioBros.setNombre("Mario Bros");
-            marioBros.setGenre(Genre.Adventure);
+            marioBros.setGenre(Genre.Simulation);
             sonic =  new Game();;
             sonic.setNombre("Sonic");
             sonic.setGenre(Genre.Adventure);
@@ -242,10 +307,10 @@ public class DataServiceImpl implements DataService {
             halfLife2= new Game();;
             halfLife2.setNombre("Half life 2");
             halfLife2.setGenre(Genre.Adventure);
-            legendOfZelda= new Game();;
-            legendOfZelda.setNombre("Legend of zelda");
+            legendOfZelda= new Game();
+            legendOfZelda.setNombre("Lengend Of Zelda");
             legendOfZelda.setGenre(Genre.Adventure);
-            luigiMansion= new Game();;
+            luigiMansion= new Game();
             luigiMansion.setNombre("Luigi Mansion");
             luigiMansion.setGenre(Genre.Adventure);
             tetris= new Game();;
@@ -282,21 +347,145 @@ public class DataServiceImpl implements DataService {
             diablo3.setNombre("Diablo 3");
             diablo3.setGenre(Genre.SurvivalHorror);
 
-            //DESARROLLADORES Y ESTUDIOS
-            riot.addJuego(lol);
-            alan.addStudy(riot);
-            alan.addGame(lol);
+            //ESTUDIO y sus Juegos
+            nintendo.addJuego(marioBros);
+            nintendo.addJuego(sonic);
+            nintendo.addJuego(fifa2019);
+            nintendo.addJuego(sonicMania);
+            nintendo.addJuego(legendOfZelda);
+            nintendo.addJuego(luigiMansion);
+            nintendo.addJuego(tetris);
+            //RED
+            redBarrels.addJuego(outlast);
+            redBarrels.addJuego(outlast2);
+            redBarrels.addJuego(outlastWhistleblower);
+            //Activision
+            activision.addJuego(callofDutyBlackOps);
+            activision.addJuego(callofDutyBlackOps2);
+            activision.addJuego(callofDutyBlackOps3);
+            activision.addJuego(callofDutyBlackOps4);
+            //Valve
+            valve.addJuego(leftOfDead);
+            valve.addJuego(leftOfDead2);
+            valve.addJuego(halfLife);
+            valve.addJuego(halfLife2);
+            //EaDigitalIllusionsCe
+            eaDigitalIllusionsCe.addJuego(battlefield);
+            eaDigitalIllusionsCe.addJuego(battlefield1);
+            eaDigitalIllusionsCe.addJuego(battlefield2);
+            eaDigitalIllusionsCe.addJuego(battlefield3);
+            eaDigitalIllusionsCe.addJuego(battlefield4);
+            //Capcom
+            capcom.addJuego(dragonBallZXenoverse);
+            capcom.addJuego(dragonBallZ);
+            capcom.addJuego(dragonAgeOrigins);
+            capcom.addJuego(resident);
+            capcom.addJuego(residentEvil);
+            capcom.addJuego(residentEvil3);
+            capcom.addJuego(batman);
+            capcom.addJuego(batmanArkhamKnight);
+            capcom.addJuego(superman);
+            capcom.addJuego(iroMan);
+            //sCESantaMonicaStudio
+            sCESantaMonicaStudio.addJuego(godOfWar);
+            sCESantaMonicaStudio.addJuego(godOfWar2);
+            sCESantaMonicaStudio.addJuego(godOfWar3);
+            sCESantaMonicaStudio.addJuego(godOfWarAscension);
+            //generation
+            generation.addJuego(lol);
+            generation.addJuego(digimon);
+            generation.addJuego(minecraft);
+            generation.addJuego(theLastOfUs);
+            generation.addJuego(naruto);
+            generation.addJuego(narutoShippudenUltimate);
+            generation.addJuego(diablo3);
+            generation.addJuego(deathStranding);
+            generation.addJuego(superHot);
+            generation.addJuego(tombRaider);
+            generation.addJuego(metroExodus);
+            generation.addJuego(theSimpsons);
+            generation.addJuego(assassinsCreed);
+            generation.addJuego(braid);
+            generation.addJuego(bastion);
+            generation.addJuego(bayonetta);
+            generation.addJuego(invisibleInc);
+            generation.addJuego(devilMayCry);
+
+            //DAOS ESTUDIOS
+            studyDAO.guardar(nintendo);
+            studyDAO.guardar(redBarrels);
+            studyDAO.guardar(activision);
+            studyDAO.guardar(valve);
+            studyDAO.guardar(eaDigitalIllusionsCe);
+            studyDAO.guardar(capcom);
+            studyDAO.guardar(sCESantaMonicaStudio);
+            studyDAO.guardar(generation);
 
 
-            //DAOS
-            gameDAO.guardar(dragonBallZ);
-            gameDAO.guardar(residentEvil);
-            gameDAO.guardar(resident);
-            gameDAO.guardar(residentEvil3);
 
-            //DESARROLLADOR
-            developerDAO.guardar(pedro);
-            developerDAO.guardar(alan);
+            //DAOS JUEGO
+//            gameDAO.guardar(lol);
+//            gameDAO.guardar(dragonBallZ);
+//            gameDAO.guardar(residentEvil);
+//            gameDAO.guardar(resident);
+//            gameDAO.guardar(residentEvil3);
+  //          gameDAO.guardar(marioBros);
+    ///        gameDAO.guardar(sonic);
+//            gameDAO.guardar(digimon);
+   //         gameDAO.guardar(fifa2019);
+//            gameDAO.guardar(minecraft);
+//            gameDAO.guardar(theLastOfUs);
+//            gameDAO.guardar(batman);
+//            gameDAO.guardar(superman);
+//            gameDAO.guardar(iroMan);
+//            gameDAO.guardar(theSimpsons);
+//            gameDAO.guardar(assassinsCreed);
+//            gameDAO.guardar(braid);
+//            gameDAO.guardar(invisibleInc);
+         //   gameDAO.guardar(sonicMania);
+//            gameDAO.guardar(bastion);
+//            gameDAO.guardar(batmanArkhamKnight);
+//            gameDAO.guardar(bayonetta);
+//            gameDAO.guardar(devilMayCry);
+//            gameDAO.guardar(dragonAgeOrigins);
+//            gameDAO.guardar(metroExodus);
+//            gameDAO.guardar(tombRaider);
+//            gameDAO.guardar(outlast);
+//            gameDAO.guardar(outlast2);
+//            gameDAO.guardar(outlastWhistleblower);
+//            gameDAO.guardar(godOfWar);
+//            gameDAO.guardar(godOfWar2);
+//            gameDAO.guardar(godOfWar3);
+//            gameDAO.guardar(godOfWarAscension);
+//            gameDAO.guardar(superHot);
+//            gameDAO.guardar(callofDutyBlackOps);
+//            gameDAO.guardar(callofDutyBlackOps2);
+//            gameDAO.guardar(callofDutyBlackOps3);
+//            gameDAO.guardar(callofDutyBlackOps4);
+//            gameDAO.guardar(leftOfDead);
+//            gameDAO.guardar(leftOfDead2);
+//            gameDAO.guardar(halfLife);
+//            gameDAO.guardar(halfLife2);
+        //    gameDAO.guardar(legendOfZelda);
+          //  gameDAO.guardar(luigiMansion);
+           // gameDAO.guardar(tetris);
+//            gameDAO.guardar(deathStranding);
+//            gameDAO.guardar(naruto);
+//            gameDAO.guardar(narutoShippudenUltimate);
+//            gameDAO.guardar(dragonBallZXenoverse);
+//            gameDAO.guardar(battlefield);
+//            gameDAO.guardar(battlefield1);
+//            gameDAO.guardar(battlefield2);
+//            gameDAO.guardar(battlefield3);
+//            gameDAO.guardar(battlefield4);
+//            gameDAO.guardar(diablo3);
+
+
+
+
+
+
+
 
 
 
