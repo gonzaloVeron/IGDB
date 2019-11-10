@@ -3,13 +3,13 @@ package model;
 public enum Genre {
     Adventure,
     Shooter,
-    Estrategy,
+    Strategy,
     SurvivalHorror,
     Rol,
     PartyGames,
     Simulation,
-    Deports,
-    Race,
+    Sports,
+    Racing,
     Music,
     Fighting,
 }
