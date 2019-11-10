@@ -6,5 +6,7 @@ services:
   - mysql
 before_install: 
   - cd backend
+before_script:
+  - mysql -e 'CREATE DATABASE igdb;'
 after_success:
   - bash <(curl -s https://codecov.io/bash)
