@@ -2,6 +2,10 @@ dist: trusty
 language: java
 jdk:
   - oraclejdk8
-before_install: cd backend
+ services:
+  - mysql
+before_install: 
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS igdb;'
+  -cd backend
 after_success:
   - bash <(curl -s https://codecov.io/bash)
