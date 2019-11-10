@@ -6,6 +6,7 @@ services:
   - mysql
 before_install: 
   - cd backend
+  - mysql -u root --password="root"
 before_script:
   - mysql -e 'CREATE DATABASE igdb;'
 after_success:
