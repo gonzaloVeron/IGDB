@@ -1,9 +1,9 @@
 package service.impl;
 
 import dao.interf.SearchDAO;
-import model.Genero;
-import model.Juego;
-import model.Plataforma;
+import model.Genre;
+import model.Game;
+import model.Platform;
 
 import java.util.List;
 import static service.TransactionRunner.run;
@@ -20,14 +20,14 @@ public class SearchService {
 
 
 
- public List<Juego> busquedaPorNombre(String nombre){
+ public List<Game> searchGame(String nombre){
      return run(()->{ return this.searchDAO.busquedaPorNombre(nombre);});
  }
 
- public List<Juego> busquedaPorgenero(Genero genero){
-     return run(()->{ return this.searchDAO.busquedaPorGenero(genero);});
+ public List<Game> busquedaPorgenero(Genre genre){
+     return run(()->{ return this.searchDAO.busquedaPorGenero(genre);});
  }
- public List<Juego> busquedaPorPlataforma(Plataforma plataforma){
-     return run(()->{ return this.searchDAO.busquedaPorPlataforma(plataforma);});
+ public List<Game> busquedaPorPlataforma(Platform platform){
+     return run(()->{ return this.searchDAO.busquedaPorPlataforma(platform);});
  }
 }
