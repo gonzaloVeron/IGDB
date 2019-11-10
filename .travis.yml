@@ -7,7 +7,7 @@ services:
 before_install: 
   - cd backend
 before_script:
-  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
   - mysql -u root -e 'CREATE DATABASE igdb;'
+  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
 after_success:
   - bash <(curl -s https://codecov.io/bash)
