@@ -11,7 +11,7 @@ const App = () => (
       <Switch> 
         {/*<Route exact path="/register" component={Register}/>*/}
         <Route path="/search/:searchValue/:platform/:genre" component={Search}/> 
-        <Route path="/game/:gameName" component={GameFile}/>
+        <Route path="/game/:id" component={GameFile}/>
         <Route path="/home" component={Home}/>
         <Route path="/" component={Home}/> 
       </Switch>

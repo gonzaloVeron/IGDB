@@ -20,8 +20,8 @@ export default class GameFile extends React.Component {
 
     
     componentDidMount(){
-        let { gameName } = this.props.match.params
-        getGame(gameName).then(result => {
+        let { gameID } = this.props.match.params
+        getGame(gameID).then(result => {
             this.setState({ gameData : result });
             console.log(result)
         }).catch(e => {this.setState({ error: e.message })})
