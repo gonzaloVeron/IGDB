@@ -1,6 +1,5 @@
 package service;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dao.impl.HibernateDataDAO;
 import dao.impl.HibernateGameDAO;
 import dao.impl.HibernateStudyDAO;
@@ -14,9 +13,10 @@ import org.junit.Before;
 import org.junit.Test;
 import service.impl.DataServiceImpl;
 import service.impl.GameServiceImpl;
-import service.impl.ServiceStudy;
+import service.impl.ServiceStudyimpl;
 import service.interf.DataService;
 import service.interf.JuegoService;
+import service.interf.ServiceStudy;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class TestGames {
     private JuegoService juegoService;
     //Service estudio
     private StudyDAO studyDAO;
-    private ServiceStudy serviceStudy;
+    private ServiceStudy serviceStudyimpl;
 
 
     @Before
@@ -38,7 +38,7 @@ public class TestGames {
         gameDAO = new HibernateGameDAO();
         juegoService = new GameServiceImpl(gameDAO);
         studyDAO = new HibernateStudyDAO();
-        serviceStudy = new ServiceStudy(studyDAO);
+        serviceStudyimpl = new ServiceStudyimpl(studyDAO);
         dataService.crearDatosIniciales();
 
 
@@ -62,7 +62,7 @@ public class TestGames {
     }
     @Test
     public void juegos_de_nintendo(){
-        List<Game> juegosDeNintendo = serviceStudy.gamesOfStudy("Nintendo");
+        List<Game> juegosDeNintendo = serviceStudyimpl.gamesOfStudy("Nintendo");
         Assert.assertEquals(7,juegosDeNintendo.size());
         Game mario = juegosDeNintendo.get(0);
         Assert.assertEquals("Mario Bros",mario.getNombre());
@@ -84,7 +84,7 @@ public class TestGames {
 
     @Test
     public void juegos_de_red_Barrels(){
-        List<Game> juegosDeredBarrels = serviceStudy.gamesOfStudy("Red Barrels");
+        List<Game> juegosDeredBarrels = serviceStudyimpl.gamesOfStudy("Red Barrels");
         Assert.assertEquals(3,juegosDeredBarrels.size());
         Game outlast = juegosDeredBarrels.get(0);
         Assert.assertEquals("Outlast",outlast.getNombre());
@@ -96,7 +96,7 @@ public class TestGames {
     }
     @Test
     public void juegos_de_activision(){
-        List<Game> juegosDeActivision = serviceStudy.gamesOfStudy("Activision");
+        List<Game> juegosDeActivision = serviceStudyimpl.gamesOfStudy("Activision");
         Assert.assertEquals(4,juegosDeActivision.size());
         Game callofdutyblackops = juegosDeActivision.get(0);
         Assert.assertEquals("Call of duty black ops",callofdutyblackops.getNombre());
@@ -111,7 +111,7 @@ public class TestGames {
     }
     @Test
     public void juegos_de_valve(){
-        List<Game>juegosDeValve = serviceStudy.gamesOfStudy("Valve");
+        List<Game>juegosDeValve = serviceStudyimpl.gamesOfStudy("Valve");
         Assert.assertEquals(4,juegosDeValve.size());
         Game leftOfDead = juegosDeValve.get(0);
         Assert.assertEquals("Left of dead",leftOfDead.getNombre());
@@ -125,23 +125,23 @@ public class TestGames {
     }
     @Test
     public void juegos_de_eaDigitalIllusionsCe(){
-        List<Game>juegosdeeaDigitalIllusionsCe= serviceStudy.gamesOfStudy("EaDigitalIllusionsCe");
+        List<Game>juegosdeeaDigitalIllusionsCe= serviceStudyimpl.gamesOfStudy("EaDigitalIllusionsCe");
         Assert.assertEquals(5,juegosdeeaDigitalIllusionsCe.size());
     }
 
     @Test
     public void juegos_de_capcom(){
-        List<Game>juegosDeCapcom = serviceStudy.gamesOfStudy("Capcom");
+        List<Game>juegosDeCapcom = serviceStudyimpl.gamesOfStudy("Capcom");
         Assert.assertEquals(10,juegosDeCapcom.size());
     }
     @Test
     public void juegos_de_sCESantaMonicaStudio(){
-        List<Game>juegossCESantaMonicaStudio = serviceStudy.gamesOfStudy("SCE Santa Monica Studio");
+        List<Game>juegossCESantaMonicaStudio = serviceStudyimpl.gamesOfStudy("SCE Santa Monica Studio");
         Assert.assertEquals(4,juegossCESantaMonicaStudio.size());
     }
     @Test
     public void juegos_de_generation(){
-        List<Game>juegosdeGeneration = serviceStudy.gamesOfStudy("Generation");
+        List<Game>juegosdeGeneration = serviceStudyimpl.gamesOfStudy("Generation");
         Assert.assertEquals(18,juegosdeGeneration.size());
     }
 
