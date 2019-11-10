@@ -23,7 +23,7 @@ public class AppController {
     }
 
     public Context buscarPorNombre(Context ctx){
-        return ctx.json(searchService.busquedaPorNombre(ctx.pathParam("nombre")));
+        return ctx.json(searchService.searchGame(ctx.pathParam("nombre")));
     }
 
     public Context buscarPorGenero(Context ctx){
@@ -40,7 +40,7 @@ public class AppController {
         String gamePlatform = ctx.pathParam("platform");
 
         ArrayList<Game> games = new ArrayList<>();
-        games.addAll(searchService.busquedaPorNombre(gameName));
+        games.addAll(searchService.searchGame(gameName));
         games.addAll(searchService.busquedaPorgenero(Genre.valueOf(gameGender)));
         games.addAll(searchService.busquedaPorPlataforma(Platform.valueOf(gamePlatform)));
 

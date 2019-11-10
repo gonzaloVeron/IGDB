@@ -2,6 +2,7 @@ package model;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.WhereJoinTable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 public class Study {
     @Id
+    @Column(name = "study_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -21,11 +23,17 @@ public class Study {
 
     @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
+    @JoinTable(name = "developers",
+            joinColumns = @JoinColumn(name = "study_id"),
+            inverseJoinColumns = @JoinColumn(name = "deve_id"))
     private List<Developer> desarrolladoresActuales;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @Fetch(value = FetchMode.SUBSELECT)
-//    private List<Developer> d;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JoinTable(name = "developers",
+            joinColumns = @JoinColumn(name = "study_id"),
+            inverseJoinColumns = @JoinColumn(name = "deve_id"))
+    private List<Developer> historicalDevelopers;
 
 
 
@@ -41,11 +49,11 @@ public class Study {
         this.juegosDesarrolladros = new ArrayList<>();
 
 
-//        this.d = new ArrayList<>();
+        this.historicalDevelopers = new ArrayList<>();
     }
-//    public void addD(Developer d){
-//        this.d.add(d);
-//    }
+    public void addHistoricalDeveloper(Developer d){
+        this.historicalDevelopers.add(d);
+    }
 
 
     public String getNombre() {

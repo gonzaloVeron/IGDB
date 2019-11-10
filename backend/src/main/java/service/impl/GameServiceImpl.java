@@ -8,6 +8,8 @@ import static service.TransactionRunner.run;
 public class GameServiceImpl implements JuegoService {
     private GameDAO gameDAO;
 
+
+
     public GameServiceImpl(GameDAO gameDAO){
         this.gameDAO = gameDAO;
     }

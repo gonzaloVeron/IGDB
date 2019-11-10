@@ -24,7 +24,7 @@ public class ServiceStudyimpl implements ServiceStudy {
 
     @Override
     public Study searchStudy(String name){
-        return run(()->{ return this.studyDAO.recuperarJuegoPorNombre(name);});    }
+        return run(()->{ return this.studyDAO.recuperarEstudioPorNombre(name);});    }
 
     @Override
     public Study searchStudyById(Long id) {
@@ -34,5 +34,10 @@ public class ServiceStudyimpl implements ServiceStudy {
     @Override
     public List<Game> gamesOfStudy(String name){
         return run(()->{return this.studyDAO.gameOfStudy(name);});
+    }
+
+    @Override
+    public List<Study> searchStudies(String name) {
+        return run(()->{return this.studyDAO.searchStudies(name);});
     }
 }

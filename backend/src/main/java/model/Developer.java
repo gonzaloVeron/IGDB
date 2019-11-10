@@ -2,6 +2,7 @@ package model;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.WhereJoinTable;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -28,12 +29,17 @@ public class Developer {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SELECT)
-
+    @JoinTable(name = "estudios",
+            joinColumns = @JoinColumn(name = "deve_id"),
+            inverseJoinColumns = @JoinColumn(name = "study_id"))
     private List<Study> studies;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @Fetch(value = FetchMode.SUBSELECT)
-//    private List<Study> s;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JoinTable(name = "estudios",
+            joinColumns = @JoinColumn(name = "deve_id"),
+            inverseJoinColumns = @JoinColumn(name = "study_id"))
+    private List<Study> previousStudies;
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -46,13 +52,13 @@ public class Developer {
     public Developer() {
         this.games = new ArrayList<Game>();
         this.studies = new ArrayList<Study>();
-//        this.s = new ArrayList<>();
+        this.previousStudies = new ArrayList<>();
 
     }
 
-//    public void addS(Study s){
-//        this.s.add(s);
-//    }
+    public void addPreviousStudies(Study s){
+        this.previousStudies.add(s);
+    }
 
     public Long getId() {
         return id;

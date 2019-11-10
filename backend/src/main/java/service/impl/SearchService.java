@@ -20,7 +20,7 @@ public class SearchService {
 
 
 
- public List<Game> busquedaPorNombre(String nombre){
+ public List<Game> searchGame(String nombre){
      return run(()->{ return this.searchDAO.busquedaPorNombre(nombre);});
  }
 

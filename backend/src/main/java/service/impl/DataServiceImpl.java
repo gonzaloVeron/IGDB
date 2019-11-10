@@ -461,6 +461,8 @@ public class DataServiceImpl implements DataService {
             markusPersson.addGame(lol);
             markusPersson.addStudy(generation);
             generation.addDeveloper(markusPersson);
+            markusPersson.addPreviousStudies(capcom);
+            capcom.addHistoricalDeveloper(markusPersson);
 
 
             ////

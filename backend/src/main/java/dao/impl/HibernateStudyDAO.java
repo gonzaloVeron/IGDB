@@ -16,7 +16,7 @@ public class HibernateStudyDAO extends HibernateDAO<Study> implements StudyDAO {
 
 
     @Override
-    public Study recuperarJuegoPorNombre(String name) {
+    public Study recuperarEstudioPorNombre(String name) {
         Session session = TransactionRunner.getCurrentSession();
         String hql = " from Study as s " + " where s.nombre = :name ";
         Query<Study> query = session.createQuery(hql, Study.class);
@@ -35,5 +35,15 @@ public class HibernateStudyDAO extends HibernateDAO<Study> implements StudyDAO {
         Query<Game> query = session.createQuery(hql, Game.class);
         query.setParameter("name", name);
         return query.getResultList();
+    }
+
+    @Override
+    public List<Study> searchStudies(String name) {
+        Session session = TransactionRunner.getCurrentSession();
+
+        String hql = "from Study as s " +
+                "where s.nombre  LIKE CONCAT('%',?1,'%')";
+
+        return session.createQuery(hql, Study.class).setParameter(1, name).getResultList();
     }
 }
