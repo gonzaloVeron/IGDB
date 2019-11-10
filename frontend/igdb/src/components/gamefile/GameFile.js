@@ -9,6 +9,7 @@ export default class GameFile extends React.Component {
         super(props);
         this.state = {
             gameData: {
+                id: -999,
                 nombre: '',
                 sinopsis: '',
                 genero: '',
