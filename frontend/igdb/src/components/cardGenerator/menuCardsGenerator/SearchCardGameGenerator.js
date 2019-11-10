@@ -11,6 +11,7 @@ export default class SearchCardGameGenerator extends React.Component {
     }
 
     render(){
+        console.log(this.props.games);
         return(
         this.props.games.map((ga, i) => {
             return(

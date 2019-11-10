@@ -3,7 +3,7 @@ import OrderCardsGenerator from '../cardGenerator/OrderCardsGenerator.js';
 import './home.css';
 import NavBar from '../navbar/NavBar'
 
-class Home extends React.Component {
+export default class Home extends React.Component {
 
     constructor(props) {
         super(props);
@@ -30,11 +30,9 @@ class Home extends React.Component {
             <div>
                 <NavBar />
                 <div className="container">
-                    {/*this.props.children*/}
+                    <h1 style={{color: 'white', textAlign: 'center'}}>Home</h1>
                 </div>
             </div>
         )
     }
 }
-
-export default Home;

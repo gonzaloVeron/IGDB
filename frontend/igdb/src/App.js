@@ -1,8 +1,9 @@
 import React, {Suspense}  from 'react';
 import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom';
-import './App.css'
-import Home from './components/home/Home'
-import Search from './components/search/Search'
+import Home from './components/home/Home';
+import Search from './components/search/Search';
+import GameFile from './components/gamefile/GameFile';
+import './App.css';
 
 const App = () => (
   <Router>
@@ -10,8 +11,9 @@ const App = () => (
       <Switch> 
         {/*<Route exact path="/register" component={Register}/>*/}
         <Route path="/search/:searchValue/:platform/:genre" component={Search}/> 
-        <Route path="/" component={Home}/> 
+        <Route path="/game/:gameName" component={GameFile}/>
         <Route path="/home" component={Home}/>
+        <Route path="/" component={Home}/> 
       </Switch>
     </Suspense>
   </Router>

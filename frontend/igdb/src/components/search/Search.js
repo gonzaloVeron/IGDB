@@ -3,7 +3,7 @@ import NavBar from '../navbar/NavBar';
 import { getSearch } from '../../api/api.js'
 import SearchCardGameGenerator from '../cardGenerator/menuCardsGenerator/SearchCardGameGenerator.js'
 
-class Search extends React.Component {
+export default class Search extends React.Component {
 
     constructor(props) {
         super(props);
@@ -16,9 +16,10 @@ class Search extends React.Component {
     }
 
     componentDidMount(){
-        let {searchValue, genre, platform} = this.props.match.params
+        let {searchValue, platform, genre} = this.props.match.params
         getSearch(searchValue, platform, genre).then(result => {
-            this.setState({queryResults: result.queryResults})
+            this.setState({ queryResults : result });
+            console.log(result)
         }).catch(e => {this.setState({ error: e.message })})
     }  
 
@@ -31,7 +32,7 @@ class Search extends React.Component {
     render() {
         return(
             <div className="Search">
-            <NavBar/>
+                <NavBar/>
                 <div className="container">
                     <h1 className="blanco">Games with: {this.props.match.params.searchValue}</h1>
                     <SearchCardGameGenerator games={this.state.queryResults} history={this.props.history}/>/>
@@ -41,5 +42,3 @@ class Search extends React.Component {
     }
 
 }
-
-export default Search;
