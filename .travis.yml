@@ -6,6 +6,6 @@ jdk:
   - mysql
 before_install: 
   - mysql -e 'CREATE DATABASE IF NOT EXISTS igdb;'
-  -cd backend
+  - cd backend
 after_success:
   - bash <(curl -s https://codecov.io/bash)
