@@ -28,7 +28,7 @@ public class HibernateSearchDAO implements SearchDAO {
         Session session = TransactionRunner.getCurrentSession();
 
         String hql = "from Juego as j " +
-                "where j.plataforma = :plataforma";
+                "where j.plataforma = :plataforma ";
 
         return session.createQuery(hql,Juego.class).setParameter("plataforma", plataforma).getResultList();
     }

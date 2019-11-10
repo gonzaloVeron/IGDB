@@ -35,11 +35,12 @@ public class Juego {
         this.genero = genero;
     }
 
-    public Plataforma getPlataforma() {
+    public Plataforma  getPlataforma() {
         return plataforma;
     }
 
-    public void setPlataforma(Plataforma plataforma) {
+    public void addPlataforma(Plataforma plataforma) {
+
         this.plataforma = plataforma;
     }
 
