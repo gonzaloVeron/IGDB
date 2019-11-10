@@ -10,4 +10,5 @@ before_script:
   - mysql -u root -e 'CREATE DATABASE igdb;'
   - echo "USE mysql;\nUPDATE user SET password=PASSWORD('root') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
 after_success:
+  - cd backend
   - bash <(curl -s https://codecov.io/bash)
