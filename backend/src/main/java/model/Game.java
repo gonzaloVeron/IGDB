@@ -3,7 +3,7 @@ package model;
 import javax.persistence.*;
 
 @Entity
-public class Juego {
+public class Game {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,13 +11,13 @@ public class Juego {
 
     @Column(unique = true)
     private String nombre;
-    private Genero genero;
-    private Plataforma plataforma;
+    private Genre genre;
+    private Platform platform;
     private String sinopsis;
 
 
 
-    public Juego(){ }
+    public Game(){ }
 
     public String getNombre() {
         return nombre;
@@ -27,21 +27,21 @@ public class Juego {
         this.nombre = nombre;
     }
 
-    public Genero getGenero() {
-        return genero;
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setGenero(Genero genero) {
-        this.genero = genero;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
-    public Plataforma  getPlataforma() {
-        return plataforma;
+    public Platform getPlatform() {
+        return platform;
     }
 
-    public void addPlataforma(Plataforma plataforma) {
+    public void addPlataforma(Platform platform) {
 
-        this.plataforma = plataforma;
+        this.platform = platform;
     }
 
     public String getSinopsis() {

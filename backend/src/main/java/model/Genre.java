@@ -1,6 +1,6 @@
 package model;
 
-public enum  Genero {
+public enum Genre {
     Adventure,
     Shooter,
     Strategy,
