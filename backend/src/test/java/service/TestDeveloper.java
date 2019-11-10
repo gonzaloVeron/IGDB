@@ -24,44 +24,51 @@ public class TestDeveloper {
 
 
     @Before
-    public void setUp(){
+    public void setUp() {
         developerDAO = new HibernateDeveloper();
         developerServiceimpl = new DeveloperServiceimpl(developerDAO);
         dataDAO = new HibernateDataDAO();
         dataService = new DataServiceImpl(dataDAO);
         dataService.crearDatosIniciales();
     }
-
     @Test
-    public void juegos_desarrollados_por_pedro(){
-        List<Game>juegosDesarrollados = developerServiceimpl.juegosDesarrollados("Pedro");
-        Assert.assertEquals(0,juegosDesarrollados.size());
+    public void developer_John(){
+        Developer hideo = developerServiceimpl.searchStudyById(new Long(1));
+        Assert.assertEquals("John",hideo.getName());
+        Assert.assertEquals("Romero",hideo.getLastName());
+
+    }
+    @Test
+    public void kojima_games(){
+        Developer hideo = developerServiceimpl.searchStudyById(new Long(1));
+        Assert.assertEquals("John",hideo.getName());
+        Assert.assertEquals("Romero",hideo.getLastName());
+        List<Game> games = hideo.getGames();
+        Assert.assertEquals(4,games.size());
+
     }
 
     @Test
-    public void juegos_desarrollados_por_Alan(){
-        List<Game>juegosDesarrollados = developerServiceimpl.juegosDesarrollados("Alan");
-        Assert.assertEquals(1,juegosDesarrollados.size());
-        Game gameDesarrollado = juegosDesarrollados.get(0);
-        Assert.assertEquals("league of legends", gameDesarrollado.getNombre());
+    public void two_developers_John(){
+        List<Developer> developers = developerServiceimpl.searchDeveloper("John");
+        Assert.assertEquals(2,developers.size());
+        Developer developer1 = developers.get(0);
+        Assert.assertEquals("John",developer1.getName());
+        Developer developer2 = developers.get(1);
+        Assert.assertEquals("John",developer2.getName());
+        Assert.assertTrue(!developer1.getLastName().equals(developer2.getLastName()));
+
     }
-
-
-
     @Test
-    public void recupero_Pedro(){
-        Developer pedroRecuperado = developerServiceimpl.buscarDesarrollador("Pedro");
-        Assert.assertEquals("Pedro",pedroRecuperado.getName());
+    public void _John_job_in_nintendo(){
+        Study job = developerServiceimpl.currentJob("John","Romero");
+        Assert.assertEquals("Nintendo",job.getNombre());
     }
 
-//    @Test
-//    public void trabaja_en_riot(){
-//        Study riot = developerServiceimpl.currentJob("Alan");
-//        Assert.assertEquals("Riot",riot.getNombre());
-//    }
 
     @After
-    public void eliminarDatos(){
+    public void clear(){
         dataService.eliminarDatos();
     }
 }
+

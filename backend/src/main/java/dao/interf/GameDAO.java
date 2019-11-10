@@ -6,5 +6,6 @@ public interface GameDAO {
     void guardar(Game game);
     Game recuperarJuegoPorNombre(String nombre);
     void actualizar(Game game);
+    Game recuperar(Long id);
 
 }

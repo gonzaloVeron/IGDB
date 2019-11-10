@@ -19,13 +19,14 @@ public class Study {
     private Date fechaDeFundacion;
     private Boolean estaActivo;
 
-    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Developer> desarrolladoresActuales;
 
-    @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.LAZY)
-    @Fetch(value = FetchMode.SUBSELECT)
-    private List<Developer> desarrolladoresHistoricos;
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @Fetch(value = FetchMode.SUBSELECT)
+//    private List<Developer> d;
+
 
 
     @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
@@ -36,9 +37,15 @@ public class Study {
 
     public Study(){
         this.desarrolladoresActuales = new ArrayList<>();
-        this.desarrolladoresHistoricos = new ArrayList<>();
+
         this.juegosDesarrolladros = new ArrayList<>();
+
+
+//        this.d = new ArrayList<>();
     }
+//    public void addD(Developer d){
+//        this.d.add(d);
+//    }
 
 
     public String getNombre() {

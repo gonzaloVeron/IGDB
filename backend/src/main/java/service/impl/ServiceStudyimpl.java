@@ -25,6 +25,12 @@ public class ServiceStudyimpl implements ServiceStudy {
     @Override
     public Study searchStudy(String name){
         return run(()->{ return this.studyDAO.recuperarJuegoPorNombre(name);});    }
+
+    @Override
+    public Study searchStudyById(Long id) {
+        return run(()->{return this.studyDAO.recuperar(id);});
+    }
+
     @Override
     public List<Game> gamesOfStudy(String name){
         return run(()->{return this.studyDAO.gameOfStudy(name);});

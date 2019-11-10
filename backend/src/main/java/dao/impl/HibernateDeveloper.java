@@ -45,28 +45,32 @@ public class HibernateDeveloper extends HibernateDAO<Developer> implements Devel
     }
 
     @Override
-    public Study currentJob(String name) {
+    public Study currentJob(String name,String lastName) {
         Session session = TransactionRunner.getCurrentSession();
 
         String hql = " select s " +
                      " from Study as s " +
                      " join s.desarrolladoresActuales as sd" +
-                     " where sd.name = :name ";
+                     " where sd.name = :name " +
+                     " and sd.lastName = :lastName";
 
 
         Query<Study> query = session.createQuery(hql, Study.class);
         query.setParameter("name",name);
+        query.setParameter("lastName",lastName);
 
-        return query.getSingleResult();
+        return query.setMaxResults(1).uniqueResult();
     }
 
 
     @Override
-    public List<Developer> busquedaPorNombre(String name) {
+    public List<Developer> searchDeveloper(String name) {
         Session session = TransactionRunner.getCurrentSession();
 
         String hql = " from Developer as d " +
-                " where d.name  LIKE CONCAT('%',?1,'%')";
+                " where d.name  LIKE CONCAT('%',?1,'%')" +
+                " or d.lastName  LIKE CONCAT('%',?1,'%')";
+
 
         return session.createQuery(hql, Developer.class).setParameter(1, name).getResultList();
     }

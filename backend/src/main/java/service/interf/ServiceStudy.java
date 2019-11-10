@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface ServiceStudy {
     Study searchStudy(String name);
+    Study searchStudyById(Long id);
     List<Game> gamesOfStudy(String name);
 }

@@ -22,15 +22,17 @@ public class DeveloperServiceimpl {
         return run(()->{return this.developerDAO.juegosDesarrollados(nombre);});
     }
 
-    public Developer buscarDesarrollador(String nombre){
-        return run(()->{return this.developerDAO.recuperarJuegoPorNombre(nombre);});
+    public List<Developer> searchDeveloper(String name){
+        return run(()->{return this.developerDAO.searchDeveloper(name);});
     }
 
-    public Study currentJob(String name){
-        return run(()->{return this.developerDAO.currentJob(name);});
+    public Study currentJob(String name,String lastName){
+
+        return run(()->{return this.developerDAO.currentJob(name,lastName);});
     }
 
-    public Developer searchByID(Long id) {
+    public Developer searchStudyById(Long id) {
+
         return run(()->{return this.developerDAO.recuperar(id);});
     }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 public class Developer {
 
     @Id
+    @Column(name = "deve_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -25,18 +26,33 @@ public class Developer {
 
     private Boolean actuallyWorking;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SELECT)
+
     private List<Study> studies;
 
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @Fetch(value = FetchMode.SUBSELECT)
+//    private List<Study> s;
+
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
+    @Fetch(value = FetchMode.SELECT)
     private List<Game> games;
+
+
+
 
     public Developer() {
         this.games = new ArrayList<Game>();
         this.studies = new ArrayList<Study>();
+//        this.s = new ArrayList<>();
+
     }
+
+//    public void addS(Study s){
+//        this.s.add(s);
+//    }
 
     public Long getId() {
         return id;

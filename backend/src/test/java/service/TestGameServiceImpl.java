@@ -45,38 +45,6 @@ public class TestGameServiceImpl {
         dataService.crearDatosIniciales();
     }
 
-    @Test
-    public void recupero_juego(){
-        Assert.assertEquals("league of legends",juegoService.buscarJuego("league of legends").getNombre());
-    }
-
-    @Test
-    public void lista_de_juegos_por_nombre(){
-
-        List<Game> games = searchService.busquedaPorNombre("Resident");
-        Assert.assertEquals(3, games.size());
-        Assert.assertEquals("Resident Evil", games.get(0).getNombre());
-        Assert.assertEquals("Resident Evil 2", games.get(1).getNombre());
-        Assert.assertEquals("Resident Evil 3", games.get(2).getNombre());
-
-    }
-    @Test
-    public void lista_de_juegos_por_Genero(){
-        List<Game> games = searchService.busquedaPorgenero(Genre.Fighting);
-        Assert.assertEquals(1, games.size());
-        Assert.assertEquals("Dragon ball Z", games.get(0).getNombre());
-
-
-    }
-    @Test
-    public void lista_de_juegos_por_Plataforma(){
-        List<Game> games = searchService.busquedaPorPlataforma(Platform.PS1);
-        Assert.assertEquals(3, games.size());
-        Assert.assertEquals("Resident Evil", games.get(0).getNombre());
-        Assert.assertEquals("Resident Evil 2", games.get(1).getNombre());
-        Assert.assertEquals("Resident Evil 3", games.get(2).getNombre());
-
-    }
 
     @After
     public void eliminarDatos(){

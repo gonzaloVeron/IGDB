@@ -452,22 +452,34 @@ public class DataServiceImpl implements DataService {
             hideoKojima.addGame(resident);
             hideoKojima.addGame(residentEvil);
             hideoKojima.addGame(residentEvil3);
+            hideoKojima.addStudy(capcom);
+            capcom.addDeveloper(hideoKojima);
             //
             markusPersson.addGame(minecraft);
             markusPersson.addGame(diablo3);
             markusPersson.addGame(digimon);
             markusPersson.addGame(lol);
+            markusPersson.addStudy(generation);
+            generation.addDeveloper(markusPersson);
+
 
             ////
             johnRomero.addGame(godOfWar);
             johnRomero.addGame(godOfWar2);
             johnRomero.addGame(godOfWar3);
             johnRomero.addGame(godOfWarAscension);
+            sCESantaMonicaStudio.addDeveloper(johnRomero);
+            johnRomero.addStudy(sCESantaMonicaStudio);
             //////
             johnCarmack.addGame(marioBros);
             johnCarmack.addGame(sonicMania);
             johnCarmack.addGame(sonic);
             johnCarmack.addGame(fifa2019);
+            johnRomero.addStudy(nintendo);
+            nintendo.addDeveloper(johnRomero);
+
+
+
 
             //DAOS ESTUDIOS
             studyDAO.guardar(nintendo);
@@ -484,11 +496,6 @@ public class DataServiceImpl implements DataService {
             developerDAO.guardar(markusPersson);
             developerDAO.guardar(johnRomero);
             developerDAO.guardar(johnCarmack);
-
-
-
-
-
 
 
 
