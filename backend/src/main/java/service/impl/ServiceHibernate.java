@@ -1,20 +1,20 @@
 package service.impl;
 
-import dao.interf.JuegoDAO;
+import dao.interf.GameDAO;
 import model.Game;
 import static service.TransactionRunner.run;
 
 public class ServiceHibernate {
-    private JuegoDAO juegoDAO;
+    private GameDAO gameDAO;
 
 
-    public ServiceHibernate(JuegoDAO juegoDAO){this.juegoDAO = juegoDAO;}
+    public ServiceHibernate(GameDAO gameDAO){this.gameDAO = gameDAO;}
 
     public ServiceHibernate(){}
 
     public void guardarJuego(Game game){
         run(() -> {
-            this.juegoDAO.guardar(game);
+            this.gameDAO.guardar(game);
         });
     }
 

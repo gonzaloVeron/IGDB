@@ -2,7 +2,7 @@ package dao.interf;
 
 import model.Game;
 
-public interface JuegoDAO {
+public interface GameDAO {
     void guardar(Game game);
     Game recuperarJuegoPorNombre(String nombre);
     void actualizar(Game game);

@@ -1,10 +1,10 @@
 package service;
 
 import dao.impl.HibernateDataDAO;
-import dao.impl.HibernateJuegoDAO;
+import dao.impl.HibernateGameDAO;
 import dao.impl.HibernateSearchDAO;
 import dao.interf.DataDAO;
-import dao.interf.JuegoDAO;
+import dao.interf.GameDAO;
 import dao.interf.SearchDAO;
 import model.Genre;
 import model.Game;
@@ -14,7 +14,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import service.impl.DataServiceImpl;
-import service.impl.JuegoServiceImpl;
+import service.impl.GameServiceImpl;
 import service.impl.SearchService;
 import service.impl.ServiceHibernate;
 import service.interf.DataService;
@@ -23,7 +23,7 @@ import service.interf.JuegoService;
 import java.util.List;
 
 public class TestGameServiceImpl {
-    private JuegoDAO juegoDAO;
+    private GameDAO gameDAO;
     private JuegoService juegoService;
     private DataService dataService;
     private DataDAO dataDAO;
@@ -35,11 +35,11 @@ public class TestGameServiceImpl {
 
     @Before
     public void setUp(){
-        juegoDAO = new HibernateJuegoDAO();
-        juegoService = new JuegoServiceImpl(juegoDAO);
+        gameDAO = new HibernateGameDAO();
+        juegoService = new GameServiceImpl(gameDAO);
         dataDAO = new HibernateDataDAO();
         dataService = new DataServiceImpl(dataDAO);
-        serviceHibernate = new ServiceHibernate(juegoDAO);
+        serviceHibernate = new ServiceHibernate(gameDAO);
         searchDAO = new HibernateSearchDAO();
         searchService = new SearchService(searchDAO);
         dataService.crearDatosIniciales();

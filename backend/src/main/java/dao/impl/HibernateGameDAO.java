@@ -1,14 +1,14 @@
 package dao.impl;
 
-import dao.interf.JuegoDAO;
+import dao.interf.GameDAO;
 import model.Game;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import service.TransactionRunner;
 
-public class HibernateJuegoDAO extends HibernateDAO<Game> implements JuegoDAO {
+public class HibernateGameDAO extends HibernateDAO<Game> implements GameDAO {
 
-    public HibernateJuegoDAO(){
+    public HibernateGameDAO(){
         super(Game.class);
 
     }

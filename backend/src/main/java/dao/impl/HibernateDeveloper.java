@@ -1,17 +1,18 @@
 package dao.impl;
 
-import dao.interf.DesarrolladorDAO;
+import dao.interf.DeveloperDAO;
 import model.Developer;
 import model.Game;
+import model.Study;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import service.TransactionRunner;
 
 import java.util.List;
 
-public class HibernateDesarrollador extends HibernateDAO<Developer> implements DesarrolladorDAO {
+public class HibernateDeveloper extends HibernateDAO<Developer> implements DeveloperDAO {
 
- public HibernateDesarrollador(){
+ public HibernateDeveloper(){
      super(Developer.class);
  }
 
@@ -42,5 +43,22 @@ public class HibernateDesarrollador extends HibernateDAO<Developer> implements D
 
 
     }
+
+    @Override
+    public Study currentJob(String name) {
+        Session session = TransactionRunner.getCurrentSession();
+
+        String hql = " select s " +
+                     " from Study as s " +
+                     " join s.desarrolladoresActuales as sd" +
+                     " where sd.name = :name ";
+
+
+        Query<Study> query = session.createQuery(hql, Study.class);
+        query.setParameter("name",name);
+
+        return query.getSingleResult();
+    }
+
 
 }

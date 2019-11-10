@@ -19,7 +19,7 @@ public class Study {
     private Date fechaDeFundacion;
     private Boolean estaActivo;
 
-    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Developer> desarrolladoresActuales;
 
@@ -79,5 +79,9 @@ public class Study {
 
     public void addJuego(Game game) {
         this.juegosDesarrolladros.add(game);
+    }
+
+    public void addDeveloper(Developer developer){
+        this.desarrolladoresActuales.add(developer);
     }
 }

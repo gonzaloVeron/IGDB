@@ -1,8 +1,8 @@
 package service.impl;
 
-import dao.impl.HibernateJuegoDAO;
+import dao.impl.HibernateGameDAO;
 import dao.impl.HibernateSearchDAO;
-import dao.interf.JuegoDAO;
+import dao.interf.GameDAO;
 import dao.interf.SearchDAO;
 import model.Genre;
 import model.Game;
@@ -12,15 +12,15 @@ import service.interf.JuegoService;
 import java.util.List;
 
 public class Facade {
-    private JuegoDAO juegoDAO;
+    private GameDAO gameDAO;
     private JuegoService juegoService;
     private SearchDAO searchDAO;
     private SearchService searchService;
 
 
     public Facade(){
-        this.juegoDAO = new HibernateJuegoDAO();
-        this.juegoService = new JuegoServiceImpl(juegoDAO);
+        this.gameDAO = new HibernateGameDAO();
+        this.juegoService = new GameServiceImpl(gameDAO);
         this.searchDAO = new HibernateSearchDAO();
         this.searchService = new SearchService();
     }

@@ -1,12 +1,12 @@
 package api_rest;
 
-import dao.impl.HibernateJuegoDAO;
+import dao.impl.HibernateGameDAO;
 import dao.impl.HibernateSearchDAO;
 import io.javalin.Context;
 import model.Genre;
 import model.Game;
 import model.Platform;
-import service.impl.JuegoServiceImpl;
+import service.impl.GameServiceImpl;
 import service.impl.SearchService;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 
 public class AppController {
-    public JuegoServiceImpl juegoService = new JuegoServiceImpl(new HibernateJuegoDAO());
+    public GameServiceImpl juegoService = new GameServiceImpl(new HibernateGameDAO());
     public SearchService searchService = new SearchService(new HibernateSearchDAO());
 
     public Context buscarJuegoPorNombre(Context ctx){
