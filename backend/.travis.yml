@@ -1,4 +1,4 @@
 language: java
-before_script: cd backend
+before_install: cd backend
 after_success:
   - bash <(curl -s https://codecov.io/bash)
