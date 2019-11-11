@@ -28,7 +28,7 @@ public class Main {
 
             path("game", () -> {
                 path(":searchvalue", () -> {
-                    get(controller::buscarJuegoPorNombre);
+                    get(controller::searchGameByName);
                 });
             });
 
@@ -36,7 +36,7 @@ public class Main {
                path(":name", () -> {
                   path(":genre", () -> {
                      path(":platform", () -> {
-                        get(controller::buscarJuegosPorNombreGeneroPlataforma);
+                        get(controller::searchGamesByNameGenrePlatform);
                      });
                   });
                });

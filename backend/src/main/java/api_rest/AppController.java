@@ -4,93 +4,75 @@ import dao.impl.HibernateGameDAO;
 
 import dao.impl.HibernateSearchDAO;
 import io.javalin.Context;
-import io.javalin.json.JavalinJson;
 import model.Game;
-
 import model.Genre;
-
-
 import model.Platform;
 import service.impl.GameServiceImpl;
-
 import service.impl.SearchService;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
-public class AppController<JuegoServiceImpl> {
+public class AppController {
     public GameServiceImpl gameService = new GameServiceImpl(new HibernateGameDAO());
     public SearchService searchService = new SearchService(new HibernateSearchDAO());
 
-    public Context buscarJuegoPorNombre(Context ctx){
-        return ctx.json(gameService.buscarJuego(ctx.pathParam("searchvalue")));
+    public Context searchGameByName(Context ctx){
+        return ctx.json(gameService.searchGameByName(ctx.pathParam("searchvalue")));
+    }
+/*
+    public Context searchGameById(Context ctx){
+        return ctx.json(gameService.searchGameById(ctx.pathParam("searchvalue")));
+    }
+*/
+    public Context searchByName(Context ctx){
+        return ctx.json(searchService.searchByName(ctx.pathParam("nombre")));
     }
 
-    public Context buscarPorNombre(Context ctx){
-        return ctx.json(searchService.searchGame(ctx.pathParam("nombre")));
+    public Context searchByGender(Context ctx){
+        return ctx.json(searchService.searchByGender(Genre.valueOf(ctx.pathParam("gender"))));
     }
 
-    public Context buscarPorGenero(Context ctx){
-        return ctx.json(searchService.busquedaPorgenero(Genre.valueOf(ctx.pathParam("gender"))));
+    public Context searchByPlatform(Context ctx){
+        return ctx.json(searchService.searchByPlatform(Platform.valueOf(ctx.pathParam("platform"))));
     }
 
-    public Context buscarPorPlataforma(Context ctx){
-        return ctx.json(searchService.busquedaPorPlataforma(Platform.valueOf(ctx.pathParam("platform"))));
+    /*
+    public Context searchDeveloper(Context ctx){
+        return ctx.json(searchService.searchDeveloper(ctx.pathParam("developer")));
     }
 
-    public Context buscarJuegosPorNombreGeneroPlataforma(Context ctx){
+    public Context searchStudy(Context ctx){
+        return ctx.json(searchService.searchStudy(ctx.pathParam("study")));
+    }
+    */
+
+    public Context searchGamesByNameGenrePlatform(Context ctx){
         String gameName = ctx.pathParam("name");
         String gameGender = ctx.pathParam("gender");
         String gamePlatform = ctx.pathParam("platform");
 
         ArrayList<Game> games = new ArrayList<>();
-        games.addAll(searchService.searchGame(gameName));
-        games.addAll(searchService.busquedaPorgenero(Genre.valueOf(gameGender)));
-        games.addAll(searchService.busquedaPorPlataforma(Platform.valueOf(gamePlatform)));
+        games.addAll(searchService.searchByName(gameName));
+        games.addAll(searchService.searchByGender(Genre.valueOf(gameGender)));
+        games.addAll(searchService.searchByPlatform(Platform.valueOf(gamePlatform)));
 
-        return ctx.json(this.sinRepetidos(games));
+        return ctx.json(this.withoutRepeated(games));
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private List<Game> sinRepetidos(ArrayList<Game> lista){
-        List<Game> nuevaLista = new ArrayList<>();
-        List<String> listaDeNombres = lista.stream().map(e -> e.getNombre()).collect(Collectors.toList());
-        for(int i = 0; i < lista.size(); i++){
-            if(listaDeNombres.contains(lista.get(i).getNombre())){
-                nuevaLista.add(lista.get(i));
+    private List<Game> withoutRepeated(List<Game> list){
+        List<Game> newList = new ArrayList<>();
+        List<String> listOfNames = list.stream().map(e -> e.getNombre()).collect(Collectors.toList());
+        for(int i = 0; i < list.size(); i++){
+            if(listOfNames.contains(list.get(i).getNombre())){
+                newList.add(list.get(i));
                 int finalI = i;
-                listaDeNombres = listaDeNombres.stream().filter(n -> !n.equals(lista.get(finalI).getNombre())).collect(Collectors.toList());
+                listOfNames = listOfNames.stream().filter(n -> !n.equals(list.get(finalI).getNombre())).collect(Collectors.toList());
             }
         }
-        return nuevaLista;
+        return newList;
     }
 
     public void initializeDatabase() {
