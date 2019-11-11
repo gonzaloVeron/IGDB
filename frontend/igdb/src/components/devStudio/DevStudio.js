@@ -9,21 +9,22 @@ export default class DevStudio extends React.Component{
         this.state = {
             studioData: {
                 id: -999,
-                name: '',
+                name: "Crazy Bullet",
                 imageUrl: '',
                 foundationDate: '',
                 isActive: '', //esto deberia decir "actualmente activo" o "inactivo" <---- poneeele
                 actualDevs: [],
-                historicalDevelopers: [],
+                historicalDevelopers: ["Hideo Kojima", "Gonzalo Veron", "Ola ki aze?"],
                 gamesDeveloped: [],
             } 
         }
         console.log(props)
+        console.log(this.state)
     }
 
     componentDidMount(){
         let { devStudioID } = this.props.match.params
-        getDev(devStudioID).then(result => {
+        getDevStudio(devStudioID).then(result => {
             this.setState({ studioData : result });
             console.log(result)
         }).catch(e => {this.setState({ error: e.message })})
@@ -32,7 +33,23 @@ export default class DevStudio extends React.Component{
     fileTitle(){
         return (
             <div className="card title-container">
-                <h1 className="card-header title">{this.state.devData.name}</h1>
+                <h1 className="card-header title">{this.state.studioData.name}</h1>
+            </div>
+        )
+    }
+
+    historicalDevs(){
+        return(
+            <div>
+                {
+                    this.state.studioData.historicalDevelopers.map((hdev, i) => {
+                        return(
+                            <div>
+                                nombreDev: {hdev} 
+                            </div>
+                        )
+                    })
+                }
             </div>
         )
     }
