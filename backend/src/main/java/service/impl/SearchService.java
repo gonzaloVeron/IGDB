@@ -20,14 +20,14 @@ public class SearchService {
 
 
 
- public List<Game> searchGame(String nombre){
+ public List<Game> searchByName(String nombre){
      return run(()->{ return this.searchDAO.busquedaPorNombre(nombre);});
  }
 
- public List<Game> busquedaPorgenero(Genre genre){
+ public List<Game> searchByGender(Genre genre){
      return run(()->{ return this.searchDAO.busquedaPorGenero(genre);});
  }
- public List<Game> busquedaPorPlataforma(Platform platform){
+ public List<Game> searchByPlatform(Platform platform){
      return run(()->{ return this.searchDAO.busquedaPorPlataforma(platform);});
  }
 }

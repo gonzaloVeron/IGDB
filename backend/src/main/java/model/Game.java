@@ -23,6 +23,8 @@ public class Game {
         return nombre;
     }
 
+    public Long getId(){ return this.id;}
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
