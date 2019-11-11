@@ -3,6 +3,6 @@ package service.interf;
 import model.Game;
 
 public interface JuegoService {
-    Game buscarJuego(String nombre);
-    Game searchGameForId(Long id);
+    Game searchGameByName(String nombre);
+    Game searchGameById(Long id);
 }

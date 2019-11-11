@@ -3,7 +3,7 @@ package dao.impl;
 import dao.interf.DeveloperDAO;
 import model.Developer;
 import model.Game;
-import model.Study;
+import model.Studio;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import service.TransactionRunner;
@@ -45,17 +45,17 @@ public class HibernateDeveloper extends HibernateDAO<Developer> implements Devel
     }
 
     @Override
-    public Study currentJob(String name,String lastName) {
+    public Studio currentJob(String name, String lastName) {
         Session session = TransactionRunner.getCurrentSession();
 
         String hql = " select s " +
-                     " from Study as s " +
+                     " from Studio as s " +
                      " join s.desarrolladoresActuales as sd" +
                      " where sd.name = :name " +
                      " and sd.lastName = :lastName";
 
 
-        Query<Study> query = session.createQuery(hql, Study.class);
+        Query<Studio> query = session.createQuery(hql, Studio.class);
         query.setParameter("name",name);
         query.setParameter("lastName",lastName);
 

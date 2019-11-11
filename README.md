@@ -6,7 +6,7 @@ Integrantes de proyecto -> **IGDB**
 * Alejandro Mamani
 * Juan
 * Cristian Aranguren
-* Nahuel 
+* Nahuel
 
 <img src="https://travis-ci.org/gonzaloVeron/IGDB.svg?branch=master"> master 
 

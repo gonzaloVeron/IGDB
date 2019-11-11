@@ -3,15 +3,12 @@ package service;
 import dao.impl.HibernateDataDAO;
 import dao.impl.HibernateGameDAO;
 import dao.impl.HibernateSearchDAO;
-import dao.impl.HibernateStudyDAO;
+import dao.impl.HibernateStudioDAO;
 import dao.interf.DataDAO;
 import dao.interf.GameDAO;
 import dao.interf.SearchDAO;
-import dao.interf.StudyDAO;
-import model.Genre;
-import model.Game;
-import model.Platform;
-import model.Study;
+import dao.interf.StudioDAO;
+import model.Studio;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,7 +16,7 @@ import org.junit.Test;
 import service.impl.*;
 import service.interf.DataService;
 import service.interf.JuegoService;
-import service.interf.ServiceStudy;
+import service.interf.ServiceStudio;
 
 import java.util.List;
 
@@ -30,8 +27,8 @@ public class TestGameServiceImpl {
     private DataDAO dataDAO;
     private SearchDAO searchDAO;
     private SearchService searchService;
-    private StudyDAO studyDAO;
-    private ServiceStudy serviceStudy;
+    private StudioDAO studioDAO;
+    private ServiceStudio serviceStudy;
 
 
     @Before
@@ -43,13 +40,13 @@ public class TestGameServiceImpl {
         searchDAO = new HibernateSearchDAO();
         searchService = new SearchService(searchDAO);
         dataService.crearDatosIniciales();
-        studyDAO = new HibernateStudyDAO();
-        serviceStudy = new ServiceStudyimpl(studyDAO);
+        studioDAO = new HibernateStudioDAO();
+        serviceStudy = new ServiceStudioimpl(studioDAO);
     }
 
     @Test
     public void studies(){
-        List<Study> studies = serviceStudy.searchStudies("a");
+        List<Studio> studies = serviceStudy.searchStudies("a");
         Assert.assertEquals(7,studies.size());
     }
 

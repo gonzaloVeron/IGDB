@@ -2,7 +2,7 @@ package dao.interf;
 
 import model.Developer;
 import model.Game;
-import model.Study;
+import model.Studio;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ public interface DeveloperDAO {
     void actualizar(Developer desarrolador);
     List<Game> juegosDesarrollados(String nombre);
     Developer recuperar(Long id);
-    Study currentJob(String name,String lastName);
+    Studio currentJob(String name, String lastName);
 }

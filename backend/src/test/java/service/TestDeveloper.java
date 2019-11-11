@@ -6,7 +6,7 @@ import dao.interf.DataDAO;
 import dao.interf.DeveloperDAO;
 import model.Developer;
 import model.Game;
-import model.Study;
+import model.Studio;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,14 +33,14 @@ public class TestDeveloper {
     }
     @Test
     public void developer_John(){
-        Developer hideo = developerServiceimpl.searchStudyById(new Long(1));
+        Developer hideo = developerServiceimpl.searchDeveloperById(new Long(1));
         Assert.assertEquals("John",hideo.getName());
         Assert.assertEquals("Romero",hideo.getLastName());
 
     }
     @Test
     public void kojima_games(){
-        Developer hideo = developerServiceimpl.searchStudyById(new Long(1));
+        Developer hideo = developerServiceimpl.searchDeveloperById(new Long(1));
         Assert.assertEquals("John",hideo.getName());
         Assert.assertEquals("Romero",hideo.getLastName());
         List<Game> games = hideo.getGames();
@@ -61,7 +61,7 @@ public class TestDeveloper {
     }
     @Test
     public void _John_job_in_nintendo(){
-        Study job = developerServiceimpl.currentJob("John","Romero");
+        Studio job = developerServiceimpl.currentJob("John","Romero");
         Assert.assertEquals("Nintendo",job.getNombre());
     }
 

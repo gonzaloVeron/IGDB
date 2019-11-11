@@ -23,7 +23,7 @@
 
         <mapping class="model.Game"/>
         <mapping class="model.Developer"/>
-        <mapping class="model.Study"/>
+        <mapping class="model.Studio"/>
 
 
     </session-factory>
