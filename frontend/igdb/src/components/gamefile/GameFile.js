@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../navbar/NavBar';
 import { getGame } from '../../api/api.js';
 import './GameFile.css';
+const thumbnail = require('../../images/thumbnail.png');
 
 export default class GameFile extends React.Component {
 
@@ -14,6 +15,7 @@ export default class GameFile extends React.Component {
                 genre: '',
                 platform: '',
                 sinopsis: '',
+                urlImage: '',
             }
         }
         console.log(props)
@@ -29,9 +31,17 @@ export default class GameFile extends React.Component {
     }  
 
     fileTitle(){
+        let thumb = this.state.gameData.urlImage || thumbnail
         return (
             <div className="card title-container">
-                <h1 className="card-header title">{this.state.gameData.name}</h1>
+                <div className="card-header header row">
+                            <div className="column-image">
+                                <img src={thumb} alt='' height="200" width="150"/>
+                            </div>
+                            <div className="column">
+                                <h1 className="card-header title">{this.state.gameData.name}</h1>
+                            </div>
+                    </div>
             </div>
         );
     }
@@ -54,7 +64,7 @@ export default class GameFile extends React.Component {
 
     render(){
         return(
-            <div className="GameFile">
+            <div className="GameFile body-container">
                 <NavBar/>
                 <div className="container">
                     {this.fileTitle()}

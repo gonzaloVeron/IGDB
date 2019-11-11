@@ -1,5 +1,5 @@
 import React from 'react';
-import GameCard from '../../card/GameCard'
+import GameCard from '../card/GameCard'
 
 export default class SearchCardGameGenerator extends React.Component {
 

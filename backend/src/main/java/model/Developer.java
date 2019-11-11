@@ -68,6 +68,8 @@ public class Developer {
         studies.add(study);
     }
 
+    public List<Studio> getCurrentStudios(){return this.studies;}
+
     public List<Studio> getStudies() {
         return this.previousStudies;
     }
