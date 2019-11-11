@@ -1,7 +1,8 @@
 package service.interf;
 
-import model.Juego;
+import model.Game;
 
 public interface JuegoService {
-    Juego buscarJuego(String nombre);
+    Game searchGameByName(String nombre);
+    Game searchGameById(Long id);
 }

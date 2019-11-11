@@ -2,21 +2,26 @@ import React from 'react';
 import './card.css';
 const thumbnail = require('../../images/thumbnail.png');
 
-export default class GameCard extends React.Component {
+export default class DevCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             error: {},
         };
-        this.goToGame = this.goToGame.bind(this)
+        this.goToDev = this.goToDev.bind(this)
     }
 
-    goToGame(){
-        this.props.history.push(`/game/${this.props.game.id}`)
+    goToDev(){
+        this.props.history.push(`/dev/${this.props.dev.id}`)
     }
 
     render(){
-        let thumb = this.props.game.urlImage || thumbnail
+        let thumb
+        if (this.props.dev.image === "Ninguna"){
+            thumb = thumbnail
+        } else {
+            thumb = this.props.dev.image
+        }
         return(
             <div key={this.props.index}>
                 <div className="card card-container">
@@ -25,16 +30,12 @@ export default class GameCard extends React.Component {
                                 <img src={thumb} alt='' height="200" width="150"/>
                             </div>
                             <div className="column">
-                                {this.props.game.name}
+                                {this.props.dev.name + " " + this.props.dev.lastName}
                             </div>
                     </div>
                     <div>
                         <div className="card-body body">
-                            Genre: {this.props.game.genre}
-                            <br/>
-                            Platform: {this.props.game.platform}
-                            <br/>
-                            <button type="button" className='btn btn-primary go-to-button' onClick={this.goToGame}>
+                            <button type="button" className='btn btn-primary go-to-button' onClick={this.goToDev}>
                                 Go to
                             </button>  
                         </div>
