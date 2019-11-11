@@ -49,7 +49,7 @@ public class HibernateDeveloper extends HibernateDAO<Developer> implements Devel
         Session session = TransactionRunner.getCurrentSession();
 
         String hql = " select s " +
-                     " from Study as s " +
+                     " from Studio as s " +
                      " join s.desarrolladoresActuales as sd" +
                      " where sd.name = :name " +
                      " and sd.lastName = :lastName";
