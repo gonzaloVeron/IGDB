@@ -8,7 +8,7 @@
         import dao.interf.DataDAO;
         import dao.interf.DeveloperDAO;
         import dao.interf.GameDAO;
-        import dao.interf.StudyDAO;
+        import dao.interf.StudioDAO;
         import model.*;
         import service.interf.DataService;
 
@@ -24,7 +24,7 @@ public class DataServiceImpl implements DataService {
     //DAOS
     private GameDAO gameDAO;
     private DataDAO dataDAO;
-    private StudyDAO studyDAO;
+    private StudioDAO studioDAO;
     //
     private Game resident;
     private Game residentEvil3;
@@ -121,7 +121,7 @@ public class DataServiceImpl implements DataService {
         run(() -> {
             //DAOS
             gameDAO = new HibernateGameDAO();
-            studyDAO = new HibernateStudioDAO();
+            studioDAO = new HibernateStudioDAO();
             developerDAO = new HibernateDeveloper();
 
             //Estudios
@@ -485,14 +485,14 @@ public class DataServiceImpl implements DataService {
 
 
             //DAOS ESTUDIOS
-            studyDAO.guardar(nintendo);
-            studyDAO.guardar(redBarrels);
-            studyDAO.guardar(activision);
-            studyDAO.guardar(valve);
-            studyDAO.guardar(eaDigitalIllusionsCe);
-            studyDAO.guardar(capcom);
-            studyDAO.guardar(sCESantaMonicaStudio);
-            studyDAO.guardar(generation);
+            studioDAO.guardar(nintendo);
+            studioDAO.guardar(redBarrels);
+            studioDAO.guardar(activision);
+            studioDAO.guardar(valve);
+            studioDAO.guardar(eaDigitalIllusionsCe);
+            studioDAO.guardar(capcom);
+            studioDAO.guardar(sCESantaMonicaStudio);
+            studioDAO.guardar(generation);
 
             //DAOS DEVELODER
             developerDAO.guardar(hideoKojima);

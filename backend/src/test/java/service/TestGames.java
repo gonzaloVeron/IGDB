@@ -5,7 +5,7 @@ import dao.impl.HibernateGameDAO;
 import dao.impl.HibernateStudioDAO;
 import dao.interf.DataDAO;
 import dao.interf.GameDAO;
-import dao.interf.StudyDAO;
+import dao.interf.StudioDAO;
 import model.Game;
 import org.junit.After;
 import org.junit.Assert;
@@ -13,7 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import service.impl.DataServiceImpl;
 import service.impl.GameServiceImpl;
-import service.impl.ServiceStudyimpl;
+import service.impl.ServiceStudioimpl;
 import service.interf.DataService;
 import service.interf.JuegoService;
 import service.interf.ServiceStudio;
@@ -27,7 +27,7 @@ public class TestGames {
     private GameDAO gameDAO;
     private JuegoService juegoService;
     //Service estudio
-    private StudyDAO studyDAO;
+    private StudioDAO studioDAO;
     private ServiceStudio serviceStudyimpl;
 
 
@@ -37,8 +37,8 @@ public class TestGames {
         dataService = new DataServiceImpl(dataDAO);
         gameDAO = new HibernateGameDAO();
         juegoService = new GameServiceImpl(gameDAO);
-        studyDAO = new HibernateStudioDAO();
-        serviceStudyimpl = new ServiceStudyimpl(studyDAO);
+        studioDAO = new HibernateStudioDAO();
+        serviceStudyimpl = new ServiceStudioimpl(studioDAO);
         dataService.crearDatosIniciales();
 
 
@@ -62,7 +62,7 @@ public class TestGames {
     }
     @Test
     public void juegos_de_nintendo(){
-        List<Game> juegosDeNintendo = serviceStudyimpl.gamesOfStudy("Nintendo");
+        List<Game> juegosDeNintendo = serviceStudyimpl.gamesOfStudio("Nintendo");
         Assert.assertEquals(7,juegosDeNintendo.size());
         Game mario = juegosDeNintendo.get(0);
         Assert.assertEquals("Mario Bros",mario.getNombre());
@@ -84,7 +84,7 @@ public class TestGames {
 
     @Test
     public void juegos_de_red_Barrels(){
-        List<Game> juegosDeredBarrels = serviceStudyimpl.gamesOfStudy("Red Barrels");
+        List<Game> juegosDeredBarrels = serviceStudyimpl.gamesOfStudio("Red Barrels");
         Assert.assertEquals(3,juegosDeredBarrels.size());
         Game outlast = juegosDeredBarrels.get(0);
         Assert.assertEquals("Outlast",outlast.getNombre());
@@ -96,7 +96,7 @@ public class TestGames {
     }
     @Test
     public void juegos_de_activision(){
-        List<Game> juegosDeActivision = serviceStudyimpl.gamesOfStudy("Activision");
+        List<Game> juegosDeActivision = serviceStudyimpl.gamesOfStudio("Activision");
         Assert.assertEquals(4,juegosDeActivision.size());
         Game callofdutyblackops = juegosDeActivision.get(0);
         Assert.assertEquals("Call of duty black ops",callofdutyblackops.getNombre());
@@ -111,7 +111,7 @@ public class TestGames {
     }
     @Test
     public void juegos_de_valve(){
-        List<Game>juegosDeValve = serviceStudyimpl.gamesOfStudy("Valve");
+        List<Game>juegosDeValve = serviceStudyimpl.gamesOfStudio("Valve");
         Assert.assertEquals(4,juegosDeValve.size());
         Game leftOfDead = juegosDeValve.get(0);
         Assert.assertEquals("Left of dead",leftOfDead.getNombre());
@@ -125,23 +125,23 @@ public class TestGames {
     }
     @Test
     public void juegos_de_eaDigitalIllusionsCe(){
-        List<Game>juegosdeeaDigitalIllusionsCe= serviceStudyimpl.gamesOfStudy("EaDigitalIllusionsCe");
+        List<Game>juegosdeeaDigitalIllusionsCe= serviceStudyimpl.gamesOfStudio("EaDigitalIllusionsCe");
         Assert.assertEquals(5,juegosdeeaDigitalIllusionsCe.size());
     }
 
     @Test
     public void juegos_de_capcom(){
-        List<Game>juegosDeCapcom = serviceStudyimpl.gamesOfStudy("Capcom");
+        List<Game>juegosDeCapcom = serviceStudyimpl.gamesOfStudio("Capcom");
         Assert.assertEquals(10,juegosDeCapcom.size());
     }
     @Test
     public void juegos_de_sCESantaMonicaStudio(){
-        List<Game>juegossCESantaMonicaStudio = serviceStudyimpl.gamesOfStudy("SCE Santa Monica Studio");
+        List<Game>juegossCESantaMonicaStudio = serviceStudyimpl.gamesOfStudio("SCE Santa Monica Studio");
         Assert.assertEquals(4,juegossCESantaMonicaStudio.size());
     }
     @Test
     public void juegos_de_generation(){
-        List<Game>juegosdeGeneration = serviceStudyimpl.gamesOfStudy("Generation");
+        List<Game>juegosdeGeneration = serviceStudyimpl.gamesOfStudio("Generation");
         Assert.assertEquals(18,juegosdeGeneration.size());
     }
 

@@ -55,6 +55,17 @@ public class Studio {
         this.historicalDevelopers.add(d);
     }
 
+    public List<Developer> getHistoricalDevelopers() {
+        return this.historicalDevelopers;
+    }
+
+    public List<Developer> desarrolladoresActuales(){
+        return this.desarrolladoresActuales;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
 
     public String getNombre() {
         return nombre;

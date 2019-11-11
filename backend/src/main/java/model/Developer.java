@@ -30,14 +30,14 @@ public class Developer {
     @Fetch(value = FetchMode.SELECT)
     @JoinTable(name = "estudios",
             joinColumns = @JoinColumn(name = "deve_id"),
-            inverseJoinColumns = @JoinColumn(name = "study_id"))
+            inverseJoinColumns = @JoinColumn(name = "studio_id"))
     private List<Studio> studies;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "estudios",
             joinColumns = @JoinColumn(name = "deve_id"),
-            inverseJoinColumns = @JoinColumn(name = "study_id"))
+            inverseJoinColumns = @JoinColumn(name = "studio_id"))
     private List<Studio> previousStudies;
 
 

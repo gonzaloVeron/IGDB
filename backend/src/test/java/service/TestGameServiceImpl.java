@@ -7,7 +7,7 @@ import dao.impl.HibernateStudioDAO;
 import dao.interf.DataDAO;
 import dao.interf.GameDAO;
 import dao.interf.SearchDAO;
-import dao.interf.StudyDAO;
+import dao.interf.StudioDAO;
 import model.Studio;
 import org.junit.After;
 import org.junit.Assert;
@@ -27,7 +27,7 @@ public class TestGameServiceImpl {
     private DataDAO dataDAO;
     private SearchDAO searchDAO;
     private SearchService searchService;
-    private StudyDAO studyDAO;
+    private StudioDAO studioDAO;
     private ServiceStudio serviceStudy;
 
 
@@ -40,8 +40,8 @@ public class TestGameServiceImpl {
         searchDAO = new HibernateSearchDAO();
         searchService = new SearchService(searchDAO);
         dataService.crearDatosIniciales();
-        studyDAO = new HibernateStudioDAO();
-        serviceStudy = new ServiceStudioimpl(studyDAO);
+        studioDAO = new HibernateStudioDAO();
+        serviceStudy = new ServiceStudioimpl(studioDAO);
     }
 
     @Test

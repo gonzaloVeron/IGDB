@@ -27,12 +27,14 @@ public class Main {
         app.routes(() -> {
 
             path("game", () -> {
-                path(":name", () -> {
-                    get(controller::searchGameByName);
-                });
-
                 path(":id", () -> {
                     get(controller::searchGameById);
+                });
+            });
+
+            path("gamename", () -> {
+                path(":name", () -> {
+                    get(controller::searchGameByName);
                 });
             });
 
@@ -40,25 +42,32 @@ public class Main {
                 path(":id", () -> {
                     get(controller::searchDeveloperById);
                 });
+            });
+
+            path("devname", () -> {
                 path(":name", () -> {
                     get(controller::searchDeveloperByName);
                 });
             });
 
+
             path("studio", () -> {
                 path(":id", () -> {
                     get(controller::searchStudioById);
                 });
+            });
+
+            path("studioname", () -> {
                 path(":name", () -> {
                     get(controller::searchStudioByName);
                 });
             });
 
-            path("games", () -> {
+            path("search", () -> {
                path(":name", () -> {
                   path(":genre", () -> {
                      path(":platform", () -> {
-                        get(controller::searchGamesByNameGenrePlatform);
+                        get(controller::searchGameDevStdByNameGenrePlatform);
                      });
                   });
                });
