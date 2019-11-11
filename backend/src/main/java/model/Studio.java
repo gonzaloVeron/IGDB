@@ -5,6 +5,7 @@ import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.WhereJoinTable;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,8 +19,8 @@ public class Studio {
 
     private String nombre;
     private String portada;
-    private Date fechaDeFundacion;
-    private Boolean estaActivo;
+    private LocalDate fechaDeFundacion;
+    private String estaActivo;
 
     @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
@@ -28,7 +29,7 @@ public class Studio {
             inverseJoinColumns = @JoinColumn(name = "deve_id"))
     private List<Developer> desarrolladoresActuales;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "developers",
             joinColumns = @JoinColumn(name = "studio_id"),
@@ -83,19 +84,19 @@ public class Studio {
         this.portada = portada;
     }
 
-    public Date getFechaDeFundacion() {
+    public LocalDate getFechaDeFundacion() {
         return fechaDeFundacion;
     }
 
-    public void setFechaDeFundacion(Date fechaDeFundacion) {
+    public void setFechaDeFundacion(LocalDate fechaDeFundacion) {
         this.fechaDeFundacion = fechaDeFundacion;
     }
 
-    public Boolean getEstaActivo() {
+    public String getEstaActivo() {
         return estaActivo;
     }
 
-    public void setEstaActivo(Boolean estaActivo) {
+    public void setEstaActivo(String estaActivo) {
         this.estaActivo = estaActivo;
     }
 

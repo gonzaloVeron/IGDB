@@ -14,10 +14,17 @@ public class Game {
     private Genre genre;
     private Platform platform;
     private String sinopsis;
-
-
+    private String urlImage;
 
     public Game(){ }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String url){
+        this.urlImage = url;
+    }
 
     public String getNombre() {
         return nombre;
@@ -31,6 +38,10 @@ public class Game {
 
     public Genre getGenre() {
         return genre;
+    }
+
+    public void setPlatform(Platform p){
+        this.platform = p;
     }
 
     public void setGenre(Genre genre) {

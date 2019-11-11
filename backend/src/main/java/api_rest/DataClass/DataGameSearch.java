@@ -9,12 +9,14 @@ public class DataGameSearch {
     public Genre genre;
     public Platform platform;
     public String sinopsis;
+    public String urlImage;
 
-    public DataGameSearch(Long id, String name, Genre genre, Platform platform, String sinopsis){
+    public DataGameSearch(Long id, String name, Genre genre, Platform platform, String sinopsis, String urlImage){
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.platform = platform;
         this.sinopsis = sinopsis;
+        this.urlImage = urlImage;
     }
 }

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom';
 import Home from './components/home/Home';
 import Search from './components/search/Search';
 import GameFile from './components/gamefile/GameFile';
-import DevFile from './components/devfile/DevFile';
+import DevFile from './components/devFile/DevFile';
 import DevStudio from './components/devStudio/DevStudio';
 import './App.css';
 
