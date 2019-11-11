@@ -4,7 +4,7 @@
 
         import dao.impl.HibernateDeveloper;
         import dao.impl.HibernateGameDAO;
-        import dao.impl.HibernateStudyDAO;
+        import dao.impl.HibernateStudioDAO;
         import dao.interf.DataDAO;
         import dao.interf.DeveloperDAO;
         import dao.interf.GameDAO;
@@ -12,7 +12,6 @@
         import model.*;
         import service.interf.DataService;
 
-        import java.text.SimpleDateFormat;
         import java.util.Date;
 
         import static service.TransactionRunner.run;
@@ -92,14 +91,14 @@ public class DataServiceImpl implements DataService {
 
 
     //ESTUDIOS
-    private Study redBarrels;
-    private Study nintendo;
-    private Study activision;
-    private Study valve;
-    private Study eaDigitalIllusionsCe;
-    private Study capcom;
-    private Study sCESantaMonicaStudio;
-    private Study generation;
+    private Studio redBarrels;
+    private Studio nintendo;
+    private Studio activision;
+    private Studio valve;
+    private Studio eaDigitalIllusionsCe;
+    private Studio capcom;
+    private Studio sCESantaMonicaStudio;
+    private Studio generation;
 
 
 
@@ -122,54 +121,54 @@ public class DataServiceImpl implements DataService {
         run(() -> {
             //DAOS
             gameDAO = new HibernateGameDAO();
-            studyDAO = new HibernateStudyDAO();
+            studyDAO = new HibernateStudioDAO();
             developerDAO = new HibernateDeveloper();
 
             //Estudios
             //NINTENDO
-            nintendo = new Study();
+            nintendo = new Studio();
             nintendo.setNombre("Nintendo");
             Date fundacion = new Date(1889,9,23);
             nintendo.setFechaDeFundacion(fundacion);
             nintendo.setEstaActivo(Boolean.TRUE);
             //RED
-            redBarrels = new Study();
+            redBarrels = new Studio();
             redBarrels.setNombre("Red Barrels");
             Date fundacionred = new Date(2011,5,8);
             redBarrels.setFechaDeFundacion(fundacionred);
             redBarrels.setEstaActivo(Boolean.FALSE);
             //Activision
-            activision = new Study();
+            activision = new Studio();
             activision.setNombre("Activision");
             Date fundacionactivision= new Date(1978,10,1);
             activision.setFechaDeFundacion(fundacionactivision);
             activision.setEstaActivo(Boolean.TRUE);
             //Valve
-            valve = new Study();
+            valve = new Studio();
             valve.setNombre("Valve");
             Date fundacionValve= new Date(1996,5,1);
             valve.setFechaDeFundacion(fundacionValve);
             valve.setEstaActivo(Boolean.TRUE);
             // EaDigitalIllusionsCe
-            eaDigitalIllusionsCe = new Study();
+            eaDigitalIllusionsCe = new Studio();
             eaDigitalIllusionsCe.setNombre("EaDigitalIllusionsCe");
             eaDigitalIllusionsCe.setEstaActivo(Boolean.TRUE);
             Date fundacionDigital = new Date(1992,6,23);
             eaDigitalIllusionsCe.setFechaDeFundacion(fundacionDigital);
             //Capcom
-            capcom = new Study();
+            capcom = new Studio();
             capcom.setNombre("Capcom");
             capcom.setEstaActivo(Boolean.TRUE);
             Date fundacionCapcom = new Date(1979,4,30);
             capcom.setFechaDeFundacion(fundacionCapcom);
             //sCESantaMonicaStudio
-            sCESantaMonicaStudio = new Study();
+            sCESantaMonicaStudio = new Studio();
             sCESantaMonicaStudio.setNombre("SCE Santa Monica Studio");
             sCESantaMonicaStudio.setEstaActivo(Boolean.FALSE);
             Date fundacionmonica = new Date(2005,5,25);
             sCESantaMonicaStudio.setFechaDeFundacion(fundacionmonica);
             //generation
-            generation = new Study();
+            generation = new Studio();
             generation.setNombre("Generation");
             generation.setEstaActivo(Boolean.TRUE);
             Date fundaciongeneration = new Date(1985,30,30);

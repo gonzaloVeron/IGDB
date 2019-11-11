@@ -10,9 +10,9 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Study {
+public class Studio {
     @Id
-    @Column(name = "study_id")
+    @Column(name = "studio_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -24,14 +24,14 @@ public class Study {
     @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "developers",
-            joinColumns = @JoinColumn(name = "study_id"),
+            joinColumns = @JoinColumn(name = "studio_id"),
             inverseJoinColumns = @JoinColumn(name = "deve_id"))
     private List<Developer> desarrolladoresActuales;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "developers",
-            joinColumns = @JoinColumn(name = "study_id"),
+            joinColumns = @JoinColumn(name = "studio_id"),
             inverseJoinColumns = @JoinColumn(name = "deve_id"))
     private List<Developer> historicalDevelopers;
 
@@ -39,14 +39,14 @@ public class Study {
 
     @OneToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<Game> juegosDesarrolladros;
+    private List<Game> juegosDesarrollados;
 
 
 
-    public Study(){
+    public Studio(){
         this.desarrolladoresActuales = new ArrayList<>();
 
-        this.juegosDesarrolladros = new ArrayList<>();
+        this.juegosDesarrollados = new ArrayList<>();
 
 
         this.historicalDevelopers = new ArrayList<>();
@@ -88,12 +88,12 @@ public class Study {
         this.estaActivo = estaActivo;
     }
 
-    public List<Game> getJuegosDesarrolladros() {
-        return juegosDesarrolladros;
+    public List<Game> getJuegosDesarrollados() {
+        return juegosDesarrollados;
     }
 
     public void addJuego(Game game) {
-        this.juegosDesarrolladros.add(game);
+        this.juegosDesarrollados.add(game);
     }
 
     public void addDeveloper(Developer developer){

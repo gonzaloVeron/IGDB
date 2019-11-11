@@ -19,7 +19,7 @@ public class Main {
                 .exception(FileNotFoundException.class, (e, ctx) -> {
             e.printStackTrace();
         }).error(404, ctx -> {
-            ctx.json("Generic 404 message");
+            ctx.json("Error 404 Not Found");
         }).start(7000);
 
 
@@ -27,8 +27,30 @@ public class Main {
         app.routes(() -> {
 
             path("game", () -> {
-                path(":searchvalue", () -> {
+                path(":name", () -> {
                     get(controller::searchGameByName);
+                });
+
+                path(":id", () -> {
+                    get(controller::searchGameById);
+                });
+            });
+
+            path("dev", () -> {
+                path(":id", () -> {
+                    get(controller::searchDeveloperById);
+                });
+                path(":name", () -> {
+                    get(controller::searchDeveloperByName);
+                });
+            });
+
+            path("studio", () -> {
+                path(":id", () -> {
+                    get(controller::searchStudioById);
+                });
+                path(":name", () -> {
+                    get(controller::searchStudioByName);
                 });
             });
 

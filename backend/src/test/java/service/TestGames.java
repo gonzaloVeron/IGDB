@@ -2,7 +2,7 @@ package service;
 
 import dao.impl.HibernateDataDAO;
 import dao.impl.HibernateGameDAO;
-import dao.impl.HibernateStudyDAO;
+import dao.impl.HibernateStudioDAO;
 import dao.interf.DataDAO;
 import dao.interf.GameDAO;
 import dao.interf.StudyDAO;
@@ -16,7 +16,7 @@ import service.impl.GameServiceImpl;
 import service.impl.ServiceStudyimpl;
 import service.interf.DataService;
 import service.interf.JuegoService;
-import service.interf.ServiceStudy;
+import service.interf.ServiceStudio;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class TestGames {
     private JuegoService juegoService;
     //Service estudio
     private StudyDAO studyDAO;
-    private ServiceStudy serviceStudyimpl;
+    private ServiceStudio serviceStudyimpl;
 
 
     @Before
@@ -37,7 +37,7 @@ public class TestGames {
         dataService = new DataServiceImpl(dataDAO);
         gameDAO = new HibernateGameDAO();
         juegoService = new GameServiceImpl(gameDAO);
-        studyDAO = new HibernateStudyDAO();
+        studyDAO = new HibernateStudioDAO();
         serviceStudyimpl = new ServiceStudyimpl(studyDAO);
         dataService.crearDatosIniciales();
 
@@ -45,19 +45,19 @@ public class TestGames {
     }
     @Test
     public void crear_datos(){
-        Game mario = juegoService.buscarJuego("Mario Bros");
+        Game mario = juegoService.searchGameByName("Mario Bros");
         Assert.assertEquals("Mario Bros",mario.getNombre());
-        Game sonic = juegoService.buscarJuego("Sonic");
+        Game sonic = juegoService.searchGameByName("Sonic");
         Assert.assertEquals("Sonic",sonic.getNombre());
-        Game fifa = juegoService.buscarJuego("FiFA 2019");
+        Game fifa = juegoService.searchGameByName("FiFA 2019");
         Assert.assertEquals("FiFA 2019",fifa.getNombre());
-        Game sonicMania = juegoService.buscarJuego("Sonic Mania");
+        Game sonicMania = juegoService.searchGameByName("Sonic Mania");
         Assert.assertEquals("Sonic Mania",sonicMania.getNombre());
-        Game lengendOfZelda = juegoService.buscarJuego("Lengend Of Zelda");
+        Game lengendOfZelda = juegoService.searchGameByName("Lengend Of Zelda");
         Assert.assertEquals("Lengend Of Zelda",lengendOfZelda.getNombre());
-        Game luigiMansion = juegoService.buscarJuego("Luigi Mansion");
+        Game luigiMansion = juegoService.searchGameByName("Luigi Mansion");
         Assert.assertEquals("Luigi Mansion",luigiMansion.getNombre());
-        Game tetris = juegoService.buscarJuego("Tetris");
+        Game tetris = juegoService.searchGameByName("Tetris");
         Assert.assertEquals("Tetris",tetris.getNombre());
     }
     @Test
