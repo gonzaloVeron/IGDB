@@ -7,6 +7,7 @@ Integrantes de proyecto -> **IGDB**
 * Juan
 * Cristian Aranguren
 * Nahuel
+
 <img src="https://travis-ci.org/gonzaloVeron/IGDB.svg?branch=master"> master 
 
 <img src="https://api.travis-ci.org/gonzaloVeron/IGDB.svg?branch=dev-build"> dev-build
