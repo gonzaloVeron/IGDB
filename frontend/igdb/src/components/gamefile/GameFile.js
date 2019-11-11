@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../navbar/NavBar';
 import { getGame } from '../../api/api.js';
 import './GameFile.css';
+const thumbnail = require('../../images/thumbnail.png');
 
 export default class GameFile extends React.Component {
 
@@ -9,10 +10,12 @@ export default class GameFile extends React.Component {
         super(props);
         this.state = {
             gameData: {
-                nombre: '',
+                id: -999,
+                name: '',
+                genre: '',
+                platform: '',
                 sinopsis: '',
-                genero: '',
-                plataforma: '',
+                urlImage: '',
             }
         }
         console.log(props)
@@ -20,17 +23,25 @@ export default class GameFile extends React.Component {
 
     
     componentDidMount(){
-        let { gameName } = this.props.match.params
-        getGame(gameName).then(result => {
+        let { id } = this.props.match.params
+        getGame(id).then(result => {
             this.setState({ gameData : result });
             console.log(result)
         }).catch(e => {this.setState({ error: e.message })})
     }  
 
     fileTitle(){
+        let thumb = this.state.gameData.urlImage || thumbnail
         return (
             <div className="card title-container">
-                <h1 className="card-header title">{this.state.gameData.nombre}</h1>
+                <div className="card-header header row">
+                            <div className="column-image">
+                                <img src={thumb} alt='' height="200" width="150"/>
+                            </div>
+                            <div className="column">
+                                <h1 className="card-header title">{this.state.gameData.name}</h1>
+                            </div>
+                    </div>
             </div>
         );
     }
@@ -42,10 +53,10 @@ export default class GameFile extends React.Component {
                     Sinopsis: {this.state.gameData.sinopsis}
                 </div>
                 <div className="file-content-element">
-                    Género: {this.state.gameData.genero}
+                    Género: {this.state.gameData.genre}
                 </div>
                 <div className="file-content-element">
-                    Plataforma: {this.state.gameData.plataforma}
+                    Plataforma: {this.state.gameData.platform}
                 </div>
             </div>
         );
@@ -53,11 +64,11 @@ export default class GameFile extends React.Component {
 
     render(){
         return(
-            <div className="GameFile">
+            <div className="GameFile body-container">
                 <NavBar/>
                 <div className="container">
                     {this.fileTitle()}
-                    {this.fileContent()}
+                    {this.fileContent()} 
                 </div>
             </div>
         )

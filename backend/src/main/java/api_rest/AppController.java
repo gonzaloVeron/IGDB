@@ -1,78 +1,99 @@
 package api_rest;
 
-import dao.impl.HibernateDataDAO;
-import dao.impl.HibernateJuegoDAO;
-import dao.impl.HibernateSearchDAO;
-import dao.interf.DataDAO;
+import api_rest.DataClass.*;
+import dao.impl.*;
+
 import io.javalin.Context;
-import io.javalin.json.JavalinJson;
-import model.Genero;
-import model.Juego;
-import model.Plataforma;
-import service.impl.DataServiceImpl;
-import service.impl.JuegoServiceImpl;
-import service.impl.SearchService;
+import model.*;
+import service.impl.*;
 import service.interf.DataService;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 
 public class AppController {
-    public JuegoServiceImpl juegoService = new JuegoServiceImpl(new HibernateJuegoDAO());
-    public SearchService searchService = new SearchService(new HibernateSearchDAO());
+    private GameServiceImpl gameService = new GameServiceImpl(new HibernateGameDAO());
+    private SearchService searchService = new SearchService(new HibernateSearchDAO());
+    private DeveloperServiceimpl developerService = new DeveloperServiceimpl(new HibernateDeveloper());
+    private ServiceStudioimpl studioService = new ServiceStudioimpl(new HibernateStudioDAO());
 
-    public Context buscarJuegoPorNombre(Context ctx){
-        return ctx.json(juegoService.buscarJuego(ctx.pathParam("searchvalue")));
+    public Context searchGameById(Context ctx){
+        Game game = gameService.searchGameById(Long.parseLong(ctx.pathParam("id")));
+        DataGameFile dataGameFile = new DataGameFile(game);
+        return ctx.json(dataGameFile);
     }
 
-    public Context buscarPorNombre(Context ctx){
-        return ctx.json(searchService.busquedaPorNombre(ctx.pathParam("nombre")));
+    public Context searchDeveloperById(Context ctx){
+        Developer developer = developerService.searchDeveloperById(Long.parseLong(ctx.pathParam("id")));
+        DataDeveloperFile dataDeveloperFile = new DataDeveloperFile(developer);
+        return ctx.json(dataDeveloperFile);
     }
 
-    public Context buscarPorGenero(Context ctx){
-        return ctx.json(searchService.busquedaPorgenero(Genero.valueOf(ctx.pathParam("gender"))));
+    public Context searchStudioById(Context ctx){
+        Studio studio = studioService.searchStudioById(Long.parseLong(ctx.pathParam("id")));
+        DataStudioFile dataStudioFile = new DataStudioFile(studio);
+        return ctx.json(dataStudioFile);
     }
 
-    public Context buscarPorPlataforma(Context ctx){
-        return ctx.json(searchService.busquedaPorPlataforma(Plataforma.valueOf(ctx.pathParam("platform"))));
-    }
-
-    public Context buscarJuegosPorNombreGeneroPlataforma(Context ctx){
-        String gameName = ctx.pathParam("name");
-        String gameGenre = ctx.pathParam("genre");
-        String gamePlatform = ctx.pathParam("platform");
-
-        ArrayList<Juego> games = new ArrayList<>(searchService.busquedaPorNombre(gameName));
-        if (!gameGenre.equals("Any")){
-            games.addAll(searchService.busquedaPorgenero(Genero.valueOf(gameGenre)));
+    public List<Game> searchGamesByNameGenrePlatform(Context ctx){
+        ArrayList<Game> games = new ArrayList<>();
+        games.addAll(searchService.searchByName(ctx.pathParam("name")));
+        if (!ctx.pathParam("genre").equals("Any")){
+            games.addAll(searchService.searchByGender(Genre.valueOf(ctx.pathParam("genre"))));
         }
-        if (!gamePlatform.equals("Any")){
-            games.addAll(searchService.busquedaPorPlataforma(Plataforma.valueOf(gamePlatform)));
+        if (!ctx.pathParam("platform").equals("Any")) {
+            games.addAll(searchService.searchByPlatform(Platform.valueOf(ctx.pathParam("platform"))));
         }
-
-        return ctx.json(this.sinRepetidos(games));
+        return games;
     }
 
-    private List<Juego> sinRepetidos(List<Juego> lista){
-        List<Juego> nuevaLista = new ArrayList<>();
-        List<String> listaDeNombres = lista.stream().map(Juego::getNombre).collect(Collectors.toList());
-        for(int i = 0; i < lista.size(); i++){
-            if(listaDeNombres.contains(lista.get(i).getNombre())){
-                nuevaLista.add(lista.get(i));
-                int finalI = i;
-                listaDeNombres = listaDeNombres.stream().filter(n -> !n.equals(lista.get(finalI).getNombre())).collect(Collectors.toList());
+
+    public Context searchGameDevStdByNameGenrePlatform(Context ctx){
+        List<Developer> devs = developerService.searchDeveloper(ctx.pathParam("name"));;
+        List<Studio> studies = studioService.searchStudies(ctx.pathParam("name"));;
+        List<Game> games = this.searchGamesByNameGenrePlatform(ctx);
+
+        List<DataGameSearch> dataGames = parseToDataGameSearch(this.withoutRepeated(games));
+        List<DataStudioSearch> dataStudios = parseToDataStudioSearch(studies);
+        List<DataDeveloperSearch> dataDevs = parseToDataDeveloperSearch(devs);
+
+        return ctx.json(new DataSearch(dataGames, dataStudios, dataDevs));
+    }
+
+    private List<DataDeveloperSearch> parseToDataDeveloperSearch(List<Developer> devs) {
+        List<DataDeveloperSearch> retList = new ArrayList<>();
+        devs.forEach(developer -> retList.add(new DataDeveloperSearch(developer)));
+        return retList;
+    }
+
+    private List<DataStudioSearch> parseToDataStudioSearch(List<Studio> studios) {
+        List<DataStudioSearch> retList = new ArrayList<>();
+        studios.forEach(studio -> retList.add(new DataStudioSearch(studio)));
+        return retList;
+    }
+
+    private List<DataGameSearch> parseToDataGameSearch(List<Game> games) {
+        List<DataGameSearch> retList = new ArrayList<>();
+        games.forEach(game -> retList.add(new DataGameSearch(game)));
+        return retList;
+    }
+
+    private List<Game> withoutRepeated(List<Game> games){
+        List<Game> retList = new ArrayList<>();
+        games.forEach(game -> {
+            boolean contains = retList.stream().anyMatch(game1 -> game1.getId().equals(game.getId()));
+            if (!contains){
+                retList.add(game);
             }
-        }
-        return nuevaLista;
+        });
+        return retList;
     }
 
+    // No eliminar ni modificar plox, esto asegura que la DB arranque limpia y solo cargue los elementos que nos interesan
     public void initializeDatabase() {
-        DataDAO dataDAO = new HibernateDataDAO();
-        DataService dataService = new DataServiceImpl(dataDAO);
+        DataService dataService = new DataServiceImpl(new HibernateDataDAO());
         dataService.eliminarDatos();
         dataService.crearDatosIniciales();
     }

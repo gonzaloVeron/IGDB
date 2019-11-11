@@ -74,7 +74,7 @@ class NavBar extends React.Component {
                               <select className="col btn btn-danger dropdown-toggle" value={this.state.platform} onChange={this.changePlatform}>
                                   <option value={"Any"}>Platform</option>
                                   <option value={"PS4"}>PS4</option>
-                                  <option value={"Xbox"}>XBOXONE</option>
+                                  <option value={"XBOXONE"}>XBOXONE</option>
                                   <option value={"PC"}>PC</option>
                                   <option value={"SWITCH"}>SWITCH</option>
                                   <option value={"WII"}>WII</option>

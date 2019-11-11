@@ -6,6 +6,11 @@ const request = (type, path, body) => axios
   .request({ url: `${server}${path}`, method: type, data: body })
   .then(req => req.data);
 
-export const getGame = gameName => request('get', `/game/${gameName}`)
+export const getGame = gameID => request('get', `/game/${gameID}`)
 
-export const getSearch = (searchValue, platform, genre) => request('get', `/games/${searchValue}/${genre}/${platform}`)
+export const getDev = devID => request('get', `/dev/${devID}`)
+
+export const getDevStudio = studioID => request('get', `/studio/${studioID}`)
+
+export const getSearch = (searchValue, platform, genre) => request('get', `/search/${searchValue}/${genre}/${platform}`)
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import './card.css';
+const thumbnail = require('../../images/thumbnail.png');
 
 export default class GameCard extends React.Component {
     constructor(props) {
@@ -11,21 +12,27 @@ export default class GameCard extends React.Component {
     }
 
     goToGame(){
-        this.props.history.push(`/game/${this.props.game.nombre}`)
+        this.props.history.push(`/game/${this.props.game.id}`)
     }
 
     render(){
+        let thumb = this.props.game.urlImage || thumbnail
         return(
             <div key={this.props.index}>
                 <div className="card card-container">
-                    <div className="card-header header">
-                        <h3 onClick={this.goToGame}>{this.props.game.nombre}</h3>
+                    <div className="card-header header row">
+                            <div className="column-image">
+                                <img src={thumb} alt='' height="200" width="150"/>
+                            </div>
+                            <div className="column">
+                                {this.props.game.name}
+                            </div>
                     </div>
                     <div>
                         <div className="card-body body">
-                            Genre: {this.props.game.genero}
+                            Genre: {this.props.game.genre}
                             <br/>
-                            Platform: {this.props.game.plataforma}
+                            Platform: {this.props.game.platform}
                             <br/>
                             <button type="button" className='btn btn-primary go-to-button' onClick={this.goToGame}>
                                 Go to

@@ -5,3 +5,7 @@ body {
     background-size: cover;
     background-image: url(./images/ds.jpg);
 }
+
+.body-container {
+    margin-bottom: 100px;
+}

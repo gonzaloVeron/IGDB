@@ -21,7 +21,10 @@
 
         <property name="hibernate.hbm2ddl.auto">create-drop</property>
 
-        <mapping class="model.Juego"/>
+        <mapping class="model.Game"/>
+        <mapping class="model.Developer"/>
+        <mapping class="model.Studio"/>
+
 
     </session-factory>
 </hibernate-configuration>

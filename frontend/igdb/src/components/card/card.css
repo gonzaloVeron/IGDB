@@ -64,6 +64,8 @@ tr:hover td {
     padding-left: 3%;
     padding-top: 2%;
     font-weight: bold;
+    font-size: 180%;
+    text-indent: 2%;
 }
 
 .body {
@@ -75,4 +77,18 @@ tr:hover td {
 
 .go-to-button {
     margin-top: 1%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+.column-image{
+    flex-basis: 20%;
+}
+
+.column {
+  flex-basis: 40%;
 }
