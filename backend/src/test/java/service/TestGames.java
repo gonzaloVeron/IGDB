@@ -45,10 +45,10 @@ public class TestGames {
     }
     @Test
     public void crear_datos(){
-        Game mario = juegoService.searchGameByName("Mario Bros");
-        Assert.assertEquals("Mario Bros",mario.getNombre());
-        Game sonic = juegoService.searchGameByName("Sonic");
-        Assert.assertEquals("Sonic",sonic.getNombre());
+        Game mario = juegoService.searchGameByName("Super Mario Bros Deluxe");
+        Assert.assertEquals("Super Mario Bros Deluxe",mario.getNombre());
+        Game sonic = juegoService.searchGameByName("Sonic Forces");
+        Assert.assertEquals("Sonic Forces",sonic.getNombre());
         Game fifa = juegoService.searchGameByName("FiFA 2019");
         Assert.assertEquals("FiFA 2019",fifa.getNombre());
         Game sonicMania = juegoService.searchGameByName("Sonic Mania");
@@ -65,9 +65,9 @@ public class TestGames {
         List<Game> juegosDeNintendo = serviceStudyimpl.gamesOfStudio("Nintendo");
         Assert.assertEquals(7,juegosDeNintendo.size());
         Game mario = juegosDeNintendo.get(0);
-        Assert.assertEquals("Mario Bros",mario.getNombre());
+        Assert.assertEquals("Super Mario Bros Deluxe",mario.getNombre());
         Game sonic = juegosDeNintendo.get(1);
-        Assert.assertEquals("Sonic",sonic.getNombre());
+        Assert.assertEquals("Sonic Forces",sonic.getNombre());
         Game fifa = juegosDeNintendo.get(2);
         Assert.assertEquals("FiFA 2019",fifa.getNombre());
         Game sonicMania = juegosDeNintendo.get(3);

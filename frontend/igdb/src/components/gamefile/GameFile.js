@@ -10,10 +10,10 @@ export default class GameFile extends React.Component {
         this.state = {
             gameData: {
                 id: -999,
-                nombre: '',
+                name: '',
+                genre: '',
+                platform: '',
                 sinopsis: '',
-                genero: '',
-                plataforma: '',
             }
         }
         console.log(props)
@@ -21,8 +21,8 @@ export default class GameFile extends React.Component {
 
     
     componentDidMount(){
-        let { gameID } = this.props.match.params
-        getGame(gameID).then(result => {
+        let { id } = this.props.match.params
+        getGame(id).then(result => {
             this.setState({ gameData : result });
             console.log(result)
         }).catch(e => {this.setState({ error: e.message })})
@@ -31,7 +31,7 @@ export default class GameFile extends React.Component {
     fileTitle(){
         return (
             <div className="card title-container">
-                <h1 className="card-header title">{this.state.gameData.nombre}</h1>
+                <h1 className="card-header title">{this.state.gameData.name}</h1>
             </div>
         );
     }
@@ -43,10 +43,10 @@ export default class GameFile extends React.Component {
                     Sinopsis: {this.state.gameData.sinopsis}
                 </div>
                 <div className="file-content-element">
-                    Género: {this.state.gameData.genero}
+                    Género: {this.state.gameData.genre}
                 </div>
                 <div className="file-content-element">
-                    Plataforma: {this.state.gameData.plataforma}
+                    Plataforma: {this.state.gameData.platform}
                 </div>
             </div>
         );

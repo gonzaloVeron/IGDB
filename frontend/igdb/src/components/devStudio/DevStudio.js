@@ -9,12 +9,12 @@ export default class DevStudio extends React.Component{
         this.state = {
             studioData: {
                 id: -999,
-                name: "Crazy Bullet",
+                name: "",
                 imageUrl: '',
                 foundationDate: '',
                 isActive: '', //esto deberia decir "actualmente activo" o "inactivo" <---- poneeele
                 actualDevs: [],
-                historicalDevelopers: ["Hideo Kojima", "Gonzalo Veron", "Ola ki aze?"],
+                historicalDevelopers: [],
                 gamesDeveloped: [],
             } 
         }

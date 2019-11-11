@@ -15,6 +15,8 @@ import service.impl.DataServiceImpl;
 import service.impl.DeveloperServiceimpl;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class TestDeveloper {
     private DataServiceImpl dataService;
@@ -46,6 +48,7 @@ public class TestDeveloper {
         List<Game> games = hideo.getGames();
         Assert.assertEquals(4,games.size());
 
+        System.out.println(hideo.getStudies().stream().map(s -> s.getId()).collect(Collectors.toList()));
     }
 
     @Test

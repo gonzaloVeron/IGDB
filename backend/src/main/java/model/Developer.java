@@ -4,6 +4,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,9 +23,9 @@ public class Developer {
 
     private String urlPhoto;
 
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    private Boolean actuallyWorking;
+    private String actuallyWorking;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SELECT)
@@ -33,7 +34,7 @@ public class Developer {
             inverseJoinColumns = @JoinColumn(name = "studio_id"))
     private List<Studio> studies;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
     @JoinTable(name = "estudios",
             joinColumns = @JoinColumn(name = "deve_id"),
@@ -68,7 +69,7 @@ public class Developer {
     }
 
     public List<Studio> getStudies() {
-        return studies;
+        return this.previousStudies;
     }
 
     public void addGame(Game game) {
@@ -79,11 +80,11 @@ public class Developer {
         return games;
     }
 
-    public Boolean getActuallyWorking() {
-        return actuallyWorking;
+    public String getActuallyWorking() {
+        return this.actuallyWorking;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -111,11 +112,11 @@ public class Developer {
         this.urlPhoto = urlPhoto;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public void setActuallyWorking(Boolean actuallyWorking) {
-        this.actuallyWorking = actuallyWorking;
+    public void setActuallyWorking(String whereHeWorks) {
+        this.actuallyWorking = whereHeWorks;
     }
 }

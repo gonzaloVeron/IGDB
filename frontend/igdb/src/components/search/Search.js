@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from '../navbar/NavBar';
 import { getSearch } from '../../api/api.js'
 import SearchCardGameGenerator from '../cardGenerator/menuCardsGenerator/SearchCardGameGenerator.js'
+import SearchCardResultGenerator from '../cardGenerator/menuCardsGenerator/SearchCardResultGenerator.js'
 
 export default class Search extends React.Component {
 
@@ -34,8 +35,12 @@ export default class Search extends React.Component {
             <div className="Search">
                 <NavBar/>
                 <div className="container">
+                    {/*
                     <h1 className="blanco">Games with: {this.props.match.params.searchValue}</h1>
                     <SearchCardGameGenerator games={this.state.queryResults} history={this.props.history}/>/>
+                    */}
+                    <h1 className="blanco">Search Results</h1>
+                    <SearchCardResultGenerator results={this.state.queryResults} history={this.props.history}/>
                 </div>
             </div>
         )   

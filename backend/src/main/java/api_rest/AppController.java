@@ -22,15 +22,15 @@ public class AppController {
     public DeveloperServiceimpl developerService = new DeveloperServiceimpl(new HibernateDeveloper());
     public ServiceStudioimpl studioService = new ServiceStudioimpl(new HibernateStudioDAO());
 
-    public Context searchGameByName(Context ctx){
+    public Context searchGameByName(Context ctx){ //Borrar ?
         Game datagame = gameService.searchGameByName(ctx.pathParam("name"));
-        DataGameSearch game = new DataGameSearch(datagame.getId(), datagame.getNombre(), datagame.getGenre(), datagame.getPlatform(), datagame.getSinopsis());
+        DataGameSearch game = new DataGameSearch(datagame.getId(), datagame.getNombre(), datagame.getGenre(), datagame.getPlatform(), datagame.getSinopsis(), datagame.getUrlImage());
         return ctx.json(game);
     }
 
     public Context searchGameById(Context ctx){
         Game datagame = gameService.searchGameById(Long.parseLong(ctx.pathParam("id")));
-        DataGameSearch game = new DataGameSearch(datagame.getId(), datagame.getNombre(), datagame.getGenre(), datagame.getPlatform(), datagame.getSinopsis());
+        DataGameSearch game = new DataGameSearch(datagame.getId(), datagame.getNombre(), datagame.getGenre(), datagame.getPlatform(), datagame.getSinopsis(), datagame.getUrlImage());
         return ctx.json(game);
     }
 
@@ -46,24 +46,24 @@ public class AppController {
         return searchService.searchByPlatform(Platform.valueOf(ctx.pathParam("platform")));
     }
 
-    public Context searchDeveloperByName(Context ctx){
+    public Context searchDeveloperByName(Context ctx){ //Borrar ?
         return ctx.json(developerService.searchDeveloper(ctx.pathParam("name")));
     }
 
     public Context searchDeveloperById(Context ctx){
-        Developer datadev = developerService.searchDeveloperById(Long.parseLong(ctx.pathParam("id")));
-        DataDeveloperSearch dev = new DataDeveloperSearch(datadev.getId(), datadev.getName(), datadev.getLastName(), datadev.getUrlPhoto(), datadev.getDateOfBirth(), datadev.getActuallyWorking(), datadev.getStudies(), datadev.getGames());
+        Developer datadev = developerService.searchDeveloperById(Long.parseLong(ctx.pathParam("id")));                                                                          /*  al usar datadev.getStudies() da stack overflow */
+        DataDeveloperSearch dev = new DataDeveloperSearch(datadev.getId(), datadev.getName(), datadev.getLastName(), datadev.getUrlPhoto(), datadev.getDateOfBirth(), datadev.getActuallyWorking(), new ArrayList<Studio>(), datadev.getGames());
         return ctx.json(dev);
     }
 
-    public Context searchStudioByName(Context ctx){
+    public Context searchStudioByName(Context ctx){ //Borrar ?
         Studio dataStudio = studioService.searchStudio(ctx.pathParam("name"));
         DataStudioSearch studio = new DataStudioSearch(dataStudio.getId(), dataStudio.getNombre(), dataStudio.getPortada(), dataStudio.getFechaDeFundacion(), dataStudio.getEstaActivo(), dataStudio.getHistoricalDevelopers(), dataStudio.getJuegosDesarrollados(), dataStudio.desarrolladoresActuales());
         return ctx.json(studio);
     }
 
     public Context searchStudioById(Context ctx){
-        Studio dataStudio = studioService.searchStudio(ctx.pathParam("id"));
+        Studio dataStudio = studioService.searchStudioById(Long.parseLong(ctx.pathParam("id")));
         DataStudioSearch studio = new DataStudioSearch(dataStudio.getId(), dataStudio.getNombre(), dataStudio.getPortada(), dataStudio.getFechaDeFundacion(), dataStudio.getEstaActivo(), dataStudio.getHistoricalDevelopers(), dataStudio.getJuegosDesarrollados(), dataStudio.desarrolladoresActuales());
         return ctx.json(studio);
     }
@@ -105,9 +105,9 @@ public class AppController {
         List<Studio> studies = this.searchStudiesByName(ctx);
         List<Game> games = this.searchGamesByNameGenrePlatform(ctx);
 
-        dataGames.addAll(games.stream().map(e -> this.createDataSearch(e.getId(), e.getNombre())).collect(Collectors.toList()));
-        dataGames.addAll(devs.stream().map(e -> this.createDataSearch(e.getId(), e.getName())).collect(Collectors.toList()));
-        dataGames.addAll(studies.stream().map(e -> this.createDataSearch(e.getId(), e.getNombre())).collect(Collectors.toList()));
+        dataGames.addAll(games.stream().map(e -> this.createDataSearch(e.getId(), e.getNombre(), "Game")).collect(Collectors.toList()));
+        dataGames.addAll(devs.stream().map(e -> this.createDataSearch(e.getId(), e.getName(), "Dev")).collect(Collectors.toList()));
+        dataGames.addAll(studies.stream().map(e -> this.createDataSearch(e.getId(), e.getNombre(), "Studio")).collect(Collectors.toList()));
 
         return ctx.json(withoutRepeated(dataGames));
     }
@@ -125,8 +125,8 @@ public class AppController {
         return newList;
     }
 
-    public DataSearch createDataSearch(Long id, String name){
-        return new DataSearch(id, name);
+    public DataSearch createDataSearch(Long id, String name, String type){
+        return new DataSearch(id, name, type);
     }
 
     public void initializeDatabase() {

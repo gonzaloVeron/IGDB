@@ -32,21 +32,9 @@ public class Main {
                 });
             });
 
-            path("gamename", () -> {
-                path(":name", () -> {
-                    get(controller::searchGameByName);
-                });
-            });
-
             path("dev", () -> {
                 path(":id", () -> {
                     get(controller::searchDeveloperById);
-                });
-            });
-
-            path("devname", () -> {
-                path(":name", () -> {
-                    get(controller::searchDeveloperByName);
                 });
             });
 
@@ -54,12 +42,6 @@ public class Main {
             path("studio", () -> {
                 path(":id", () -> {
                     get(controller::searchStudioById);
-                });
-            });
-
-            path("studioname", () -> {
-                path(":name", () -> {
-                    get(controller::searchStudioByName);
                 });
             });
 
