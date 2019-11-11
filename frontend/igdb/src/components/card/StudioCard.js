@@ -2,21 +2,21 @@ import React from 'react';
 import './card.css';
 const thumbnail = require('../../images/thumbnail.png');
 
-export default class GameCard extends React.Component {
+export default class StudioCard extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             error: {},
         };
-        this.goToGame = this.goToGame.bind(this)
+        this.goToStudio = this.goToStudio.bind(this)
     }
 
-    goToGame(){
-        this.props.history.push(`/game/${this.props.game.id}`)
+    goToStudio(){
+        this.props.history.push(`/studio/${this.props.studio.id}`)
     }
 
     render(){
-        let thumb = this.props.game.urlImage || thumbnail
+        let thumb = this.props.studio.logo || thumbnail
         return(
             <div key={this.props.index}>
                 <div className="card card-container">
@@ -25,16 +25,12 @@ export default class GameCard extends React.Component {
                                 <img src={thumb} alt='' height="200" width="150"/>
                             </div>
                             <div className="column">
-                                {this.props.game.name}
+                                {this.props.studio.name}
                             </div>
                     </div>
                     <div>
                         <div className="card-body body">
-                            Genre: {this.props.game.genre}
-                            <br/>
-                            Platform: {this.props.game.platform}
-                            <br/>
-                            <button type="button" className='btn btn-primary go-to-button' onClick={this.goToGame}>
+                            <button type="button" className='btn btn-primary go-to-button' onClick={this.goToStudio}>
                                 Go to
                             </button>  
                         </div>

@@ -1,13 +1,15 @@
 package api_rest.DataClass;
 
-public class DataSearch {
-    public Long id;
-    public String name;
-    public String type;
+import java.util.List;
 
-    public DataSearch(Long id, String name, String type){
-        this.id = id;
-        this.name = name;
-        this.type = type;
+public class DataSearch {
+    public List<DataGameSearch> games;
+    public List<DataStudioSearch> studios;
+    public List<DataDeveloperSearch> devs;
+
+    public DataSearch(List<DataGameSearch> dataGames, List<DataStudioSearch> dataStudios, List<DataDeveloperSearch> dataDevs) {
+        this.games = dataGames;
+        this.studios = dataStudios;
+        this.devs = dataDevs;
     }
 }

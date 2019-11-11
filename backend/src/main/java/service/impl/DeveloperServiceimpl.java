@@ -19,19 +19,19 @@ public class DeveloperServiceimpl {
     public DeveloperServiceimpl(){ }
 
     public List<Game> developedGames(String name){
-        return run(()->{return this.developerDAO.juegosDesarrollados(name);});
+        return run(()-> this.developerDAO.juegosDesarrollados(name));
     }
 
 
     public Studio currentJob(String name, String lastName){
-        return run(()->{return this.developerDAO.currentJob(name,lastName);});
+        return run(()-> this.developerDAO.currentJob(name,lastName));
     }
 
     public List<Developer> searchDeveloper(String name){
-        return run(()->{return this.developerDAO.searchDeveloper(name);});
+        return run(()-> this.developerDAO.searchDeveloper(name));
     }
 
     public Developer searchDeveloperById(Long id) {
-        return run(()->{return this.developerDAO.recuperar(id);});
+        return run(()-> this.developerDAO.recuperar(id));
     }
 }

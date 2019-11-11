@@ -1,15 +1,12 @@
 package api_rest;
 
-import api_rest.DataClass.DataDeveloperSearch;
-import api_rest.DataClass.DataGameSearch;
-import api_rest.DataClass.DataSearch;
-import api_rest.DataClass.DataStudioSearch;
+import api_rest.DataClass.*;
 import dao.impl.*;
 
-import dao.interf.DeveloperDAO;
 import io.javalin.Context;
 import model.*;
 import service.impl.*;
+import service.interf.DataService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,119 +14,87 @@ import java.util.stream.Collectors;
 
 
 public class AppController {
-    public GameServiceImpl gameService = new GameServiceImpl(new HibernateGameDAO());
-    public SearchService searchService = new SearchService(new HibernateSearchDAO());
-    public DeveloperServiceimpl developerService = new DeveloperServiceimpl(new HibernateDeveloper());
-    public ServiceStudioimpl studioService = new ServiceStudioimpl(new HibernateStudioDAO());
-
-    public Context searchGameByName(Context ctx){ //Borrar ?
-        Game datagame = gameService.searchGameByName(ctx.pathParam("name"));
-        DataGameSearch game = new DataGameSearch(datagame.getId(), datagame.getNombre(), datagame.getGenre(), datagame.getPlatform(), datagame.getSinopsis(), datagame.getUrlImage());
-        return ctx.json(game);
-    }
+    private GameServiceImpl gameService = new GameServiceImpl(new HibernateGameDAO());
+    private SearchService searchService = new SearchService(new HibernateSearchDAO());
+    private DeveloperServiceimpl developerService = new DeveloperServiceimpl(new HibernateDeveloper());
+    private ServiceStudioimpl studioService = new ServiceStudioimpl(new HibernateStudioDAO());
 
     public Context searchGameById(Context ctx){
-        Game datagame = gameService.searchGameById(Long.parseLong(ctx.pathParam("id")));
-        DataGameSearch game = new DataGameSearch(datagame.getId(), datagame.getNombre(), datagame.getGenre(), datagame.getPlatform(), datagame.getSinopsis(), datagame.getUrlImage());
-        return ctx.json(game);
-    }
-
-    public List<Game> searchByName(Context ctx){
-        return searchService.searchByName(ctx.pathParam("name"));
-    }
-
-    public List<Game> searchByGender(Context ctx){
-        return searchService.searchByGender(Genre.valueOf(ctx.pathParam("genre")));
-    }
-
-    public List<Game> searchByPlatform(Context ctx){
-        return searchService.searchByPlatform(Platform.valueOf(ctx.pathParam("platform")));
-    }
-
-    public Context searchDeveloperByName(Context ctx){ //Borrar ?
-        return ctx.json(developerService.searchDeveloper(ctx.pathParam("name")));
+        Game game = gameService.searchGameById(Long.parseLong(ctx.pathParam("id")));
+        DataGameFile dataGameFile = new DataGameFile(game);
+        return ctx.json(dataGameFile);
     }
 
     public Context searchDeveloperById(Context ctx){
-        Developer datadev = developerService.searchDeveloperById(Long.parseLong(ctx.pathParam("id")));                                                                          /*  al usar datadev.getStudies() da stack overflow */
-        DataDeveloperSearch dev = new DataDeveloperSearch(datadev.getId(), datadev.getName(), datadev.getLastName(), datadev.getUrlPhoto(), datadev.getDateOfBirth(), datadev.getActuallyWorking(), new ArrayList<Studio>(), datadev.getGames());
-        return ctx.json(dev);
-    }
-
-    public Context searchStudioByName(Context ctx){ //Borrar ?
-        Studio dataStudio = studioService.searchStudio(ctx.pathParam("name"));
-        DataStudioSearch studio = new DataStudioSearch(dataStudio.getId(), dataStudio.getNombre(), dataStudio.getPortada(), dataStudio.getFechaDeFundacion(), dataStudio.getEstaActivo(), dataStudio.getHistoricalDevelopers(), dataStudio.getJuegosDesarrollados(), dataStudio.desarrolladoresActuales());
-        return ctx.json(studio);
+        Developer developer = developerService.searchDeveloperById(Long.parseLong(ctx.pathParam("id")));
+        DataDeveloperFile dataDeveloperFile = new DataDeveloperFile(developer);
+        return ctx.json(dataDeveloperFile);
     }
 
     public Context searchStudioById(Context ctx){
-        Studio dataStudio = studioService.searchStudioById(Long.parseLong(ctx.pathParam("id")));
-        DataStudioSearch studio = new DataStudioSearch(dataStudio.getId(), dataStudio.getNombre(), dataStudio.getPortada(), dataStudio.getFechaDeFundacion(), dataStudio.getEstaActivo(), dataStudio.getHistoricalDevelopers(), dataStudio.getJuegosDesarrollados(), dataStudio.desarrolladoresActuales());
-        return ctx.json(studio);
-    }
-
-    public List<Studio> searchStudiesByName(String name){
-        return studioService.searchStudies(name);
-    }
-
-    public List<Developer> searchDevelopersByName(String name){
-        return developerService.searchDeveloper(name);
+        Studio studio = studioService.searchStudioById(Long.parseLong(ctx.pathParam("id")));
+        DataStudioFile dataStudioFile = new DataStudioFile(studio);
+        return ctx.json(dataStudioFile);
     }
 
     public List<Game> searchGamesByNameGenrePlatform(Context ctx){
         ArrayList<Game> games = new ArrayList<>();
-        games.addAll(this.searchByName(ctx));
-        games.addAll(this.searchByGender(ctx));
-        games.addAll(this.searchByPlatform(ctx));
-
+        games.addAll(searchService.searchByName(ctx.pathParam("name")));
+        if (!ctx.pathParam("genre").equals("Any")){
+            games.addAll(searchService.searchByGender(Genre.valueOf(ctx.pathParam("genre"))));
+        }
+        if (!ctx.pathParam("platform").equals("Any")) {
+            games.addAll(searchService.searchByPlatform(Platform.valueOf(ctx.pathParam("platform"))));
+        }
         return games;
     }
 
-    public List<Studio> searchStudiesByName(Context ctx){
-        ArrayList<Studio> studies = new ArrayList<>();
-        studies.addAll(this.searchStudiesByName(ctx.pathParam("name")));
-
-        return studies;
-    }
-
-    public List<Developer> searchDevelopersByName(Context ctx){
-        ArrayList<Developer> developers = new ArrayList<>();
-        developers.addAll(this.searchDevelopersByName(ctx.pathParam("name")));
-
-        return developers;
-    }
 
     public Context searchGameDevStdByNameGenrePlatform(Context ctx){
-        List<DataSearch> dataGames = new ArrayList<>();
-        List<Developer> devs = this.searchDevelopersByName(ctx);
-        List<Studio> studies = this.searchStudiesByName(ctx);
+        List<Developer> devs = developerService.searchDeveloper(ctx.pathParam("name"));;
+        List<Studio> studies = studioService.searchStudies(ctx.pathParam("name"));;
         List<Game> games = this.searchGamesByNameGenrePlatform(ctx);
 
-        dataGames.addAll(games.stream().map(e -> this.createDataSearch(e.getId(), e.getNombre(), "Game")).collect(Collectors.toList()));
-        dataGames.addAll(devs.stream().map(e -> this.createDataSearch(e.getId(), e.getName(), "Dev")).collect(Collectors.toList()));
-        dataGames.addAll(studies.stream().map(e -> this.createDataSearch(e.getId(), e.getNombre(), "Studio")).collect(Collectors.toList()));
+        List<DataGameSearch> dataGames = parseToDataGameSearch(this.withoutRepeated(games));
+        List<DataStudioSearch> dataStudios = parseToDataStudioSearch(studies);
+        List<DataDeveloperSearch> dataDevs = parseToDataDeveloperSearch(devs);
 
-        return ctx.json(withoutRepeated(dataGames));
+        return ctx.json(new DataSearch(dataGames, dataStudios, dataDevs));
     }
 
-    private List<DataSearch> withoutRepeated(List<DataSearch> list){
-        List<DataSearch> newList = new ArrayList<>();
-        List<String> listOfNames = list.stream().map(e -> e.name).collect(Collectors.toList());
-        for(int i = 0; i < list.size(); i++){
-            if(listOfNames.contains(list.get(i).name)){
-                newList.add(list.get(i));
-                int finalI = i;
-                listOfNames = listOfNames.stream().filter(n -> !n.equals(list.get(finalI).name)).collect(Collectors.toList());
+    private List<DataDeveloperSearch> parseToDataDeveloperSearch(List<Developer> devs) {
+        List<DataDeveloperSearch> retList = new ArrayList<>();
+        devs.forEach(developer -> retList.add(new DataDeveloperSearch(developer)));
+        return retList;
+    }
+
+    private List<DataStudioSearch> parseToDataStudioSearch(List<Studio> studios) {
+        List<DataStudioSearch> retList = new ArrayList<>();
+        studios.forEach(studio -> retList.add(new DataStudioSearch(studio)));
+        return retList;
+    }
+
+    private List<DataGameSearch> parseToDataGameSearch(List<Game> games) {
+        List<DataGameSearch> retList = new ArrayList<>();
+        games.forEach(game -> retList.add(new DataGameSearch(game)));
+        return retList;
+    }
+
+    private List<Game> withoutRepeated(List<Game> games){
+        List<Game> retList = new ArrayList<>();
+        games.forEach(game -> {
+            boolean contains = retList.stream().anyMatch(game1 -> game1.getId().equals(game.getId()));
+            if (!contains){
+                retList.add(game);
             }
-        }
-        return newList;
+        });
+        return retList;
     }
 
-    public DataSearch createDataSearch(Long id, String name, String type){
-        return new DataSearch(id, name, type);
-    }
-
+    // No eliminar ni modificar plox, esto asegura que la DB arranque limpia y solo cargue los elementos que nos interesan
     public void initializeDatabase() {
-       new DataServiceImpl(new HibernateDataDAO()).crearDatosIniciales();
+        DataService dataService = new DataServiceImpl(new HibernateDataDAO());
+        dataService.eliminarDatos();
+        dataService.crearDatosIniciales();
     }
 }

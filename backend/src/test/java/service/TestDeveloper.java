@@ -68,6 +68,13 @@ public class TestDeveloper {
         Assert.assertEquals("Nintendo",job.getNombre());
     }
 
+    @Test
+    public void developer_Hideo_Kojima_can_return_his_studios(){
+        Developer hideo = developerServiceimpl.searchDeveloperById(new Long(1));
+        List<Studio> prv = hideo.getStudies();
+        List<Studio> crr = hideo.getCurrentStudios();
+    }
+
 
     @After
     public void clear(){
