@@ -290,9 +290,9 @@ public class DataServiceImpl implements DataService {
             theLastOfUs= new Game();
             theLastOfUs.setNombre("The last of us");
             theLastOfUs.setGenre(Genre.SurvivalHorror);
-            theLastOfUs.setPlatform(Platform.PS4);
-            theLastOfUs.setSinopsis("");
-            theLastOfUs.setUrlImage("");
+            theLastOfUs.setPlatform(Platform.PS3);
+            theLastOfUs.setSinopsis("The Last of Us is a horror action, adventure and survival video game distributed for the PlayStation 3 console in 2013. The plot describes the experiences of Joel and Ellie, a pair of survivors of A Pandemic in the United States that causes the mutation of Human beings in cannibal creatures.");
+            theLastOfUs.setUrlImage("https://vignette.wikia.nocookie.net/thelastofus/images/a/a1/TLOUBoxart.jpg/revision/latest/scale-to-width-down/250?cb=20130205114038&path-prefix=es");
 
 
             batman= new Game();
