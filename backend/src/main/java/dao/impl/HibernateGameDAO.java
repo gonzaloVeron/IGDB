@@ -23,5 +23,4 @@ public class HibernateGameDAO extends HibernateDAO<Game> implements GameDAO {
         return this.validacion(query.uniqueResult());
     }
 
-
 }
