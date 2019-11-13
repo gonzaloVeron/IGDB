@@ -383,7 +383,7 @@ public class DataServiceImpl implements DataService {
             bastion.setGenre(Genre.Shooter);
             bastion.setPlatform(Platform.WII);
             bastion.setSinopsis("");
-            bastion.setUrlImage("");
+            bastion.setUrlImage("https://lh3.googleusercontent.com/pqaa9nOR5DViX6zMBp18cXvwI7e95-gCNbK5m1p-7s9pOf7eFwNYgPRKiG_VbJpY2TRXnYcV16DbphtyRmqtKUw");
 
 
             batmanArkhamKnight= new Game();
@@ -399,7 +399,7 @@ public class DataServiceImpl implements DataService {
             bayonetta.setGenre(Genre.SurvivalHorror);
             bayonetta.setPlatform(Platform.PS3);
             bayonetta.setSinopsis("");
-            bayonetta.setUrlImage("");
+            bayonetta.setUrlImage("https://i11c.3djuegos.com/juegos/2995/bayonetta/fotos/ficha/bayonetta-1693130.jpg");
 
 
             devilMayCry= new Game();
@@ -407,7 +407,7 @@ public class DataServiceImpl implements DataService {
             devilMayCry.setGenre(Genre.SurvivalHorror);
             devilMayCry.setPlatform(Platform.PS4);
             devilMayCry.setSinopsis("");
-            devilMayCry.setUrlImage("");
+            devilMayCry.setUrlImage("https://dnsgamer.s3-accelerate.amazonaws.com/wp-content/uploads/2018/10/Devil-May-Cry-HD-Collection-Devil-May-Cry-4-Special-Edition.png");
 
             dragonAgeOrigins= new Game();
             dragonAgeOrigins.setNombre("Dragon age origins");
@@ -421,7 +421,7 @@ public class DataServiceImpl implements DataService {
             metroExodus.setGenre(Genre.SurvivalHorror);
             metroExodus.setPlatform(Platform.PC);
             metroExodus.setSinopsis("");
-            metroExodus.setUrlImage("");
+            metroExodus.setUrlImage("https://i.ytimg.com/vi/gTNrBp_Ckio/maxresdefault.jpg");
 
 
 
@@ -432,14 +432,14 @@ public class DataServiceImpl implements DataService {
             tombRaider.setGenre(Genre.Adventure);
             tombRaider.setPlatform(Platform.PS4);
             tombRaider.setSinopsis("");
-            tombRaider.setUrlImage("");
+            tombRaider.setUrlImage("https://i11b.3djuegos.com/juegos/10534/tomb_raider_definitive_edition/fotos/ficha/tomb_raider_definitive_edition-2423681.jpg");
 
             outlast= new Game();;
             outlast.setNombre("Outlast");
             outlast.setGenre(Genre.SurvivalHorror);
             outlast.setPlatform(Platform.PC);
             outlast.setSinopsis("");
-            outlast.setUrlImage("");
+            outlast.setUrlImage("http://3.bp.blogspot.com/-oAjKCdJ3DKk/VlSmnD-2PnI/AAAAAAAAAQs/msEpmqwS8Pk/s1600/out.png");
 
 
 
@@ -448,14 +448,14 @@ public class DataServiceImpl implements DataService {
             outlast2.setGenre(Genre.SurvivalHorror);
             outlast2.setPlatform(Platform.PC);
             outlast2.setSinopsis("");
-            outlast2.setUrlImage("");
+            outlast2.setUrlImage("https://http2.mlstatic.com/outlast-2-juego-pc-envio-gratis-oferta-D_NQ_NP_600246-MLC27226125224_042018-F.jpg");
 
             outlastWhistleblower= new Game();;
             outlastWhistleblower.setNombre("Outlast Whistleblower");
             outlastWhistleblower.setGenre(Genre.SurvivalHorror);
             outlastWhistleblower.setPlatform(Platform.PC);
             outlastWhistleblower.setSinopsis("");
-            outlastWhistleblower.setUrlImage("");
+            outlastWhistleblower.setUrlImage("https://www.blizzboygames.net/wp-content/uploads/2014/07/i9659_outlast-whistleblower_zps061a7da6.jpg");
 
             godOfWar= new Game();
             godOfWar.setNombre("God of war");
