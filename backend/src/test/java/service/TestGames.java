@@ -53,8 +53,8 @@ public class TestGames {
         Assert.assertEquals("FiFA 2019",fifa.getName());
         Game sonicMania = juegoService.searchGameByName("Sonic Mania");
         Assert.assertEquals("Sonic Mania",sonicMania.getName());
-        Game lengendOfZelda = juegoService.searchGameByName("Lengend Of Zelda");
-        Assert.assertEquals("Lengend Of Zelda",lengendOfZelda.getName());
+        Game lengendOfZelda = juegoService.searchGameByName("Legend Of Zelda");
+        Assert.assertEquals("Legend Of Zelda",lengendOfZelda.getName());
         Game luigiMansion = juegoService.searchGameByName("Luigi Mansion");
         Assert.assertEquals("Luigi Mansion",luigiMansion.getName());
         Game tetris = juegoService.searchGameByName("Tetris");
@@ -73,7 +73,7 @@ public class TestGames {
         Game sonicMania = juegosDeNintendo.get(3);
         Assert.assertEquals("Sonic Mania",sonicMania.getName());
         Game lengendOfZelda = juegosDeNintendo.get(4);;
-        Assert.assertEquals("Lengend Of Zelda",lengendOfZelda.getName());
+        Assert.assertEquals("Legend Of Zelda",lengendOfZelda.getName());
         Game luigiMansion = juegosDeNintendo.get(5);
         Assert.assertEquals("Luigi Mansion",luigiMansion.getName());
         Game tetris = juegosDeNintendo.get(6);
@@ -114,9 +114,9 @@ public class TestGames {
         List<Game>juegosDeValve = serviceStudyimpl.gamesOfStudio("Valve");
         Assert.assertEquals(4,juegosDeValve.size());
         Game leftOfDead = juegosDeValve.get(0);
-        Assert.assertEquals("Left of dead",leftOfDead.getName());
+        Assert.assertEquals("Left 4 dead",leftOfDead.getName());
         Game leftOfDead2 = juegosDeValve.get(1);
-        Assert.assertEquals("Left of dead 2",leftOfDead2.getName());
+        Assert.assertEquals("Left 4 dead 2",leftOfDead2.getName());
         Game halfLife = juegosDeValve.get(2);
         Assert.assertEquals("Half life",halfLife.getName());
         Game halfLife2 = juegosDeValve.get(3);

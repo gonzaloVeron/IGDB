@@ -53,8 +53,8 @@ public class ServiceStudioimplTest {
     @Test
     public void gamesOfStudio() {
         List<String> nombresDeJuegosDeValve = new ArrayList<>();
-        nombresDeJuegosDeValve.add("Left of dead");
-        nombresDeJuegosDeValve.add("Left of dead 2");
+        nombresDeJuegosDeValve.add("Left 4 dead");
+        nombresDeJuegosDeValve.add("Left 4 dead 2");
         nombresDeJuegosDeValve.add("Half life");
         nombresDeJuegosDeValve.add("Half life 2");
 

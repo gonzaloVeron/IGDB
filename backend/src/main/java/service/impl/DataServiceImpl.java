@@ -305,7 +305,7 @@ public class DataServiceImpl implements DataService {
 
 
             batman= new Game();
-            batman.setName("batman arkham knight");
+            batman.setName("batman");
             batman.setGenre(Genre.Adventure);
             batman.setPlatform(Platform.PS4);
             batman.setSinopsis("");
@@ -385,7 +385,7 @@ public class DataServiceImpl implements DataService {
 
 
             batmanArkhamKnight= new Game();
-            batmanArkhamKnight.setName("Batman Arkham night");
+            batmanArkhamKnight.setName("Batman Arkham knight");
             batmanArkhamKnight.setGenre(Genre.Adventure);
             batmanArkhamKnight.setPlatform(Platform.PS4);
             batmanArkhamKnight.setSinopsis("");
@@ -497,7 +497,7 @@ public class DataServiceImpl implements DataService {
             callofDutyBlackOps.setGenre(Genre.Shooter);
             callofDutyBlackOps.setPlatform(Platform.PC);
             callofDutyBlackOps.setSinopsis("");
-            callofDutyBlackOps.setUrlImage("");
+            callofDutyBlackOps.setUrlImage("https://i11b.3djuegos.com/juegos/4240/call_of_duty_7__nombre_temporal_/fotos/ficha/call_of_duty_7__nombre_temporal_-1713413.jpg");
 
 
             callofDutyBlackOps2= new Game();;
@@ -505,16 +505,16 @@ public class DataServiceImpl implements DataService {
             callofDutyBlackOps2.setGenre(Genre.Shooter);
             callofDutyBlackOps2.setPlatform(Platform.PC);
             callofDutyBlackOps2.setSinopsis("");
-            callofDutyBlackOps2.setUrlImage("");
+            callofDutyBlackOps2.setUrlImage("https://i11b.3djuegos.com/juegos/7387/call_of_duty_10/fotos/ficha/call_of_duty_10-1992857.jpg");
 
 
 
             callofDutyBlackOps3= new Game();
             callofDutyBlackOps3.setName("Call of duty black ops 3");
             callofDutyBlackOps3.setGenre(Genre.Shooter);
-            callofDutyBlackOps3.setPlatform(Platform.PC);
+            callofDutyBlackOps3.setPlatform(Platform.PS4);
             callofDutyBlackOps3.setSinopsis("");
-            callofDutyBlackOps3.setUrlImage("");
+            callofDutyBlackOps3.setUrlImage("https://gameplanet-53f8.kxcdn.com/media/catalog/product/cache/4/thumbnail/9df78eab33525d08d6e5fb8d27136e95/c/a/call-of-duty-black-ops-3_2_1.jpg");
 
 
 
@@ -524,9 +524,9 @@ public class DataServiceImpl implements DataService {
             callofDutyBlackOps4= new Game();
             callofDutyBlackOps4.setName("Call of duty black ops 4");
             callofDutyBlackOps4.setGenre(Genre.Shooter);
-            callofDutyBlackOps4.setPlatform(Platform.PC);
+            callofDutyBlackOps4.setPlatform(Platform.PS4);
             callofDutyBlackOps4.setSinopsis("");
-            callofDutyBlackOps4.setUrlImage("");
+            callofDutyBlackOps4.setUrlImage("https://www.wog.ch/nas/cover_xl/p4/ps4_callofdutyblackops4.jpg");
 
 
 
@@ -535,11 +535,11 @@ public class DataServiceImpl implements DataService {
 
 
             leftOfDead= new Game();;
-            leftOfDead.setName("Left of dead");
+            leftOfDead.setName("Left 4 dead");
             leftOfDead.setGenre(Genre.SurvivalHorror);
             leftOfDead.setPlatform(Platform.PC);
             leftOfDead.setSinopsis("");
-            leftOfDead.setUrlImage("");
+            leftOfDead.setUrlImage("https://i11c.3djuegos.com/juegos/2004/left4dead/fotos/ficha/left4dead-1690378.jpg");
 
 
 
@@ -548,10 +548,10 @@ public class DataServiceImpl implements DataService {
 
 
             leftOfDead2= new Game();;
-            leftOfDead2.setName("Left of dead 2");
-            leftOfDead2.setPlatform(Platform.PC);
+            leftOfDead2.setName("Left 4 dead 2");
+            leftOfDead2.setPlatform(Platform.XBOX360);
             leftOfDead2.setSinopsis("");
-            leftOfDead2.setUrlImage("");
+            leftOfDead2.setUrlImage("https://images-na.ssl-images-amazon.com/images/I/51YbyBBzfDL._SY445_.jpg");
 
 
 
@@ -562,7 +562,7 @@ public class DataServiceImpl implements DataService {
             halfLife.setGenre(Genre.Adventure);
             halfLife.setPlatform(Platform.PC);
             halfLife.setSinopsis("");
-            halfLife.setUrlImage("");
+            halfLife.setUrlImage("https://www.blizzboygames.net/wp-content/uploads/2014/05/Gordon-Freeman-on-Half-Life-1-box-cover-gordon-freeman-25689139-500-6451_zpsa4f6bf69.jpg");
 
 
 
@@ -575,7 +575,7 @@ public class DataServiceImpl implements DataService {
             halfLife2.setGenre(Genre.Adventure);
             halfLife2.setPlatform(Platform.PC);
             halfLife2.setSinopsis("");
-            halfLife2.setUrlImage("");
+            halfLife2.setUrlImage("https://http2.mlstatic.com/half-life-2-pc-D_NQ_NP_955491-MLM28319236642_102018-F.jpg");
 
 
 
@@ -584,11 +584,11 @@ public class DataServiceImpl implements DataService {
 
 
             legendOfZelda= new Game();
-            legendOfZelda.setName("Lengend Of Zelda");
+            legendOfZelda.setName("Legend Of Zelda");
             legendOfZelda.setGenre(Genre.Adventure);
             legendOfZelda.setPlatform(Platform.WIIU);
             legendOfZelda.setSinopsis("");
-            legendOfZelda.setUrlImage("");
+            legendOfZelda.setUrlImage("https://cl.buscafs.com/www.levelup.com/public/uploads/images/440107_832x1190.jpg");
 
 
 
@@ -601,7 +601,7 @@ public class DataServiceImpl implements DataService {
             luigiMansion.setGenre(Genre.Adventure);
             luigiMansion.setPlatform(Platform.SWITCH);
             luigiMansion.setSinopsis("");
-            luigiMansion.setUrlImage("");
+            luigiMansion.setUrlImage("https://images-na.ssl-images-amazon.com/images/I/51Ryo2TFP1L._SY445_.jpg");
 
 
 
@@ -614,7 +614,7 @@ public class DataServiceImpl implements DataService {
             tetris.setGenre(Genre.Rol);
             tetris.setPlatform(Platform.PC);
             tetris.setSinopsis("");
-            tetris.setUrlImage("");
+            tetris.setUrlImage("https://www.elotrolado.net/w/images/6/6f/Tetris_%28Caratula_NES%29.jpg");
 
 
 
@@ -622,11 +622,11 @@ public class DataServiceImpl implements DataService {
 
 
             deathStranding= new Game();;
-            deathStranding.setName("Seath stranding");
+            deathStranding.setName("Death stranding");
             deathStranding.setGenre(Genre.Adventure);
             deathStranding.setPlatform(Platform.PS4);
             deathStranding.setSinopsis("");
-            deathStranding.setUrlImage("");
+            deathStranding.setUrlImage("https://i11d.3djuegos.com/juegos/12624/proyecto_hideo_kojima/fotos/ficha/proyecto_hideo_kojima-4922491.jpg");
 
 
             naruto= new Game();
@@ -643,9 +643,9 @@ public class DataServiceImpl implements DataService {
             narutoShippudenUltimate= new Game();;
             narutoShippudenUltimate.setName("Naruto shippuden ultimate");
             narutoShippudenUltimate.setGenre(Genre.Fighting);
-            narutoShippudenUltimate.setPlatform(Platform.PS4);
+            narutoShippudenUltimate.setPlatform(Platform.PS3);
             narutoShippudenUltimate.setSinopsis("");
-            narutoShippudenUltimate.setUrlImage("");
+            narutoShippudenUltimate.setUrlImage("http://juegosdigitalescr.com/wp-content/uploads/2016/08/Naruto-Shippuden-Ultimate-Ninja-Storm-Revolution.jpg");
 
             dragonBallZXenoverse= new Game();;
             dragonBallZXenoverse.setName("Dragon Ball Xenoverse");
