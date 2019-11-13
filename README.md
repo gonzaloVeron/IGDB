@@ -4,9 +4,9 @@ Integrantes de proyecto -> **IGDB**
 -----------------------
 * Gonzalo Verón
 * Alejandro Mamani
-* Juan
+* Juan Garay
 * Cristian Aranguren
-* Nahuel
+* Nahuel Moscatelli
 
 <img src="https://travis-ci.org/gonzaloVeron/IGDB.svg?branch=master"> master 
 
