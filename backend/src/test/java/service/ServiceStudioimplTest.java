@@ -8,7 +8,6 @@ import org.junit.Test;
 import service.impl.DataServiceImpl;
 import service.impl.ServiceStudioimpl;
 
-import javax.sound.midi.SysexMessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,12 +42,12 @@ public class ServiceStudioimplTest {
 
     @Test
     public void searchStudio() {
-        assertEquals("Valve", studioService.searchStudio("Valve").getNombre());
+        assertEquals("Valve", studioService.searchStudio("Valve").getName());
     }
 
     @Test
     public void searchStudioById() {
-        assertEquals("Valve", studioService.searchStudioById(new Long(5)).getNombre());
+        assertEquals("Valve", studioService.searchStudioById(new Long(5)).getName());
     }
 
     @Test
@@ -59,7 +58,7 @@ public class ServiceStudioimplTest {
         nombresDeJuegosDeValve.add("Half life");
         nombresDeJuegosDeValve.add("Half life 2");
 
-        assertEquals(nombresDeJuegosDeValve, studioService.gamesOfStudio("Valve").stream().map(g -> g.getNombre()).collect(Collectors.toList()));
+        assertEquals(nombresDeJuegosDeValve, studioService.gamesOfStudio("Valve").stream().map(g -> g.getName()).collect(Collectors.toList()));
     }
 
     @Test
@@ -71,6 +70,6 @@ public class ServiceStudioimplTest {
         nombreDeEstudiosBuscados.add("EaDigitalIllusionsCe");
         nombreDeEstudiosBuscados.add("Generation");
 
-        assertEquals(nombreDeEstudiosBuscados, studioService.searchStudies("i").stream().map(g -> g.getNombre()).collect(Collectors.toList()));
+        assertEquals(nombreDeEstudiosBuscados, studioService.searchStudies("i").stream().map(g -> g.getName()).collect(Collectors.toList()));
     }
 }

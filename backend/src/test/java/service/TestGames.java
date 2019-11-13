@@ -44,109 +44,109 @@ public class TestGames {
 
     }
     @Test
-    public void crear_datos(){
+    public void create_data(){
         Game mario = juegoService.searchGameByName("Super Mario Bros Deluxe");
-        Assert.assertEquals("Super Mario Bros Deluxe",mario.getNombre());
+        Assert.assertEquals("Super Mario Bros Deluxe",mario.getName());
         Game sonic = juegoService.searchGameByName("Sonic Forces");
-        Assert.assertEquals("Sonic Forces",sonic.getNombre());
+        Assert.assertEquals("Sonic Forces",sonic.getName());
         Game fifa = juegoService.searchGameByName("FiFA 2019");
-        Assert.assertEquals("FiFA 2019",fifa.getNombre());
+        Assert.assertEquals("FiFA 2019",fifa.getName());
         Game sonicMania = juegoService.searchGameByName("Sonic Mania");
-        Assert.assertEquals("Sonic Mania",sonicMania.getNombre());
+        Assert.assertEquals("Sonic Mania",sonicMania.getName());
         Game lengendOfZelda = juegoService.searchGameByName("Lengend Of Zelda");
-        Assert.assertEquals("Lengend Of Zelda",lengendOfZelda.getNombre());
+        Assert.assertEquals("Lengend Of Zelda",lengendOfZelda.getName());
         Game luigiMansion = juegoService.searchGameByName("Luigi Mansion");
-        Assert.assertEquals("Luigi Mansion",luigiMansion.getNombre());
+        Assert.assertEquals("Luigi Mansion",luigiMansion.getName());
         Game tetris = juegoService.searchGameByName("Tetris");
-        Assert.assertEquals("Tetris",tetris.getNombre());
+        Assert.assertEquals("Tetris",tetris.getName());
     }
     @Test
-    public void juegos_de_nintendo(){
+    public void nintendo_games(){
         List<Game> juegosDeNintendo = serviceStudyimpl.gamesOfStudio("Nintendo");
         Assert.assertEquals(7,juegosDeNintendo.size());
         Game mario = juegosDeNintendo.get(0);
-        Assert.assertEquals("Super Mario Bros Deluxe",mario.getNombre());
+        Assert.assertEquals("Super Mario Bros Deluxe",mario.getName());
         Game sonic = juegosDeNintendo.get(1);
-        Assert.assertEquals("Sonic Forces",sonic.getNombre());
+        Assert.assertEquals("Sonic Forces",sonic.getName());
         Game fifa = juegosDeNintendo.get(2);
-        Assert.assertEquals("FiFA 2019",fifa.getNombre());
+        Assert.assertEquals("FiFA 2019",fifa.getName());
         Game sonicMania = juegosDeNintendo.get(3);
-        Assert.assertEquals("Sonic Mania",sonicMania.getNombre());
+        Assert.assertEquals("Sonic Mania",sonicMania.getName());
         Game lengendOfZelda = juegosDeNintendo.get(4);;
-        Assert.assertEquals("Lengend Of Zelda",lengendOfZelda.getNombre());
+        Assert.assertEquals("Lengend Of Zelda",lengendOfZelda.getName());
         Game luigiMansion = juegosDeNintendo.get(5);
-        Assert.assertEquals("Luigi Mansion",luigiMansion.getNombre());
+        Assert.assertEquals("Luigi Mansion",luigiMansion.getName());
         Game tetris = juegosDeNintendo.get(6);
-        Assert.assertEquals("Tetris",tetris.getNombre());
+        Assert.assertEquals("Tetris",tetris.getName());
 
 
     }
 
     @Test
-    public void juegos_de_red_Barrels(){
+    public void red_Barrels_games(){
         List<Game> juegosDeredBarrels = serviceStudyimpl.gamesOfStudio("Red Barrels");
         Assert.assertEquals(3,juegosDeredBarrels.size());
         Game outlast = juegosDeredBarrels.get(0);
-        Assert.assertEquals("Outlast",outlast.getNombre());
+        Assert.assertEquals("Outlast",outlast.getName());
         Game outlast2 = juegosDeredBarrels.get(1);
-        Assert.assertEquals("Outlast 2",outlast2.getNombre());
+        Assert.assertEquals("Outlast 2",outlast2.getName());
         Game outlastWhistleblawer = juegosDeredBarrels.get(2);
-        Assert.assertEquals("Outlast Whistleblower",outlastWhistleblawer.getNombre());
+        Assert.assertEquals("Outlast Whistleblower",outlastWhistleblawer.getName());
 
     }
     @Test
-    public void juegos_de_activision(){
+    public void activision_games(){
         List<Game> juegosDeActivision = serviceStudyimpl.gamesOfStudio("Activision");
         Assert.assertEquals(4,juegosDeActivision.size());
         Game callofdutyblackops = juegosDeActivision.get(0);
-        Assert.assertEquals("Call of duty black ops",callofdutyblackops.getNombre());
+        Assert.assertEquals("Call of duty black ops",callofdutyblackops.getName());
         Game callofdutyblackops2 = juegosDeActivision.get(1);
-        Assert.assertEquals("Call of duty black ops 2",callofdutyblackops2.getNombre());
+        Assert.assertEquals("Call of duty black ops 2",callofdutyblackops2.getName());
         Game callofdutyblackops3 = juegosDeActivision.get(2);
-        Assert.assertEquals("Call of duty black ops 3",callofdutyblackops3.getNombre());
+        Assert.assertEquals("Call of duty black ops 3",callofdutyblackops3.getName());
         Game callofdutyblackops4 = juegosDeActivision.get(3);
-        Assert.assertEquals("Call of duty black ops 4",callofdutyblackops4.getNombre());
+        Assert.assertEquals("Call of duty black ops 4",callofdutyblackops4.getName());
 
 
     }
     @Test
-    public void juegos_de_valve(){
+    public void valve_games(){
         List<Game>juegosDeValve = serviceStudyimpl.gamesOfStudio("Valve");
         Assert.assertEquals(4,juegosDeValve.size());
         Game leftOfDead = juegosDeValve.get(0);
-        Assert.assertEquals("Left of dead",leftOfDead.getNombre());
+        Assert.assertEquals("Left of dead",leftOfDead.getName());
         Game leftOfDead2 = juegosDeValve.get(1);
-        Assert.assertEquals("Left of dead 2",leftOfDead2.getNombre());
+        Assert.assertEquals("Left of dead 2",leftOfDead2.getName());
         Game halfLife = juegosDeValve.get(2);
-        Assert.assertEquals("Half life",halfLife.getNombre());
+        Assert.assertEquals("Half life",halfLife.getName());
         Game halfLife2 = juegosDeValve.get(3);
-        Assert.assertEquals("Half life 2",halfLife2.getNombre());
+        Assert.assertEquals("Half life 2",halfLife2.getName());
 
     }
     @Test
-    public void juegos_de_eaDigitalIllusionsCe(){
+    public void eaDigitalIllusionsCe_games(){
         List<Game>juegosdeeaDigitalIllusionsCe= serviceStudyimpl.gamesOfStudio("EaDigitalIllusionsCe");
         Assert.assertEquals(5,juegosdeeaDigitalIllusionsCe.size());
     }
 
     @Test
-    public void juegos_de_capcom(){
+    public void capcom_games(){
         List<Game>juegosDeCapcom = serviceStudyimpl.gamesOfStudio("Capcom");
         Assert.assertEquals(10,juegosDeCapcom.size());
     }
     @Test
-    public void juegos_de_sCESantaMonicaStudio(){
+    public void sCESantaMonicaStudio_games(){
         List<Game>juegossCESantaMonicaStudio = serviceStudyimpl.gamesOfStudio("SCE Santa Monica Studio");
         Assert.assertEquals(4,juegossCESantaMonicaStudio.size());
     }
     @Test
-    public void juegos_de_generation(){
+    public void generation_games(){
         List<Game>juegosdeGeneration = serviceStudyimpl.gamesOfStudio("Generation");
         Assert.assertEquals(18,juegosdeGeneration.size());
     }
 
     @After
-    public void eliminarDatos(){
+    public void clearData(){
         dataService.eliminarDatos();
     }
 

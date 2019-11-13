@@ -10,7 +10,7 @@ public class Game {
     private Long id;
 
     @Column(unique = true)
-    private String nombre;
+    private String name;
     private Genre genre;
     private Platform platform;
     private String sinopsis;
@@ -26,14 +26,14 @@ public class Game {
         this.urlImage = url;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
     public Long getId(){ return this.id;}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String nombre) {
+        this.name = nombre;
     }
 
     public Genre getGenre() {
@@ -52,7 +52,7 @@ public class Game {
         return platform;
     }
 
-    public void addPlataforma(Platform platform) {
+    public void addPlataform(Platform platform) {
 
         this.platform = platform;
     }

@@ -45,14 +45,14 @@ public class TestGameServiceImpl {
     }
 
     @Test
-    public void studies(){
-        List<Studio> studies = serviceStudy.searchStudies("a");
-        Assert.assertEquals(7,studies.size());
+    public void studios(){
+        List<Studio> studios = serviceStudy.searchStudies("a");
+        Assert.assertEquals(7,studios.size());
     }
 
 
     @After
-    public void eliminarDatos(){
+    public void clearData(){
         dataService.eliminarDatos();
    }
 

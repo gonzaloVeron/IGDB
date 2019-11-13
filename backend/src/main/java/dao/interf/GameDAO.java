@@ -3,9 +3,9 @@ package dao.interf;
 import model.Game;
 
 public interface GameDAO {
-    void guardar(Game game);
-    Game recuperarJuegoPorNombre(String nombre);
-    void actualizar(Game game);
-    Game recuperar(Long id);
+    void save(Game game);
+    Game recoverGameByName(String nombre);
+    void update(Game game);
+    Game recover(Long id);
 
 }

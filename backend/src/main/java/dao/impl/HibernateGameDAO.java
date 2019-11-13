@@ -14,13 +14,13 @@ public class HibernateGameDAO extends HibernateDAO<Game> implements GameDAO {
     }
 
     @Override
-    public Game recuperarJuegoPorNombre(String nombre) {
+    public Game recoverGameByName(String nombre) {
         Session session = TransactionRunner.getCurrentSession();
-        String hql = "from Game g " + "where g.nombre =  :nombre";
+        String hql = "from Game g " + "where g.name =  :nombre";
         Query<Game> query = session.createQuery(hql, Game.class);
         query.setParameter("nombre", nombre);
 
-        return this.validacion(query.uniqueResult());
+        return this.validate(query.uniqueResult());
     }
 
 }

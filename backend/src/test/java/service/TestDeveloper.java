@@ -15,7 +15,6 @@ import service.impl.DataServiceImpl;
 import service.impl.DeveloperServiceimpl;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class TestDeveloper {
@@ -65,7 +64,7 @@ public class TestDeveloper {
     @Test
     public void _John_job_in_nintendo(){
         Studio job = developerServiceimpl.currentJob("John","Romero");
-        Assert.assertEquals("Nintendo",job.getNombre());
+        Assert.assertEquals("Nintendo",job.getName());
     }
 
     @Test

@@ -15,11 +15,11 @@ public class GameServiceImpl implements JuegoService {
     }
 
     @Override
-    public Game searchGameByName(String nombre) {   return run(()->{ return this.gameDAO.recuperarJuegoPorNombre(nombre);}); }
+    public Game searchGameByName(String nombre) {   return run(()->{ return this.gameDAO.recoverGameByName(nombre);}); }
 
     @Override
     public Game searchGameById(Long id) {
-        return run(()->{return this.gameDAO.recuperar(id);});
+        return run(()->{return this.gameDAO.recover(id);});
     }
 
 

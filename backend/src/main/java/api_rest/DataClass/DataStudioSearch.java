@@ -9,7 +9,7 @@ public class DataStudioSearch {
 
     public DataStudioSearch(Studio studio) {
         this.id = studio.getId();
-        this.name = studio.getNombre();
-        this.logo = studio.getPortada();
+        this.name = studio.getName();
+        this.logo = studio.getCoverPage();
     }
 }

@@ -9,7 +9,7 @@ public class DataStudioInDeveloper {
 
     public DataStudioInDeveloper(Studio studio) {
         id = studio.getId();
-        name = studio.getNombre();
-        logo = studio.getPortada();
+        name = studio.getName();
+        logo = studio.getCoverPage();
     }
 }
