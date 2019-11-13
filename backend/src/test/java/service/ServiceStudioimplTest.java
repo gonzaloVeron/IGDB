@@ -47,7 +47,7 @@ public class ServiceStudioimplTest {
 
     @Test
     public void searchStudioById() {
-        assertEquals("Valve", studioService.searchStudioById(new Long(5)).getName());
+        assertEquals("Valve", studioService.searchStudioById(new Long(7)).getName());
     }
 
     @Test
@@ -66,9 +66,9 @@ public class ServiceStudioimplTest {
         List<String> nombreDeEstudiosBuscados = new ArrayList<>();
         nombreDeEstudiosBuscados.add("Nintendo");
         nombreDeEstudiosBuscados.add("SCE Santa Monica Studio");
+        nombreDeEstudiosBuscados.add("Generation");
         nombreDeEstudiosBuscados.add("Activision");
         nombreDeEstudiosBuscados.add("EaDigitalIllusionsCe");
-        nombreDeEstudiosBuscados.add("Generation");
 
         assertEquals(nombreDeEstudiosBuscados, studioService.searchStudies("i").stream().map(g -> g.getName()).collect(Collectors.toList()));
     }

@@ -734,6 +734,7 @@ public class DataServiceImpl implements DataService {
             redBarrels.addGame(outlast);
             redBarrels.addGame(outlast2);
             redBarrels.addGame(outlastWhistleblower);
+            redBarrels.addGame(justDance);
             //Activision
             activision.addGame(callofDutyBlackOps);
             activision.addGame(callofDutyBlackOps2);

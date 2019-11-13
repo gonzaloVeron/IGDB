@@ -15,7 +15,7 @@ import service.impl.DataServiceImpl;
 import service.impl.GameServiceImpl;
 import service.impl.ServiceStudioimpl;
 import service.interf.DataService;
-import service.interf.JuegoService;
+import service.interf.GameService;
 import service.interf.ServiceStudio;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class TestGames {
     private DataService dataService;
     //Servicio juego
     private GameDAO gameDAO;
-    private JuegoService juegoService;
+    private GameService gameService;
     //Service estudio
     private StudioDAO studioDAO;
     private ServiceStudio serviceStudyimpl;
@@ -36,7 +36,7 @@ public class TestGames {
         dataDAO = new HibernateDataDAO();
         dataService = new DataServiceImpl(dataDAO);
         gameDAO = new HibernateGameDAO();
-        juegoService = new GameServiceImpl(gameDAO);
+        gameService = new GameServiceImpl(gameDAO);
         studioDAO = new HibernateStudioDAO();
         serviceStudyimpl = new ServiceStudioimpl(studioDAO);
         dataService.crearDatosIniciales();
@@ -45,19 +45,19 @@ public class TestGames {
     }
     @Test
     public void create_data(){
-        Game mario = juegoService.searchGameByName("Super Mario Bros Deluxe");
+        Game mario = gameService.searchGameByName("Super Mario Bros Deluxe");
         Assert.assertEquals("Super Mario Bros Deluxe",mario.getName());
-        Game sonic = juegoService.searchGameByName("Sonic Forces");
+        Game sonic = gameService.searchGameByName("Sonic Forces");
         Assert.assertEquals("Sonic Forces",sonic.getName());
-        Game fifa = juegoService.searchGameByName("FiFA 2019");
+        Game fifa = gameService.searchGameByName("FiFA 2019");
         Assert.assertEquals("FiFA 2019",fifa.getName());
-        Game sonicMania = juegoService.searchGameByName("Sonic Mania");
+        Game sonicMania = gameService.searchGameByName("Sonic Mania");
         Assert.assertEquals("Sonic Mania",sonicMania.getName());
-        Game lengendOfZelda = juegoService.searchGameByName("Legend Of Zelda");
+        Game lengendOfZelda = gameService.searchGameByName("Legend Of Zelda");
         Assert.assertEquals("Legend Of Zelda",lengendOfZelda.getName());
-        Game luigiMansion = juegoService.searchGameByName("Luigi Mansion");
+        Game luigiMansion = gameService.searchGameByName("Luigi Mansion");
         Assert.assertEquals("Luigi Mansion",luigiMansion.getName());
-        Game tetris = juegoService.searchGameByName("Tetris");
+        Game tetris = gameService.searchGameByName("Tetris");
         Assert.assertEquals("Tetris",tetris.getName());
     }
     @Test
@@ -85,13 +85,15 @@ public class TestGames {
     @Test
     public void red_Barrels_games(){
         List<Game> juegosDeredBarrels = serviceStudyimpl.gamesOfStudio("Red Barrels");
-        Assert.assertEquals(3,juegosDeredBarrels.size());
+        Assert.assertEquals(4,juegosDeredBarrels.size());
         Game outlast = juegosDeredBarrels.get(0);
         Assert.assertEquals("Outlast",outlast.getName());
         Game outlast2 = juegosDeredBarrels.get(1);
         Assert.assertEquals("Outlast 2",outlast2.getName());
         Game outlastWhistleblawer = juegosDeredBarrels.get(2);
         Assert.assertEquals("Outlast Whistleblower",outlastWhistleblawer.getName());
+        Game justDance = juegosDeredBarrels.get(3);
+        Assert.assertEquals("Just Dance 2018", justDance.getName());
 
     }
     @Test

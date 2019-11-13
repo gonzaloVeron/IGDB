@@ -1,11 +1,16 @@
 package service.impl;
 
 import dao.interf.GameDAO;
+import model.Developer;
 import model.Game;
-import service.interf.JuegoService;
+import model.Studio;
+import service.interf.GameService;
+
+import java.util.List;
+
 import static service.TransactionRunner.run;
 
-public class GameServiceImpl implements JuegoService {
+public class GameServiceImpl implements GameService {
     private GameDAO gameDAO;
 
 
@@ -22,5 +27,24 @@ public class GameServiceImpl implements JuegoService {
         return run(()->{return this.gameDAO.recover(id);});
     }
 
+    @Override
+    public Studio recoverStudioFromGameByID(Long id) {
+        return run(()->{return this.gameDAO.recoverStudioFromGameByID(id);});
+    }
+
+    @Override
+    public List<Developer> recoverAllDevelopersForGameByID(Long id) {
+        return run(()->{return this.gameDAO.recoverAllDevelopersForGameByID(id);});
+    }
+
+    @Override
+    public Studio recoverStudioFromGameByName(String name) {
+        return run(()->{return this.gameDAO.recoverStudioFromGameByName(name);});
+    }
+
+    @Override
+    public List<Developer> recoverAllDevelopersForGameByName(String name) {
+        return run(()->{return this.gameDAO.recoverAllDevelopersForGameByName(name);});
+    }
 
 }
