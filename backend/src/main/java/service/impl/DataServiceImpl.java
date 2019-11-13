@@ -201,7 +201,7 @@ public class DataServiceImpl implements DataService {
             markusPersson.setName("Markus");
             markusPersson.setLastName("Persson");
             markusPersson.setActuallyWorking("Desempleado");
-            markusPersson.setUrlPhoto("Ninguna");
+            markusPersson.setUrlPhoto("http://prod-upp-image-read.ft.com/f06a484a-4000-11e4-936b-00144feabdc0");
             LocalDate nacimientoo = LocalDate.of(1971,5,25);
             markusPersson.setDateOfBirth(nacimientoo);
 
@@ -210,7 +210,7 @@ public class DataServiceImpl implements DataService {
             johnRomero.setName("John");
             johnRomero.setLastName("Romero");
             johnRomero.setActuallyWorking("Desempleado");
-            johnRomero.setUrlPhoto("Ninguna");
+            johnRomero.setUrlPhoto("https://upload.wikimedia.org/wikipedia/commons/0/02/John_Romero_-_Jason_Scott_interview_%286951215353%29_%28cropped%29.jpg");
             LocalDate fechanacimiento = LocalDate.of(1980,6,25);
             johnRomero.setDateOfBirth(fechanacimiento);
 
@@ -219,7 +219,7 @@ public class DataServiceImpl implements DataService {
             johnCarmack.setName("John");
             johnCarmack.setLastName("Caramack");
             johnCarmack.setActuallyWorking("Trabaja en Oculus VR");
-            johnCarmack.setUrlPhoto("Ninguna");
+            johnCarmack.setUrlPhoto("https://as.com/meristation/imagenes/2019/11/12/noticias/1573560691_813107_1573560743_noticia_normal.jpg");
             LocalDate fechana = LocalDate.of(1985,1,29);
             johnCarmack.setDateOfBirth(fechana);
 
@@ -301,8 +301,9 @@ public class DataServiceImpl implements DataService {
             theLastOfUs= new Game();
             theLastOfUs.setNombre("The last of us");
             theLastOfUs.setGenre(Genre.SurvivalHorror);
-            theLastOfUs.setPlatform(Platform.PS3);
+            theLastOfUs.setPlatform(Platform.PS4);
             theLastOfUs.setSinopsis("");
+            theLastOfUs.setUrlImage("https://i11d.3djuegos.com/juegos/8274/last_of_us/fotos/ficha/last_of_us-2507095.jpg");
 
 
             batman= new Game();
@@ -324,7 +325,7 @@ public class DataServiceImpl implements DataService {
             iroMan.setGenre(Genre.Fighting);
             iroMan.setPlatform(Platform.PS4);
             iroMan.setSinopsis("");
-            iroMan.setUrlImage("");
+            iroMan.setUrlImage("https://i11d.3djuegos.com/juegos/16534/iron_man_vr/fotos/ficha/iron_man_vr-4825443.jpg");
 
 
 
@@ -333,7 +334,7 @@ public class DataServiceImpl implements DataService {
             theSimpsons.setGenre(Genre.Adventure);
             theSimpsons.setPlatform(Platform.PC);
             theSimpsons.setSinopsis("");
-            theSimpsons.setUrlImage("");
+            theSimpsons.setUrlImage("https://cloud10.todocoleccion.online/videojuegos-pc/tc/2015/01/27/10/47422246.jpg");
 
 
 
@@ -345,7 +346,7 @@ public class DataServiceImpl implements DataService {
             assassinsCreed.setGenre(Genre.Adventure);
             assassinsCreed.setPlatform(Platform.PS3);
             assassinsCreed.setSinopsis("");
-            assassinsCreed.setUrlImage("");
+            assassinsCreed.setUrlImage("https://vignette.wikia.nocookie.net/theassassinscreed/images/6/6a/Accover.jpg/revision/latest?cb=20100918021958&path-prefix=es");
 
 
 
@@ -354,7 +355,7 @@ public class DataServiceImpl implements DataService {
             braid.setGenre(Genre.Shooter);
             braid.setPlatform(Platform.PS3);
             braid.setSinopsis("");
-            braid.setUrlImage("");
+            braid.setUrlImage("https://assets1.ignimgs.com/2019/01/05/braid---button-1546669924816.jpg");
 
 
 
@@ -367,7 +368,7 @@ public class DataServiceImpl implements DataService {
             invisibleInc.setGenre(Genre.Simulation);
             invisibleInc.setPlatform(Platform.PS4);
             invisibleInc.setSinopsis("");
-            invisibleInc.setUrlImage("");
+            invisibleInc.setUrlImage("https://hb.imgix.net/a2853c10d159c292c906dc43564f080e8454009d.jpg?auto=compress,format&fit=crop&h=353&w=616&s=53ac74313082f6f910d07f21a780db4a");
 
             sonicMania = new Game();
             sonicMania.setNombre("Sonic Mania");
@@ -390,7 +391,7 @@ public class DataServiceImpl implements DataService {
             batmanArkhamKnight.setGenre(Genre.Adventure);
             batmanArkhamKnight.setPlatform(Platform.PS4);
             batmanArkhamKnight.setSinopsis("");
-            batmanArkhamKnight.setUrlImage("");
+            batmanArkhamKnight.setUrlImage("https://i11b.3djuegos.com/juegos/10762/batman_arkham_knight/fotos/ficha/batman_arkham_knight-2479241.jpg");
 
 
             bayonetta= new Game();;
