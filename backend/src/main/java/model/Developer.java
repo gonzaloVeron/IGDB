@@ -74,7 +74,9 @@ public class Developer {
     }
 
     public void addGame(Game game) {
+
         games.add(game);
+        game.addDevelopers(this);
     }
 
     public List<Game> getGames() {

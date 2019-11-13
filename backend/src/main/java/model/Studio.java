@@ -99,7 +99,9 @@ public class Studio {
     }
 
     public void addGame(Game game) {
+
         this.developedGames.add(game);
+        game.setStudio(this);
     }
 
     public void addDeveloper(Developer developer){

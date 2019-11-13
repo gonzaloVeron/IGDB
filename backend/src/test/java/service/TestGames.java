@@ -67,11 +67,11 @@ public class TestGames {
         Game mario = juegosDeNintendo.get(0);
         Assert.assertEquals("Super Mario Bros Deluxe",mario.getName());
         Game sonic = juegosDeNintendo.get(1);
-        Assert.assertEquals("Sonic Forces",sonic.getName());
+        Assert.assertEquals("Sonic Mania",sonic.getName());
         Game fifa = juegosDeNintendo.get(2);
-        Assert.assertEquals("FiFA 2019",fifa.getName());
+        Assert.assertEquals("Sonic Forces",fifa.getName());
         Game sonicMania = juegosDeNintendo.get(3);
-        Assert.assertEquals("Sonic Mania",sonicMania.getName());
+        Assert.assertEquals("FiFA 2019",sonicMania.getName());
         Game lengendOfZelda = juegosDeNintendo.get(4);;
         Assert.assertEquals("Legend Of Zelda",lengendOfZelda.getName());
         Game luigiMansion = juegosDeNintendo.get(5);

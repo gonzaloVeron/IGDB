@@ -1,6 +1,11 @@
 package model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Game {
@@ -16,7 +21,33 @@ public class Game {
     private String sinopsis;
     private String urlImage;
 
-    public Game(){ }
+
+    @ManyToOne
+    private Studio studio;
+
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Developer>developers;
+
+    public Game(){
+        this.developers = new ArrayList<>();
+    }
+
+    public Studio getStudio() {
+        return studio;
+    }
+
+    public void setStudio(Studio studio) {
+        this.studio = studio;
+    }
+
+    public List<Developer> getDevelopers() {
+        return developers;
+    }
+
+    public void addDevelopers(Developer developer) {
+        this.developers.add(developer);
+    }
 
     public String getUrlImage() {
         return urlImage;
