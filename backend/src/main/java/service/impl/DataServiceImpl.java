@@ -375,6 +375,15 @@ public class DataServiceImpl implements DataService {
             godOfWar.setPlatform(Platform.PS2);
             godOfWar.setSinopsis("The game tells the adventures of Kratos, a Spartan general at the service of the gods of Greek mythology. The development revolves around the idea of the hibris (excessiveness) of Kratos to rebel against the gods and their own destiny.");
             godOfWar.setUrlImage("https://images-na.ssl-images-amazon.com/images/I/51K3DNEZN8L._AC_.jpg");
+            godOfWar.addImage("https://assets1.ignimgs.com/2005/03/22/god-of-war-20050321052448156-1075148_640w.jpg");
+            godOfWar.addImage("https://assets2.ignimgs.com/2005/03/22/god-of-war-20050321052446750-1075146_640w.jpg");
+            godOfWar.addImage("https://assets1.ignimgs.com/2005/03/22/god-of-war-20050321052447547-1075147_640w.jpg");
+            godOfWar.addImage("https://assets1.ignimgs.com/2005/03/19/god-of-war-20050318074320937-1074297_640w.jpg");
+            godOfWar.removeImage("https://assets1.ignimgs.com/2005/03/19/god-of-war-20050318074320937-1074297_640w.jpg");
+            godOfWar.addVideo("https://youtu.be/jZkX3LJDeYQ");
+            godOfWar.addVideo("https://youtu.be/-bQyqPr71KY");
+            godOfWar.addVideo("https://youtu.be/CI8nGabuHks");
+            godOfWar.removeVideo("https://youtu.be/CI8nGabuHks");
 
             godOfWarAscension= new Game();;
             godOfWarAscension.setNombre("God of war Ascension");
