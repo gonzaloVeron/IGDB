@@ -133,48 +133,59 @@ public class DataServiceImpl implements DataService {
             LocalDate fundacion = LocalDate.of(1889, 9, 23);
             nintendo.setFechaDeFundacion(fundacion);
             nintendo.setEstaActivo("Actualmente Activo");
+            nintendo.setPortada("http://www.brandemia.org/sites/default/files/inline/images/nintendo_switch_logo_positivo.jpg");
             //RED
             redBarrels = new Studio();
             redBarrels.setNombre("Red Barrels");
             LocalDate fundacionred = LocalDate.of(2011, 5, 8);
             redBarrels.setFechaDeFundacion(fundacionred);
             redBarrels.setEstaActivo("Actualmente Clausurado");
+            redBarrels.setPortada("https://pbs.twimg.com/profile_images/666640514326876163/eMthmgzk_400x400.png");
             //Activision
             activision = new Studio();
             activision.setNombre("Activision");
             LocalDate fundacionactivision= LocalDate.of(1978, 10, 1);
             activision.setFechaDeFundacion(fundacionactivision);
             activision.setEstaActivo("Actualmente Activo");
+            activision.setPortada("https://pbs.twimg.com/profile_images/1054805141432360960/nPaXg6pP_400x400.jpg");
+
             //Valve
             valve = new Studio();
             valve.setNombre("Valve");
             LocalDate fundacionValve= LocalDate.of(1996, 5, 1);
             valve.setFechaDeFundacion(fundacionValve);
             valve.setEstaActivo("Actualmente Activo");
+            valve.setPortada("https://dankfacts.com/wp-content/uploads/2018/10/valve-logo.jpg");
+
             // EaDigitalIllusionsCe
             eaDigitalIllusionsCe = new Studio();
             eaDigitalIllusionsCe.setNombre("EaDigitalIllusionsCe");
             eaDigitalIllusionsCe.setEstaActivo("Actualmente Clausurado");
             LocalDate fundacionDigital = LocalDate.of(1992, 6, 23);
             eaDigitalIllusionsCe.setFechaDeFundacion(fundacionDigital);
+            eaDigitalIllusionsCe.setPortada("http://mytorchlight.ru/wp-content/uploads/2013/08/1344515580_dice.jpg");
+
             //Capcom
             capcom = new Studio();
             capcom.setNombre("Capcom");
             capcom.setEstaActivo("Actualmente Activo");
             LocalDate fundacionCapcom = LocalDate.of(1979, 4, 30);
             capcom.setFechaDeFundacion(fundacionCapcom);
+            capcom.setPortada("https://vignette.wikia.nocookie.net/aceattorney/images/a/ac/Camcom_logo.png/revision/latest?cb=20131220100514&path-prefix=es");
             //sCESantaMonicaStudio
             sCESantaMonicaStudio = new Studio();
             sCESantaMonicaStudio.setNombre("SCE Santa Monica Studio");
             sCESantaMonicaStudio.setEstaActivo("Actualmente Activo");
             LocalDate fundacionmonica = LocalDate.of(2005, 5, 25);
             sCESantaMonicaStudio.setFechaDeFundacion(fundacionmonica);
+            sCESantaMonicaStudio.setPortada("https://vignette.wikia.nocookie.net/godofwar/images/c/c0/Santa_monica.png/revision/latest?cb=20150226150344&path-prefix=es");
             //generation
             generation = new Studio();
             generation.setNombre("Generation");
             generation.setEstaActivo("Actualmente Clausurado");
             LocalDate fundaciongeneration = LocalDate.of(1984, 1, 30);
             generation.setFechaDeFundacion(fundaciongeneration);
+            generation.setPortada("https://i.vimeocdn.com/portrait/8390464_300x300");
             //DESARROLLADOR
 
             //hideoKojima
@@ -291,14 +302,13 @@ public class DataServiceImpl implements DataService {
             theLastOfUs.setNombre("The last of us");
             theLastOfUs.setGenre(Genre.SurvivalHorror);
             theLastOfUs.setPlatform(Platform.PS3);
-            theLastOfUs.setSinopsis("The Last of Us is a horror action, adventure and survival video game distributed for the PlayStation 3 console in 2013. The plot describes the experiences of Joel and Ellie, a pair of survivors of A Pandemic in the United States that causes the mutation of Human beings in cannibal creatures.");
-            theLastOfUs.setUrlImage("https://vignette.wikia.nocookie.net/thelastofus/images/a/a1/TLOUBoxart.jpg/revision/latest/scale-to-width-down/250?cb=20130205114038&path-prefix=es");
+            theLastOfUs.setSinopsis("");
 
 
             batman= new Game();
             batman.setNombre("batman arkham knight");
             batman.setGenre(Genre.Adventure);
-            batman.setPlatform(Platform.PS3);
+            batman.setPlatform(Platform.PS4);
             batman.setSinopsis("");
             batman.setUrlImage("");
 
@@ -312,20 +322,52 @@ public class DataServiceImpl implements DataService {
             iroMan= new Game();;
             iroMan.setNombre("Iron Man");
             iroMan.setGenre(Genre.Fighting);
+            iroMan.setPlatform(Platform.PS4);
+            iroMan.setSinopsis("");
+            iroMan.setUrlImage("");
+
 
 
             theSimpsons= new Game();
             theSimpsons.setNombre("The simpsons");
             theSimpsons.setGenre(Genre.Adventure);
+            theSimpsons.setPlatform(Platform.PC);
+            theSimpsons.setSinopsis("");
+            theSimpsons.setUrlImage("");
+
+
+
+
+
+
             assassinsCreed= new Game();
             assassinsCreed.setNombre("Assassins Creed");
             assassinsCreed.setGenre(Genre.Adventure);
+            assassinsCreed.setPlatform(Platform.PS3);
+            assassinsCreed.setSinopsis("");
+            assassinsCreed.setUrlImage("");
+
+
+
             braid= new Game();
             braid.setNombre("Braid");
             braid.setGenre(Genre.Shooter);
+            braid.setPlatform(Platform.PS3);
+            braid.setSinopsis("");
+            braid.setUrlImage("");
+
+
+
+
+
+
+
             invisibleInc= new Game();;
             invisibleInc.setNombre("Invisible Inc");
             invisibleInc.setGenre(Genre.Simulation);
+            invisibleInc.setPlatform(Platform.PS4);
+            invisibleInc.setSinopsis("");
+            invisibleInc.setUrlImage("");
 
             sonicMania = new Game();
             sonicMania.setNombre("Sonic Mania");
@@ -334,18 +376,37 @@ public class DataServiceImpl implements DataService {
             sonicMania.setSinopsis("The game takes place after the events of Sonic the Hedgehog 3 & Knuckles. Sonic and Tails receive a warning of a strange energy coming from Angel Island, so they ride the Tornado to go in search of the source of that signal.");
             sonicMania.setUrlImage("https://eshop.keengamer.com/81362/sonic-mania.jpg");
 
+
             bastion= new Game();;
             bastion.setNombre("Bastion");
             bastion.setGenre(Genre.Shooter);
+            bastion.setPlatform(Platform.WII);
+            bastion.setSinopsis("");
+            bastion.setUrlImage("");
+
+
             batmanArkhamKnight= new Game();
             batmanArkhamKnight.setNombre("Batman Arkham night");
             batmanArkhamKnight.setGenre(Genre.Adventure);
+            batmanArkhamKnight.setPlatform(Platform.PS4);
+            batmanArkhamKnight.setSinopsis("");
+            batmanArkhamKnight.setUrlImage("");
+
+
             bayonetta= new Game();;
             bayonetta.setNombre("Bayonetta");
             bayonetta.setGenre(Genre.SurvivalHorror);
+            bayonetta.setPlatform(Platform.PS3);
+            bayonetta.setSinopsis("");
+            bayonetta.setUrlImage("");
+
+
             devilMayCry= new Game();
             devilMayCry.setNombre("Devil May Cry");
             devilMayCry.setGenre(Genre.SurvivalHorror);
+            devilMayCry.setPlatform(Platform.PS4);
+            devilMayCry.setSinopsis("");
+            devilMayCry.setUrlImage("");
 
             dragonAgeOrigins= new Game();
             dragonAgeOrigins.setNombre("Dragon age origins");
@@ -357,17 +418,43 @@ public class DataServiceImpl implements DataService {
             metroExodus= new Game();;
             metroExodus.setNombre("Metro Exodus");
             metroExodus.setGenre(Genre.SurvivalHorror);
+            metroExodus.setPlatform(Platform.PC);
+            metroExodus.setSinopsis("");
+            metroExodus.setUrlImage("");
+
+
+
+
+
             tombRaider= new Game();;
             tombRaider.setNombre("Tomb Raider");
             tombRaider.setGenre(Genre.Adventure);
+            tombRaider.setPlatform(Platform.PS4);
+            tombRaider.setSinopsis("");
+            tombRaider.setUrlImage("");
+
             outlast= new Game();;
             outlast.setNombre("Outlast");
             outlast.setGenre(Genre.SurvivalHorror);
+            outlast.setPlatform(Platform.PC);
+            outlast.setSinopsis("");
+            outlast.setUrlImage("");
+
+
+
             outlast2= new Game();
             outlast2.setNombre("Outlast 2");
             outlast2.setGenre(Genre.SurvivalHorror);
+            outlast2.setPlatform(Platform.PC);
+            outlast2.setSinopsis("");
+            outlast2.setUrlImage("");
+
             outlastWhistleblower= new Game();;
             outlastWhistleblower.setNombre("Outlast Whistleblower");
+            outlastWhistleblower.setGenre(Genre.SurvivalHorror);
+            outlastWhistleblower.setPlatform(Platform.PC);
+            outlastWhistleblower.setSinopsis("");
+            outlastWhistleblower.setUrlImage("");
 
             godOfWar= new Game();
             godOfWar.setNombre("God of war");
@@ -400,48 +487,166 @@ public class DataServiceImpl implements DataService {
             superHot= new Game();
             superHot.setNombre("Super hot");
             superHot.setGenre(Genre.Shooter);
+            superHot.setPlatform(Platform.PC);
+            superHot.setSinopsis("");
+            superHot.setUrlImage("");
+
+
+
             callofDutyBlackOps= new Game();
             callofDutyBlackOps.setNombre("Call of duty black ops");
             callofDutyBlackOps.setGenre(Genre.Shooter);
+            callofDutyBlackOps.setPlatform(Platform.PC);
+            callofDutyBlackOps.setSinopsis("");
+            callofDutyBlackOps.setUrlImage("");
+
+
             callofDutyBlackOps2= new Game();;
             callofDutyBlackOps2.setNombre("Call of duty black ops 2");
             callofDutyBlackOps2.setGenre(Genre.Shooter);
+            callofDutyBlackOps2.setPlatform(Platform.PC);
+            callofDutyBlackOps2.setSinopsis("");
+            callofDutyBlackOps2.setUrlImage("");
+
+
 
             callofDutyBlackOps3= new Game();
             callofDutyBlackOps3.setNombre("Call of duty black ops 3");
             callofDutyBlackOps3.setGenre(Genre.Shooter);
+            callofDutyBlackOps3.setPlatform(Platform.PC);
+            callofDutyBlackOps3.setSinopsis("");
+            callofDutyBlackOps3.setUrlImage("");
+
+
+
+
+
+
             callofDutyBlackOps4= new Game();
             callofDutyBlackOps4.setNombre("Call of duty black ops 4");
             callofDutyBlackOps4.setGenre(Genre.Shooter);
+            callofDutyBlackOps4.setPlatform(Platform.PC);
+            callofDutyBlackOps4.setSinopsis("");
+            callofDutyBlackOps4.setUrlImage("");
+
+
+
+
+
+
+
             leftOfDead= new Game();;
             leftOfDead.setNombre("Left of dead");
             leftOfDead.setGenre(Genre.SurvivalHorror);
+            leftOfDead.setPlatform(Platform.PC);
+            leftOfDead.setSinopsis("");
+            leftOfDead.setUrlImage("");
+
+
+
+
+
+
+
             leftOfDead2= new Game();;
             leftOfDead2.setNombre("Left of dead 2");
+            leftOfDead2.setPlatform(Platform.PC);
+            leftOfDead2.setSinopsis("");
+            leftOfDead2.setUrlImage("");
+
+
+
+
+
             halfLife= new Game();;
             halfLife.setNombre("Half life");
             halfLife.setGenre(Genre.Adventure);
+            halfLife.setPlatform(Platform.PC);
+            halfLife.setSinopsis("");
+            halfLife.setUrlImage("");
+
+
+
+
+
+
+
             halfLife2= new Game();;
             halfLife2.setNombre("Half life 2");
             halfLife2.setGenre(Genre.Adventure);
+            halfLife2.setPlatform(Platform.PC);
+            halfLife2.setSinopsis("");
+            halfLife2.setUrlImage("");
+
+
+
+
+
+
+
             legendOfZelda= new Game();
             legendOfZelda.setNombre("Lengend Of Zelda");
             legendOfZelda.setGenre(Genre.Adventure);
+            legendOfZelda.setPlatform(Platform.WIIU);
+            legendOfZelda.setSinopsis("");
+            legendOfZelda.setUrlImage("");
+
+
+
+
+
+
+
             luigiMansion= new Game();
             luigiMansion.setNombre("Luigi Mansion");
             luigiMansion.setGenre(Genre.Adventure);
+            luigiMansion.setPlatform(Platform.SWITCH);
+            luigiMansion.setSinopsis("");
+            luigiMansion.setUrlImage("");
+
+
+
+
+
+
+
             tetris= new Game();;
             tetris.setNombre("Tetris");
-            tetris.setGenre(Genre.Adventure);
+            tetris.setGenre(Genre.Rol);
+            tetris.setPlatform(Platform.PC);
+            tetris.setSinopsis("");
+            tetris.setUrlImage("");
+
+
+
+
+
+
             deathStranding= new Game();;
             deathStranding.setNombre("Seath stranding");
             deathStranding.setGenre(Genre.Adventure);
+            deathStranding.setPlatform(Platform.PS4);
+            deathStranding.setSinopsis("");
+            deathStranding.setUrlImage("");
+
+
             naruto= new Game();
             naruto.setNombre("Naruto");
             naruto.setGenre(Genre.Fighting);
+            naruto.setPlatform(Platform.XBOXONE);
+            naruto.setSinopsis("");
+            naruto.setUrlImage("");
+
+
+
+
+
             narutoShippudenUltimate= new Game();;
             narutoShippudenUltimate.setNombre("Naruto shippuden ultimate");
             narutoShippudenUltimate.setGenre(Genre.Fighting);
+            narutoShippudenUltimate.setPlatform(Platform.PS4);
+            narutoShippudenUltimate.setSinopsis("");
+            narutoShippudenUltimate.setUrlImage("");
 
             dragonBallZXenoverse= new Game();;
             dragonBallZXenoverse.setNombre("Dragon Ball Xenoverse");
@@ -452,19 +657,48 @@ public class DataServiceImpl implements DataService {
 
             battlefield= new Game();
             battlefield.setNombre("Battlefield");
-            battlefield.setGenre(Genre.Shooter);
+            battlefield.setGenre(Genre.War);
+            battlefield.setPlatform(Platform.PC);
+            battlefield.setSinopsis("");
+            battlefield.setUrlImage("");
+
+
+
+
+
             battlefield1= new Game();
             battlefield1.setNombre("Battlefield 1");
-            battlefield1.setGenre(Genre.Shooter);
+            battlefield1.setGenre(Genre.War);
+            battlefield1.setPlatform(Platform.PC);
+            battlefield1.setSinopsis("");
+            battlefield1.setUrlImage("");
+
+
+
             battlefield2= new Game();;
             battlefield2.setNombre("Battlefield 2");
-            battlefield2.setGenre(Genre.Shooter);
+            battlefield2.setGenre(Genre.War);
+            battlefield2.setPlatform(Platform.PC);
+            battlefield2.setSinopsis("");
+            battlefield2.setUrlImage("");
+
+
             battlefield3= new Game();;
             battlefield3.setNombre("Battlefield 3");
-            battlefield3.setGenre(Genre.Shooter);
+            battlefield3.setGenre(Genre.War);
+            battlefield3.setPlatform(Platform.PC);
+            battlefield3.setSinopsis("");
+            battlefield3.setUrlImage("");
+
+
+
             battlefield4= new Game();;
             battlefield4.setNombre("Battlefield 4");
-            battlefield4.setGenre(Genre.Shooter);
+            battlefield4.setGenre(Genre.War);
+            battlefield4.setPlatform(Platform.PC);
+            battlefield4.setSinopsis("");
+            battlefield4.setUrlImage("");
+
 
             diablo3= new Game();
             diablo3.setNombre("Diablo 3");
