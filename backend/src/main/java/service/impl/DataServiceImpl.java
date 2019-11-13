@@ -380,10 +380,10 @@ public class DataServiceImpl implements DataService {
             godOfWar.addImage("https://assets1.ignimgs.com/2005/03/22/god-of-war-20050321052447547-1075147_640w.jpg");
             godOfWar.addImage("https://assets1.ignimgs.com/2005/03/19/god-of-war-20050318074320937-1074297_640w.jpg");
             godOfWar.removeImage("https://assets1.ignimgs.com/2005/03/19/god-of-war-20050318074320937-1074297_640w.jpg");
-            godOfWar.addVideo("https://youtu.be/jZkX3LJDeYQ");
-            godOfWar.addVideo("https://youtu.be/-bQyqPr71KY");
-            godOfWar.addVideo("https://youtu.be/CI8nGabuHks");
-            godOfWar.removeVideo("https://youtu.be/CI8nGabuHks");
+            godOfWar.addVideo("https://www.youtube.com/embed/jZkX3LJDeYQ");
+            godOfWar.addVideo("https://www.youtube.com/embed/-bQyqPr71KY");
+            godOfWar.addVideo("https://www.youtube.com/embed/CI8nGabuHks");
+            godOfWar.removeVideo("https://www.youtube.com/embed/CI8nGabuHks");
 
             godOfWarAscension= new Game();;
             godOfWarAscension.setNombre("God of war Ascension");
