@@ -13,4 +13,5 @@ public enum Genre {
     Music,
     Fighting,
     War,
+    Puzzle
 }

@@ -78,6 +78,8 @@ public class DataServiceImpl implements DataService {
     private Game battlefield3;
     private Game battlefield4;
     private Game diablo3;
+    private Game justDance;
+    private Game qbert;
 
 
     //Desarrolladores
@@ -706,6 +708,20 @@ public class DataServiceImpl implements DataService {
             diablo3.setSinopsis("The demons of Burning Hells have wanted to invade the kingdom of men forever.");
             diablo3.setUrlImage("https://webimg.secondhandapp.com/w-i-mgl/5bdf880286fec3205417d6e6");
 
+            justDance = new Game();
+            justDance.setName("Just Dance 2018");
+            justDance.setGenre(Genre.Music);
+            justDance.setPlatform(Platform.WII);
+            justDance.setSinopsis("Just Dance is a rhythm game series developed and published by Ubisoft. The series was named after the Lady Gaga song of the same title.");
+            justDance.setUrlImage("https://images-na.ssl-images-amazon.com/images/I/81qDt6oYMoL._SL1500_.jpg");
+
+            qbert = new Game();
+            qbert.setName("Q*bert");
+            qbert.setGenre(Genre.Puzzle);
+            qbert.setPlatform(Platform.XBOXONE);
+            qbert.setSinopsis("It is a 2D action game with puzzle elements that uses isometric graphics to create a pseudo-3D effect. The objective of each level in the game is to change the color of every cube in a pyramid by making Q*bert while avoiding obstacles and enemies");
+            qbert.setUrlImage("https://media.vandal.net/t200/36244/qbert-rebooted-the-xbox-one-edition-20162511514_2.jpg");
+
             //ESTUDIO y sus Juegos
             nintendo.addGame(marioBros);
             nintendo.addGame(sonic);
@@ -783,6 +799,8 @@ public class DataServiceImpl implements DataService {
             markusPersson.addGame(diablo3);
             markusPersson.addGame(digimon);
             markusPersson.addGame(lol);
+            markusPersson.addGame(qbert);
+            markusPersson.addGame(justDance);
             markusPersson.addStudy(generation);
             generation.addDeveloper(markusPersson);
             markusPersson.addPreviousStudies(capcom);
