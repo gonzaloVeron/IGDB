@@ -8,8 +8,7 @@ public class User {
 
     private String name;
     private String password;
-    private String phote;
-    private LocalDate suscriptionDate;
+
 
 
     public User(){
@@ -32,19 +31,4 @@ public class User {
         this.password = password;
     }
 
-    public String getPhote() {
-        return phote;
-    }
-
-    public void setPhote(String phote) {
-        this.phote = phote;
-    }
-
-    public LocalDate getSuscriptionDate() {
-        return suscriptionDate;
-    }
-
-    public void setSuscriptionDate(LocalDate suscriptionDate) {
-        this.suscriptionDate = suscriptionDate;
-    }
 }
