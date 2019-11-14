@@ -90,7 +90,7 @@ export default class GameFile extends React.Component {
     }
 
     renderVideoColumn(videos){
-        return videos.map((link, i) => {return(<div><iframe key={i} title={"video" + i} width="420" height="315" src={link} allowFullScreen style={{margin:"1% 1% 1% 1%"}} /></div>)})
+        return videos.map((link, i) => {return(<div key={i}><iframe title={"video" + i} width="420" height="315" src={link} allowFullScreen style={{margin:"1% 1% 1% 1%"}} /></div>)})
     }
 
     images(){
