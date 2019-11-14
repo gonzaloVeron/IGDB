@@ -19,6 +19,12 @@ export default class GameFile extends React.Component {
                 urlImage: '',
                 videos: [],
                 images: [],
+                devsParticiped: [],
+                studio: {
+                    id: -999,
+                    name:'',
+                    image:'',
+                },
             }
         }
         console.log(props)
@@ -114,6 +120,32 @@ export default class GameFile extends React.Component {
         return images.map((link, i) => {return(<img key={i} alt="" width="300" height="220" src={link} style={{margin:"1% 1% 1% 1%"}} />)})
     }
 
+    renderStudioImageColumn(imageURL){
+        return (
+            <img alt="" width="300" height="220" src={imageURL} style={{margin:"1% 1% 1% 1%"}} />
+        )
+    }
+
+    creators(){
+        return(
+            <div style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%"}}>
+            <CollapsibleComponent className="file-content-element" >
+                <CollapsibleHead className="collapsible-head">Creators {}</CollapsibleHead>
+                <CollapsibleContent className="collapsible-content">
+                    <div className="row">
+                        <div className="col-sm-4">
+                            {/*this.renderStudioImageColumn(this.state.studio.image)*/}
+                        </div>
+                        <div className="col-sm-4">
+                            {}
+                        </div>  
+                    </div>
+                </CollapsibleContent>
+            </CollapsibleComponent>
+            </div>
+        )
+    }
+
     render(){
         return(
             <div className="GameFile body-container">
@@ -123,6 +155,7 @@ export default class GameFile extends React.Component {
                     {this.fileContent()}
                     {this.videos()}
                     {this.images()}
+                    {this.creators()}
                 </div>
             </div>
         )
