@@ -72,7 +72,7 @@ public class DataServiceImpl implements DataService {
     private Game naruto;
     private Game narutoShippudenUltimate;
     private Game dragonBallZXenoverse;
-    private Game battlefield;
+    private Game PES2019;
     private Game battlefield1;
     private Game battlefield2;
     private Game battlefield3;
@@ -324,7 +324,7 @@ public class DataServiceImpl implements DataService {
             iroMan.setName("Iron Man");
             iroMan.setGenre(Genre.Fighting);
             iroMan.setPlatform(Platform.PS4);
-            iroMan.setSinopsis("");
+            iroMan.setSinopsis("Tony Stark retired from creating weapons to make technology that he uses to fight like Iron Man. After several years of being a world superhero, he is attacked by the mysterious Ghost, a hacker and who reuses old weapons from Stark Industries.");
             iroMan.setUrlImage("https://i11d.3djuegos.com/juegos/16534/iron_man_vr/fotos/ficha/iron_man_vr-4825443.jpg");
 
 
@@ -527,7 +527,7 @@ public class DataServiceImpl implements DataService {
             callofDutyBlackOps4.setName("Call of duty black ops 4");
             callofDutyBlackOps4.setGenre(Genre.Shooter);
             callofDutyBlackOps4.setPlatform(Platform.PS4);
-            callofDutyBlackOps4.setSinopsis("");
+            callofDutyBlackOps4.setSinopsis("Experience the original Black Ops conflict between good and evil in Launch, where undercover US operations. UU. They have invaded Russian territory to stop a Soviet nuclear missile.");
             callofDutyBlackOps4.setUrlImage("https://www.wog.ch/nas/cover_xl/p4/ps4_callofdutyblackops4.jpg");
 
 
@@ -635,7 +635,7 @@ public class DataServiceImpl implements DataService {
             naruto.setName("Naruto");
             naruto.setGenre(Genre.Fighting);
             naruto.setPlatform(Platform.PS4);
-            naruto.setSinopsis("");
+            naruto.setSinopsis("The story begins since Naruto arrives at the Leaf Village in part two after training with Jiraiya for two and a half years, and ends in the final battle against Sasuke on the Iron Country Bridge.");
             naruto.setUrlImage("https://http2.mlstatic.com/naruto-to-boruto-shinobi-striker-juego-fisico-ps4-D_NQ_NP_796704-MPE28070861330_092018-F.jpg");
 
 
@@ -656,12 +656,12 @@ public class DataServiceImpl implements DataService {
             dragonBallZXenoverse.setSinopsis("Unlike previous games in the series that usually follow the story of Dragon Ball, Xenoverse will present a whole new story, including a character created by the player never seen before in the franchise.");
             dragonBallZXenoverse.setUrlImage("https://i11d.3djuegos.com/juegos/11002/dragon_ball_new_project/fotos/ficha/dragon_ball_new_project-2682283.jpg");
 
-            battlefield= new Game();
-            battlefield.setName("Battlefield");
-            battlefield.setGenre(Genre.War);
-            battlefield.setPlatform(Platform.PC);
-            battlefield.setSinopsis("");
-            battlefield.setUrlImage("https://images-na.ssl-images-amazon.com/images/I/91XI8oSJH7L._SL1500_.jpg");
+            PES2019= new Game();
+            PES2019.setName("PES 2019");
+            PES2019.setGenre(Genre.Sports);
+            PES2019.setPlatform(Platform.XBOXONE);
+            PES2019.setSinopsis("Football in its purest form with more realistic movements than ever in the best known players of the moment, as well as new shooting mechanics, a very promising feature of visible fatigue and new celebrations, animations, and much more.");
+            PES2019.setUrlImage("http://www0.sounds.mx/images/portadas/083717302445.jpg");
 
 
 
@@ -671,7 +671,7 @@ public class DataServiceImpl implements DataService {
             battlefield1.setName("Battlefield 1");
             battlefield1.setGenre(Genre.War);
             battlefield1.setPlatform(Platform.PC);
-            battlefield1.setSinopsis("");
+            battlefield1.setSinopsis("Battlefield 1 deals with the conflict that engulfed the globe in 1914, the war that will end all wars: World War I. Here you will find 5 small stories that portray different aspects of the conflict.");
             battlefield1.setUrlImage("https://s3.gaming-cdn.com/images/products/1421/orig/battlefield-1-cover.jpg");
 
 
@@ -680,7 +680,7 @@ public class DataServiceImpl implements DataService {
             battlefield2.setName("Battlefield 2");
             battlefield2.setGenre(Genre.War);
             battlefield2.setPlatform(Platform.XBOX360);
-            battlefield2.setSinopsis("");
+            battlefield2.setSinopsis("The video game revolves around, like the first Battlefield: the homonymous squad. The world is on the verge of World War III, Russia and the United States are mired in a war that threatens to involve half the world.");
             battlefield2.setUrlImage("https://static3.tcdn.com.br/img/img_prod/187970/8766_1_20141019131941.jpg");
 
 
@@ -688,7 +688,7 @@ public class DataServiceImpl implements DataService {
             battlefield3.setName("Battlefield 3");
             battlefield3.setGenre(Genre.War);
             battlefield3.setPlatform(Platform.PC);
-            battlefield3.setSinopsis("");
+            battlefield3.setSinopsis("In Battlefield 3, players assumed the role of elite US marines. UU. As the first to step on the ground, players enjoyed shocking missions across various locations, including France, the Middle East and New York.");
             battlefield3.setUrlImage("https://i11b.3djuegos.com/juegos/4385/battlefield_3/fotos/ficha/battlefield_3-1729001.jpg");
 
 
@@ -697,7 +697,7 @@ public class DataServiceImpl implements DataService {
             battlefield4.setName("Battlefield 4");
             battlefield4.setGenre(Genre.War);
             battlefield4.setPlatform(Platform.PS4);
-            battlefield4.setSinopsis("");
+            battlefield4.setSinopsis("The world is on the verge of chaos, China is a gunpowder magazine and you are the spark that could start a conflict. In Battlefield 4, you assume the role of Daniel Recker, a member of the Tombstone squad that will have to fight to save the world.");
             battlefield4.setUrlImage("https://images-na.ssl-images-amazon.com/images/I/51%2BZFUjTI2L.jpg");
 
 
@@ -746,7 +746,7 @@ public class DataServiceImpl implements DataService {
             valve.addGame(halfLife);
             valve.addGame(halfLife2);
             //EaDigitalIllusionsCe
-            eaDigitalIllusionsCe.addGame(battlefield);
+            eaDigitalIllusionsCe.addGame(PES2019);
             eaDigitalIllusionsCe.addGame(battlefield1);
             eaDigitalIllusionsCe.addGame(battlefield2);
             eaDigitalIllusionsCe.addGame(battlefield3);
