@@ -3,6 +3,7 @@ import NavBar from '../navbar/NavBar';
 import { getGame } from '../../api/api.js';
 import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from 'react-collapsible-component'
 import './GameFile.css';
+import DevCard2 from '../card/DevCard2';
 const thumbnail = require('../../images/thumbnail.png');
 
 export default class GameFile extends React.Component {
@@ -19,24 +20,26 @@ export default class GameFile extends React.Component {
                 urlImage: '',
                 videos: [],
                 images: [],
-                devsParticiped: [],
+                devsParticiped: [{id:2, name:"Hideo", lastName:"Kojima", image:"Ninguna"}],
                 studio: {
-                    id: -999,
-                    name:'',
-                    image:'',
+                    id: 7,
+                    name:"Capcom",
+                    image:"Ninguna",
                 },
             }
         }
         console.log(props)
+        console.log(this.state)
     }
 
     
-    componentDidMount(){
+    componentDidMount(){/*
         let { id } = this.props.match.params
         getGame(id).then(result => {
             this.setState({ gameData : result });
             console.log(result)
         }).catch(e => {this.setState({ error: e.message })})
+        */
     }  
 
     fileTitle(){
@@ -120,6 +123,10 @@ export default class GameFile extends React.Component {
         return images.map((link, i) => {return(<img key={i} alt="" width="300" height="220" src={link} style={{margin:"1% 1% 1% 1%"}} />)})
     }
 
+    renderDevsColumn(devs){
+        return devs.map((de, i) => {return <DevCard2 key={i} dev={de}/>} )
+    }
+
     renderStudioImageColumn(imageURL){
         return (
             <img alt="" width="300" height="220" src={imageURL} style={{margin:"1% 1% 1% 1%"}} />
@@ -129,19 +136,19 @@ export default class GameFile extends React.Component {
     creators(){
         return(
             <div style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%"}}>
-            <CollapsibleComponent className="file-content-element" >
-                <CollapsibleHead className="collapsible-head">Creators {}</CollapsibleHead>
-                <CollapsibleContent className="collapsible-content">
-                    <div className="row">
-                        <div className="col-sm-4">
-                            {/*this.renderStudioImageColumn(this.state.studio.image)*/}
+                <CollapsibleComponent className="file-content-element" >
+                    <CollapsibleHead className="collapsible-head">Creators {}</CollapsibleHead>
+                    <CollapsibleContent className="collapsible-content">
+                        <div className="row">
+                            <div className="col-sm-4">
+                                {this.renderStudioImageColumn(this.state.gameData.studio.image)}
+                            </div>
+                            <div className="col-sm-4">
+                                {this.renderDevsColumn(this.state.gameData.devsParticiped)}
+                            </div>  
                         </div>
-                        <div className="col-sm-4">
-                            {}
-                        </div>  
-                    </div>
-                </CollapsibleContent>
-            </CollapsibleComponent>
+                    </CollapsibleContent>
+                </CollapsibleComponent>
             </div>
         )
     }
