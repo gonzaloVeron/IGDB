@@ -260,7 +260,7 @@ public class DataServiceImpl implements DataService {
             residentEvil3.addPlataform(Platform.PS1);
             residentEvil3.setSinopsis("After the warnings of the survivors of the Spencer mansion incident were not heard or taken into account. Slowly a strange skin disease with a cannibal tendency spreads through the city");
             residentEvil3.setUrlImage("https://cdn.shopify.com/s/files/1/1603/1263/products/SPS1G346B_l_1024x1024.jpg?v=1563357935");
-            //Game news
+            //Game News
 
             marioBros = new Game();
             marioBros.setName("Super Mario Bros Deluxe");
