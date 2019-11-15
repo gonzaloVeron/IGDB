@@ -71,7 +71,7 @@ export default class DevFile extends React.Component{
     gamesWorkedOn(){
         return(
             <CollapsibleComponent className="file-content-element">
-                <CollapsibleHead className="collapsible-head">Games in which he participated: </CollapsibleHead>
+                <CollapsibleHead className="collapsible-head">Games involved: </CollapsibleHead>
                 <CollapsibleContent className="collapsible-content">
                     <div className="row">
                         <div className="col-sm-6"> {/* gamesParticipated.slice las uso para dividir a la mitad la lista de juegos y que quede parejo */}

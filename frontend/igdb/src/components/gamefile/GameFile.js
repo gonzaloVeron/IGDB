@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../navbar/NavBar';
 import { getGame } from '../../api/api.js';
+import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from 'react-collapsible-component'
 import './GameFile.css';
 const thumbnail = require('../../images/thumbnail.png');
 
@@ -16,6 +17,8 @@ export default class GameFile extends React.Component {
                 platform: '',
                 sinopsis: '',
                 urlImage: '',
+                videos: [],
+                images: [],
             }
         }
         console.log(props)
@@ -62,13 +65,64 @@ export default class GameFile extends React.Component {
         );
     }
 
+    videos(){
+        return (
+            <div className="file-content-element" style={{marginRight: "2%"}}>
+                <CollapsibleHead className="collapsible-head">Videos ({this.state.gameData.videos.length}) </CollapsibleHead>
+                <CollapsibleContent className="collapsible-content">
+                    <div className="row">
+                        <div className="col-sm-6">
+                            {this.renderVideoColumn(this.state.gameData.videos.slice(0, (this.state.gameData.videos.length / 2)))}
+                        </div>
+                        <div className="col-sm-6">
+                            {this.renderVideoColumn(this.state.gameData.videos.slice((this.state.gameData.videos.length / 2), this.state.gameData.videos.length))}
+                        </div>
+                    </div>
+                </CollapsibleContent>
+            </div>
+        )
+    }
+
+    renderVideoColumn(videos){
+        return videos.map((link, i) => {return(<div><iframe key={i} title={"video" + i} width="420" height="315" src={link} allowFullScreen style={{margin:"1% 1% 1% 1%"}} /></div>)})
+    }
+
+    images(){
+        return (
+            <div style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%"}}>
+            <CollapsibleComponent className="file-content-element" >
+                <CollapsibleHead className="collapsible-head">Images ({this.state.gameData.images.length}) </CollapsibleHead>
+                <CollapsibleContent className="collapsible-content">
+                    <div className="row">
+                        <div className="col-sm-4">
+                            {this.renderImageColumn(this.state.gameData.images.slice(0, (this.state.gameData.images.length / 3)))}
+                        </div>
+                        <div className="col-sm-4">
+                            {this.renderImageColumn(this.state.gameData.images.slice((this.state.gameData.images.length / 3), (this.state.gameData.images.length / 3)*2))}
+                        </div>
+                        <div className="col-sm-4">
+                            {this.renderImageColumn(this.state.gameData.images.slice((this.state.gameData.images.length / 3) * 2, this.state.gameData.images.length))}
+                        </div>
+                    </div>
+                </CollapsibleContent>
+            </CollapsibleComponent>
+            </div>
+        )
+    }
+
+    renderImageColumn(images){
+        return images.map((link, i) => {return(<img key={i} alt="" width="300" height="220" src={link} style={{margin:"1% 1% 1% 1%"}} />)})
+    }
+
     render(){
         return(
             <div className="GameFile body-container">
                 <NavBar/>
                 <div className="container">
                     {this.fileTitle()}
-                    {this.fileContent()} 
+                    {this.fileContent()}
+                    {this.videos()}
+                    {this.images()}
                 </div>
             </div>
         )

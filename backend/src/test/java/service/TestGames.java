@@ -147,6 +147,13 @@ public class TestGames {
         Assert.assertEquals(18,juegosdeGeneration.size());
     }
 
+    @Test
+    public void juego_contiene_listas_de_enlaces_a_videos_e_imagenes(){
+        Game juego = juegoService.searchGameById(1L);
+        Assert.assertEquals(juego.getVideos().size(), 2);
+        Assert.assertEquals(juego.getImages().size(), 3);
+    }
+
     @After
     public void clearData(){
         dataService.eliminarDatos();

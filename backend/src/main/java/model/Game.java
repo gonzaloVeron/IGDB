@@ -21,7 +21,6 @@ public class Game {
     private String sinopsis;
     private String urlImage;
 
-
     @ManyToOne
     private Studio studio;
 
@@ -29,24 +28,21 @@ public class Game {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<Developer>developers;
 
-    public Game(){
-        this.developers = new ArrayList<>();
-    }
-
-    public Studio getStudio() {
-        return studio;
-    }
-
-    public void setStudio(Studio studio) {
-        this.studio = studio;
-    }
-
-    public List<Developer> getDevelopers() {
-        return developers;
-    }
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SELECT)
+    private List<String> videos;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SELECT)
+    private List<String> images;
 
     public void addDevelopers(Developer developer) {
         this.developers.add(developer);
+    }
+
+    public Game(){
+        this.developers = new ArrayList<>();
+        this.videos = new ArrayList<>();
+        this.images = new ArrayList<>();
     }
 
     public String getUrlImage() {
@@ -95,4 +91,28 @@ public class Game {
     public void setSinopsis(String sinopsis) {
         this.sinopsis = sinopsis;
     }
+
+    public Studio getStudio() {
+        return studio;
+    }
+
+    public void setStudio(Studio studio) {
+        this.studio = studio;
+    }
+
+    public List<Developer> getDevelopers() {
+        return developers;
+    }
+
+    public void addVideo(String video){ this.videos.add(video); }
+
+    public void removeVideo(String video){ this.videos.remove(video); }
+
+    public List<String> getVideos() { return this.videos; }
+
+    public void addImage(String image) { this.images.add(image); }
+
+    public void removeImage(String image) { this.images.remove(image); }
+
+    public List<String> getImages() { return this.images; }
 }
