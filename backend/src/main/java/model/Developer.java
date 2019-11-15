@@ -6,7 +6,6 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -29,14 +28,14 @@ public class Developer {
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SELECT)
-    @JoinTable(name = "estudios",
+    @JoinTable(name = "studios",
             joinColumns = @JoinColumn(name = "deve_id"),
             inverseJoinColumns = @JoinColumn(name = "studio_id"))
     private List<Studio> studies;
 
     @ManyToMany(cascade= CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)
-    @JoinTable(name = "estudios",
+    @JoinTable(name = "studios",
             joinColumns = @JoinColumn(name = "deve_id"),
             inverseJoinColumns = @JoinColumn(name = "studio_id"))
     private List<Studio> previousStudies;
@@ -75,7 +74,9 @@ public class Developer {
     }
 
     public void addGame(Game game) {
+
         games.add(game);
+        game.addDevelopers(this);
     }
 
     public List<Game> getGames() {

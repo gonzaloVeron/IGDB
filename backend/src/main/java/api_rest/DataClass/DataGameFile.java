@@ -18,7 +18,7 @@ public class DataGameFile {
 
     public DataGameFile(Game game){
         this.id = game.getId();
-        this.name = game.getNombre();
+        this.name = game.getName();
         this.genre = game.getGenre();
         this.platform = game.getPlatform();
         this.sinopsis = game.getSinopsis();

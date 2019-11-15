@@ -1,4 +1,4 @@
-package dao.interf;
+package service.interf;
 
 import model.Developer;
 import model.Game;
@@ -6,11 +6,9 @@ import model.Studio;
 
 import java.util.List;
 
-public interface GameDAO {
-    void save(Game game);
-    Game recoverGameByName(String nombre);
-    void update(Game game);
-    Game recover(Long id);
+public interface GameService {
+    Game searchGameByName(String nombre);
+    Game searchGameById(Long id);
     Studio recoverStudioFromGameByID(Long id);
     List<Developer> recoverAllDevelopersForGameByID(Long id);
     Studio recoverStudioFromGameByName(String name);

@@ -5,7 +5,6 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -16,11 +15,19 @@ public class Game {
     private Long id;
 
     @Column(unique = true)
-    private String nombre;
+    private String name;
     private Genre genre;
     private Platform platform;
     private String sinopsis;
     private String urlImage;
+
+    @ManyToOne
+    private Studio studio;
+
+    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<Developer>developers;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SELECT)
     private List<String> videos;
@@ -28,7 +35,12 @@ public class Game {
     @Fetch(value = FetchMode.SELECT)
     private List<String> images;
 
+    public void addDevelopers(Developer developer) {
+        this.developers.add(developer);
+    }
+
     public Game(){
+        this.developers = new ArrayList<>();
         this.videos = new ArrayList<>();
         this.images = new ArrayList<>();
     }
@@ -41,14 +53,14 @@ public class Game {
         this.urlImage = url;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
     public Long getId(){ return this.id;}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String nombre) {
+        this.name = nombre;
     }
 
     public Genre getGenre() {
@@ -67,7 +79,7 @@ public class Game {
         return platform;
     }
 
-    public void addPlataforma(Platform platform) {
+    public void addPlataform(Platform platform) {
 
         this.platform = platform;
     }
@@ -78,6 +90,18 @@ public class Game {
 
     public void setSinopsis(String sinopsis) {
         this.sinopsis = sinopsis;
+    }
+
+    public Studio getStudio() {
+        return studio;
+    }
+
+    public void setStudio(Studio studio) {
+        this.studio = studio;
+    }
+
+    public List<Developer> getDevelopers() {
+        return developers;
     }
 
     public void addVideo(String video){ this.videos.add(video); }

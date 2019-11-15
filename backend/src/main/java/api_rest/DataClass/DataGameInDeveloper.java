@@ -13,7 +13,7 @@ public class DataGameInDeveloper {
 
     public DataGameInDeveloper(Game game) {
         id = game.getId();
-        name = game.getNombre();
+        name = game.getName();
         platform = game.getPlatform();
         genre = game.getGenre();
         image = game.getUrlImage();
