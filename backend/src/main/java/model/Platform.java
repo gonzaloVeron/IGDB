@@ -11,5 +11,8 @@ public enum Platform {
     PS3,
     XBOX360,
     WIIU,
-    PS1
+    PS1,
+    DREAMCAST,
+    ANDROID,
+    IOS
 }

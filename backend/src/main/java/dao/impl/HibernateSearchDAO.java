@@ -12,7 +12,7 @@ import java.util.List;
 public class HibernateSearchDAO implements SearchDAO {
 
     @Override
-    public List<Game> busquedaPorGenero(Genre genre) {
+    public List<Game> searchByGenre(Genre genre) {
         Session session = TransactionRunner.getCurrentSession();
 
         String hql = " from Game as g " +
@@ -25,7 +25,7 @@ public class HibernateSearchDAO implements SearchDAO {
     }
 
     @Override
-    public List<Game> busquedaPorPlataforma(Platform platform) {
+    public List<Game> searchByPlatform(Platform platform) {
         Session session = TransactionRunner.getCurrentSession();
 
         String hql = "from Game as g " +
@@ -35,11 +35,11 @@ public class HibernateSearchDAO implements SearchDAO {
     }
 
     @Override
-    public List<Game> busquedaPorNombre(String nombre) {
+    public List<Game> searchByName(String nombre) {
         Session session = TransactionRunner.getCurrentSession();
 
         String hql = "from Game as g " +
-                      "where g.nombre  LIKE CONCAT('%',?1,'%')";
+                      "where g.name  LIKE CONCAT('%',?1,'%')";
 
         return session.createQuery(hql, Game.class).setParameter(1, nombre).getResultList();
     }

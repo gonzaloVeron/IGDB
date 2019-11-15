@@ -1,7 +1,6 @@
 package dao.impl;
 
 import dao.interf.StudioDAO;
-import dao.interf.StudioDAO;
 import model.Game;
 import model.Studio;
 import org.hibernate.Session;
@@ -17,13 +16,13 @@ public class HibernateStudioDAO extends HibernateDAO<Studio> implements StudioDA
 
 
     @Override
-    public Studio recuperarEstudioPorNombre(String name) {
+    public Studio recoverStudioByName(String name) {
         Session session = TransactionRunner.getCurrentSession();
-        String hql = " from Studio as s " + " where s.nombre = :name ";
+        String hql = " from Studio as s " + " where s.name = :name ";
         Query<Studio> query = session.createQuery(hql, Studio.class);
         query.setParameter("name", name);
 
-        return this.validacion(query.uniqueResult());
+        return this.validate(query.uniqueResult());
     }
 
     @Override
@@ -31,8 +30,8 @@ public class HibernateStudioDAO extends HibernateDAO<Studio> implements StudioDA
         Session session = TransactionRunner.getCurrentSession();
         String hql = "select  sj "+
                      " from Studio as s " +
-                     "join s.juegosDesarrollados as sj " +
-                     " where s.nombre = :name ";
+                     "join s.developedGames as sj " +
+                     " where s.name = :name ";
         Query<Game> query = session.createQuery(hql, Game.class);
         query.setParameter("name", name);
         return query.getResultList();
@@ -43,7 +42,7 @@ public class HibernateStudioDAO extends HibernateDAO<Studio> implements StudioDA
         Session session = TransactionRunner.getCurrentSession();
 
         String hql = "from Studio as s " +
-                "where s.nombre  LIKE CONCAT('%',?1,'%')";
+                "where s.name  LIKE CONCAT('%',?1,'%')";
 
         return session.createQuery(hql, Studio.class).setParameter(1, name).getResultList();
     }

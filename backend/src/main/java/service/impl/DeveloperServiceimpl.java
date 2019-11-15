@@ -19,7 +19,7 @@ public class DeveloperServiceimpl {
     public DeveloperServiceimpl(){ }
 
     public List<Game> developedGames(String name){
-        return run(()-> this.developerDAO.juegosDesarrollados(name));
+        return run(()-> this.developerDAO.developedGames(name));
     }
 
 
@@ -32,6 +32,6 @@ public class DeveloperServiceimpl {
     }
 
     public Developer searchDeveloperById(Long id) {
-        return run(()-> this.developerDAO.recuperar(id));
+        return run(()-> this.developerDAO.recover(id));
     }
 }
