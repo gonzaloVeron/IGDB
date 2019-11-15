@@ -149,7 +149,7 @@ public class TestGames {
 
     @Test
     public void juego_contiene_listas_de_enlaces_a_videos_e_imagenes(){
-        Game juego = juegoService.searchGameById(1L);
+        Game juego = gameService.searchGameById(1L);
         Assert.assertEquals(juego.getVideos().size(), 2);
         Assert.assertEquals(juego.getImages().size(), 3);
     }
