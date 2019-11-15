@@ -20,11 +20,11 @@ export default class GameFile extends React.Component {
                 urlImage: '',
                 videos: [],
                 images: [],
-                devsParticiped: [{id:2, name:"Hideo", lastName:"Kojima", image:"Ninguna"}],
+                devs: [],
                 studio: {
-                    id: 7,
-                    name:"Capcom",
-                    image:'',
+                    id:-999,
+                    imageUrl: '',
+                    name: '',
                 },
             }
         }
@@ -33,13 +33,12 @@ export default class GameFile extends React.Component {
     }
 
     
-    componentDidMount(){/*
+    componentDidMount(){
         let { id } = this.props.match.params
         getGame(id).then(result => {
             this.setState({ gameData : result });
             console.log(result)
         }).catch(e => {this.setState({ error: e.message })})
-        */
     }  
 
     fileTitle(){
@@ -123,15 +122,14 @@ export default class GameFile extends React.Component {
         return images.map((link, i) => {return(<img key={i} alt="" width="300" height="220" src={link} style={{margin:"1% 1% 1% 1%"}} />)})
     }
 
-    renderDevsColumn(devs){
-        return devs.map((de, i) => {return <DevCard2 key={i} dev={de} history={this.props.history}/>} )
+    renderDevsColumn(){
+        return this.state.gameData.devs.map((de, i) => {return <DevCard2 key={i} dev={de} history={this.props.history}/>} )
     }
 
-    renderStudioImageColumn(imageURL){
-        let thumb = this.state.gameData.studio.image || thumbnail
-        {this.state.gameData.studio.name}
-        return (
-            <img alt="" width="150" height="220" src={thumb} style={{margin:"1% 1% 1% 1%"}} />
+    renderStudioImageColumn(){
+        let thumb = this.state.gameData.studio.imageUrl || thumbnail
+        return (    
+            <img alt="" width="500" height="500" src={thumb} style={{margin:"1% 1% 1% 1%"}} />
         )
     }
 
@@ -141,12 +139,12 @@ export default class GameFile extends React.Component {
                 <CollapsibleComponent className="file-content-element" >
                     <CollapsibleHead className="collapsible-head">Creators</CollapsibleHead>
                     <CollapsibleContent className="collapsible-content">
-                        <div className="row">
-                            <div className="col-sm-4">
-                                {this.renderStudioImageColumn(this.state.gameData.studio.image)}
+                        <div className="row" >
+                            <div className="col-sm-6">
+                                {this.renderStudioImageColumn()}
                             </div>
                             <div className="col-sm-4">
-                                {this.renderDevsColumn(this.state.gameData.devsParticiped)}
+                                {this.renderDevsColumn()}
                             </div>  
                         </div>
                     </CollapsibleContent>
@@ -162,8 +160,8 @@ export default class GameFile extends React.Component {
                 <div className="container">
                     {this.fileTitle()}
                     {this.fileContent()}
-                    {/*this.videos()*/}
-                    {/*this.images()*/}
+                    {this.videos()}
+                    {this.images()}
                     {this.creators()}
                 </div>
             </div>
