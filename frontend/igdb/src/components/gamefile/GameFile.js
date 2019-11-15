@@ -24,7 +24,7 @@ export default class GameFile extends React.Component {
                 studio: {
                     id: 7,
                     name:"Capcom",
-                    image:"Ninguna",
+                    image:'',
                 },
             }
         }
@@ -124,12 +124,14 @@ export default class GameFile extends React.Component {
     }
 
     renderDevsColumn(devs){
-        return devs.map((de, i) => {return <DevCard2 key={i} dev={de}/>} )
+        return devs.map((de, i) => {return <DevCard2 key={i} dev={de} history={this.props.history}/>} )
     }
 
     renderStudioImageColumn(imageURL){
+        let thumb = this.state.gameData.studio.image || thumbnail
+        {this.state.gameData.studio.name}
         return (
-            <img alt="" width="300" height="220" src={imageURL} style={{margin:"1% 1% 1% 1%"}} />
+            <img alt="" width="150" height="220" src={thumb} style={{margin:"1% 1% 1% 1%"}} />
         )
     }
 
@@ -137,7 +139,7 @@ export default class GameFile extends React.Component {
         return(
             <div style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%"}}>
                 <CollapsibleComponent className="file-content-element" >
-                    <CollapsibleHead className="collapsible-head">Creators {}</CollapsibleHead>
+                    <CollapsibleHead className="collapsible-head">Creators</CollapsibleHead>
                     <CollapsibleContent className="collapsible-content">
                         <div className="row">
                             <div className="col-sm-4">
@@ -160,11 +162,12 @@ export default class GameFile extends React.Component {
                 <div className="container">
                     {this.fileTitle()}
                     {this.fileContent()}
-                    {this.videos()}
-                    {this.images()}
+                    {/*this.videos()*/}
+                    {/*this.images()*/}
                     {this.creators()}
                 </div>
             </div>
         )
     }
+
 }
