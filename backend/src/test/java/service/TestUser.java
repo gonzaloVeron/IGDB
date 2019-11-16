@@ -18,6 +18,7 @@ public class TestUser {
     private DataService dataService;
     private UserDAO userDAO;
     private ServiceUser serviceUser;
+    private User pedro;
 
 
     @Before
@@ -27,10 +28,13 @@ public class TestUser {
         userDAO = new HibernateUserDAO();
         serviceUser = new ServiceUserimpl(userDAO);
         dataService.crearDatosIniciales();
+        pedro = new User();
+        pedro.setName("Pedro");
     }
 
     @Test
     public void recovered_Pedro_by_id(){
+        serviceUser.createUser(pedro);
         User pedroRecovered = serviceUser.searchUser(new Long(1));
         Assert.assertEquals("Pedro",pedroRecovered.getName());
 
@@ -38,6 +42,7 @@ public class TestUser {
 
     @Test
     public void recovered_Pedro_by_name(){
+        serviceUser.createUser(pedro);
         User pedroRecovered = serviceUser.searchByName("Pedro");
         Assert.assertEquals("Pedro",pedroRecovered.getName());
 

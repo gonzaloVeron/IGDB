@@ -103,9 +103,6 @@ public class DataServiceImpl implements DataService {
 
 
     //USUARIOS
-    private User pedro;
-    private ServiceUser serviceUser;
-    private UserDAO userDAO;
 
 
 
@@ -129,7 +126,7 @@ public class DataServiceImpl implements DataService {
             gameDAO = new HibernateGameDAO();
             studioDAO = new HibernateStudioDAO();
             developerDAO = new HibernateDeveloper();
-            userDAO = new HibernateUserDAO();
+
 
             //Estudios
             //NINTENDO
@@ -837,11 +834,6 @@ public class DataServiceImpl implements DataService {
             johnRomero.addStudy(nintendo);
             nintendo.addDeveloper(johnRomero);
 
-            //usuarios
-            serviceUser = new ServiceUserimpl(userDAO);
-            pedro = new User();
-            pedro.setName("Pedro");
-            serviceUser.createUser(pedro);
 
 
 

@@ -19,6 +19,7 @@ public class ServiceUserimpl implements ServiceUser {
         return run(()-> {return this.userDAO.recover(id);});
     }
 
+    //Lo guarda en la Base
     @Override
     public void createUser(User user) {
         run(()->{this.userDAO.save(user);});
