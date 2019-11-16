@@ -5,6 +5,7 @@ import dao.impl.HibernateUserDAO;
 import dao.interf.DataDAO;
 import dao.interf.UserDAO;
 import model.User;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,5 +47,10 @@ public class TestUser {
         User pedroRecovered = serviceUser.searchByName("Pedro");
         Assert.assertEquals("Pedro",pedroRecovered.getName());
 
+    }
+
+    @After
+    public void clear(){
+        this.dataService.eliminarDatos();
     }
 }

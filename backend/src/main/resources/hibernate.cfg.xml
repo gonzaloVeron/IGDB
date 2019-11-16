@@ -24,6 +24,7 @@
         <mapping class="model.Game"/>
         <mapping class="model.Developer"/>
         <mapping class="model.Studio"/>
+        <mapping class="model.User"/>
 
 
     </session-factory>
