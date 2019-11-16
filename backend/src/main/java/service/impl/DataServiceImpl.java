@@ -5,12 +5,11 @@ package service.impl;
 import dao.impl.HibernateDeveloper;
 import dao.impl.HibernateGameDAO;
 import dao.impl.HibernateStudioDAO;
-import dao.interf.DataDAO;
-import dao.interf.DeveloperDAO;
-import dao.interf.GameDAO;
-import dao.interf.StudioDAO;
+import dao.impl.HibernateUserDAO;
+import dao.interf.*;
 import model.*;
 import service.interf.DataService;
+import service.interf.ServiceUser;
 
 import java.time.LocalDate;
 
@@ -103,6 +102,11 @@ public class DataServiceImpl implements DataService {
     private Studio generation;
 
 
+    //USUARIOS
+    private User pedro;
+    private ServiceUser serviceUser;
+    private UserDAO userDAO;
+
 
 
     public DataServiceImpl(DataDAO dataDAO){
@@ -125,6 +129,7 @@ public class DataServiceImpl implements DataService {
             gameDAO = new HibernateGameDAO();
             studioDAO = new HibernateStudioDAO();
             developerDAO = new HibernateDeveloper();
+            userDAO = new HibernateUserDAO();
 
             //Estudios
             //NINTENDO
@@ -832,6 +837,11 @@ public class DataServiceImpl implements DataService {
             johnRomero.addStudy(nintendo);
             nintendo.addDeveloper(johnRomero);
 
+            //usuarios
+            serviceUser = new ServiceUserimpl(userDAO);
+            pedro = new User();
+            pedro.setName("Pedro");
+            serviceUser.createUser(pedro);
 
 
 
