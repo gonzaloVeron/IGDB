@@ -2,14 +2,15 @@ package api_rest.DataClass;
 
 import model.Studio;
 
-public class DataStudioSearch {
+public class DataStudioInGame {
     public Long id;
     public String name;
-    public String logo;
+    public String imageUrl;
 
-    public DataStudioSearch(Studio studio) {
+    public DataStudioInGame(Studio studio){
         this.id = studio.getId();
         this.name = studio.getName();
-        this.logo = studio.getCoverPage();
+        this.imageUrl = studio.getCoverPage();
     }
+
 }

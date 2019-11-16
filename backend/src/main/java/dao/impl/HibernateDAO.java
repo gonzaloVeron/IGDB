@@ -10,17 +10,17 @@ public class HibernateDAO<T> {
         this.entityType = entityType;
     }
 
-    public void guardar(T item) {
+    public void save(T item) {
         Session session = TransactionRunner.getCurrentSession();
         session.save(item);
     }
 
-    public T recuperar(Long id) {
+    public T recover(Long id) {
         Session session = TransactionRunner.getCurrentSession();
-        return this.validacion(session.get(entityType, id));
+        return this.validate(session.get(entityType, id));
     }
 
-    public T validacion(T tipe){
+    public T validate(T tipe){
         if(tipe==null){
             throw  new RuntimeException("No esta persistido en la BD");
         }else{
@@ -29,7 +29,7 @@ public class HibernateDAO<T> {
 
     }
 
-    public void  actualizar(T item){
+    public void update(T item){
         Session session = TransactionRunner.getCurrentSession();
         session.update(item);
     }
