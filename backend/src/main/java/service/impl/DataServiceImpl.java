@@ -193,7 +193,7 @@ public class DataServiceImpl implements DataService {
             hideoKojima.setName("Hideo");
             hideoKojima.setLastName("Kojima");
             hideoKojima.setActuallyWorking("Work at Kojima Productions");
-            hideoKojima.setUrlPhoto("Ninguna");
+            hideoKojima.setUrlPhoto("https://i.blogs.es/04bad7/200315-hideo-kojima/1366_2000.jpg");
             LocalDate nacimiento = LocalDate.of(1975,5,25);
             hideoKojima.setDateOfBirth(nacimiento);
             //markusPersson
