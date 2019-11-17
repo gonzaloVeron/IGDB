@@ -5,12 +5,11 @@ package service.impl;
 import dao.impl.HibernateDeveloper;
 import dao.impl.HibernateGameDAO;
 import dao.impl.HibernateStudioDAO;
-import dao.interf.DataDAO;
-import dao.interf.DeveloperDAO;
-import dao.interf.GameDAO;
-import dao.interf.StudioDAO;
+import dao.impl.HibernateUserDAO;
+import dao.interf.*;
 import model.*;
 import service.interf.DataService;
+import service.interf.ServiceUser;
 
 import java.time.LocalDate;
 
@@ -103,6 +102,8 @@ public class DataServiceImpl implements DataService {
     private Studio generation;
 
 
+    //USUARIOS
+
 
 
     public DataServiceImpl(DataDAO dataDAO){
@@ -125,6 +126,7 @@ public class DataServiceImpl implements DataService {
             gameDAO = new HibernateGameDAO();
             studioDAO = new HibernateStudioDAO();
             developerDAO = new HibernateDeveloper();
+
 
             //Estudios
             //NINTENDO
