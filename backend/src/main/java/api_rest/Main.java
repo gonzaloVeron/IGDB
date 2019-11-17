@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args){
         AppController controller = new AppController();
-        LoginController login = new LoginController();
+        LoginController loginController = new LoginController();
         LogErrorController logErrorController = new LogErrorController();
 
         controller.initializeDatabase();
@@ -58,15 +58,13 @@ public class Main {
                 });
             });
 
-/*
             path("login", () -> {
-                get(controller::login);
+                post(loginController::login);
             });
 
             path("register", () -> {
-                get(controller::register);
+                post(loginController::register);
             });
-*/
 
             path("studio", () -> {
                 path(":id", () -> {
