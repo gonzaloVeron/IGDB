@@ -20,7 +20,11 @@ export default class Register extends React.Component {
 
   register() {
     register({ name: this.state.name, password: this.state.password })
-      .then(() => this.props.history.goBack())
+      .then(result => {
+        localStorage.setItem("userName", result.name)
+        localStorage.setItem("password", result.password)
+        this.props.history.goBack() 
+      })
       .catch(e => this.setState({ error: e.message }))
   }
 
