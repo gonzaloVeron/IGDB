@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './NavBar.css';
 import {Dropdown, Image, Col, Container, Button} from 'react-bootstrap'
-import defaultprofileicon from "./defaultprofileicon.jpg"
+import defaultprofileicon from "./defaultprofileicon.png"
 
 
 class NavBar extends React.Component {
@@ -21,6 +21,7 @@ class NavBar extends React.Component {
         this.logOut = this.logOut.bind(this);
         this.changeGenre = this.changeGenre.bind(this);
         this.changePlatform = this.changePlatform.bind(this);
+        this.goToRegister = this.goToRegister.bind(this);
     }
 
     changeSearch(event) {
@@ -45,6 +46,10 @@ class NavBar extends React.Component {
 
     changePlatform(event){
         this.setState({ platform: event.target.value }, () => console.log(this.state.platform))
+    }
+
+    goToRegister(){
+      this.props.history.push('/register')
     }
 
     render() {
@@ -96,7 +101,7 @@ class NavBar extends React.Component {
                 </form>
 
                 <div>
-                    {/*this.renderProfileDropdown()*/}
+                    {this.renderProfileDropdown()}
                     {/*
                     <button active onClick={this.goHome} className="buttonNavBar" >Mis ordenes</button>
                     <button active onClick={this.logOut} className="buttonNavBar" >Cerrar sesion</button>
@@ -119,9 +124,10 @@ class NavBar extends React.Component {
                 <h5>{ /*${this.props.userId}*/ }</h5>
               </div>
               <div className="text-center">
-                <Button variant="primary" onClick={this.handleLogout}>Logout</Button>
+                <Button variant="primary" onClick={this.goToRegister}>Register</Button>
               </div>
             </Dropdown.Menu>
+            
           </Dropdown>
         )
       }
