@@ -26,9 +26,9 @@ public class Main {
 
 
         app.exception(FileNotFoundException.class, (e, ctx) -> {
-                ctx.status(404);
+            ctx.status(404);
         }).error(404,  ctx -> {
-                ctx.result("No se a podido encontrar la consulta");
+            ctx.result("No se a podido encontrar la consulta");
         });
 
         app.exception(NullPointerException.class, (e, ctx) -> {
@@ -38,9 +38,9 @@ public class Main {
         });
 
         app.exception(IllegalArgumentException.class, (e, ctx) -> {
-                logErrorController.log(e);
-                ctx.status(400);
-                ctx.result(e.getMessage());
+            logErrorController.log(e);
+            ctx.status(400);
+            ctx.result(e.getMessage());
         });
 
 
