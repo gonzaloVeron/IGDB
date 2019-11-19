@@ -6,6 +6,7 @@ import GameFile from './components/gamefile/GameFile';
 import DevFile from './components/devFile/DevFile';
 import DevStudio from './components/devStudio/DevStudio';
 import Register from './components/register/Register';
+import Login from './components/login/Login'
 import './App.css';
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
         <Route path="/dev/:id" component={DevFile}/>
         <Route path="/studio/:id" component={DevStudio}/>
         <Route path="/register" component={Register}/>
+        <Route path="/login" component={Login}/>
         <Route path="/" component={Home}/> 
       </Switch>
     </Suspense>

@@ -8,20 +8,23 @@ import defaultprofileicon from "./defaultprofileicon.png"
 class NavBar extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             search: '',
             genre: "Any",
             platform: "Any",
             error: '',
         };
-        this.changeSearch = this.changeSearch.bind(this);
-        this.doSearch = this.doSearch.bind(this);
-        this.goHome = this.goHome.bind(this);
-        this.logOut = this.logOut.bind(this);
-        this.changeGenre = this.changeGenre.bind(this);
-        this.changePlatform = this.changePlatform.bind(this);
-        this.goToRegister = this.goToRegister.bind(this);
+        this.changeSearch = this.changeSearch.bind(this)
+        this.doSearch = this.doSearch.bind(this)
+        this.goHome = this.goHome.bind(this)
+        this.logOut = this.logOut.bind(this)
+        this.changeGenre = this.changeGenre.bind(this)
+        this.changePlatform = this.changePlatform.bind(this)
+        this.goToRegister = this.goToRegister.bind(this)
+        this.goToLogin = this.goToLogin.bind(this)
+        this.goToProfle = this.goToProfle.bind(this)
+        this.logOut = this.logOut.bind(this)
     }
 
     changeSearch(event) {
@@ -51,6 +54,39 @@ class NavBar extends React.Component {
     goToRegister(){
       this.props.history.push('/register')
     }
+
+    goToLogin(){
+      this.props.history.push('/login')
+    }
+
+    goToProfle(){
+      console.log("No hago nada")
+    }
+
+    logOut(){
+      localStorage.removeItem("userName")
+      localStorage.removeItem("password")
+      window.location.replace('') //Esto en teoria refresca la pagina
+    }
+
+    renderButtons(){
+      if(localStorage.getItem("userName") == null){
+        return(
+          <div>
+            <Button variant="primary" onClick={this.goToRegister}>Register</Button>
+            <Button variant="primary" onClick={this.goToLogin}>LogIn</Button>
+          </div>
+        )
+      }else{
+        return(
+          <div>
+            <Button variant="primary" onClick={this.goToProfle}>Go to profile</Button>
+            <Button variant="primary" type="submit" onClick={this.logOut}>LogOut</Button>
+          </div>
+        )
+      }
+    }
+
 
     render() {
         return (
@@ -101,6 +137,7 @@ class NavBar extends React.Component {
                 </form>
 
                 <div>
+
                     {this.renderProfileDropdown()}
                     {/*
                     <button active onClick={this.goHome} className="buttonNavBar" >Mis ordenes</button>
@@ -121,10 +158,10 @@ class NavBar extends React.Component {
             <Dropdown.Menu id="basic-nav-dropdown" alignRight >
               <div className="text-center">
                 <Image style={{ width: '150px' }} src={defaultprofileicon} roundedCircle />
-                <h5>{ /*${this.props.userId}*/ }</h5>
+                <h5>{ localStorage.getItem("userName") }</h5>
               </div>
               <div className="text-center">
-                <Button variant="primary" onClick={this.goToRegister}>Register</Button>
+                {this.renderButtons()}
               </div>
             </Dropdown.Menu>
             

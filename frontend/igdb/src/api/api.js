@@ -15,3 +15,5 @@ export const getDevStudio = studioID => request('get', `/studio/${studioID}`)
 export const getSearch = (searchValue, platform, genre) => request('get', `/search/${searchValue}/${genre}/${platform}`)
 
 export const register = body => request('post', '/register', body);
+
+export const signIn = body => request('post', '/login', body);
