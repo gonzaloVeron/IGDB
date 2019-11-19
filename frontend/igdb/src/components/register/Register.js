@@ -20,8 +20,12 @@ export default class Register extends React.Component {
 
   register() {
     register({ name: this.state.name, password: this.state.password })
-      .then(() => this.props.history.goBack())
-      .catch(e => this.setState({ error: e.message }))
+      .then(result => {
+        localStorage.setItem("userName", result.name)
+        localStorage.setItem("password", result.password)
+        this.props.history.goBack() 
+      })
+      .catch(e => this.setState({ error: "Usuario y/o contraseña incorrectos" }))
   }
 
   renderInput(value, placeholder, inputType, onChange) {
@@ -32,12 +36,10 @@ export default class Register extends React.Component {
 
   changeUsername(event) {
     this.setState({ name: event.target.value });
-    console.log(this.state.username)
   }
 
   changePassword(event) {
     this.setState({ password: event.target.value });
-    console.log(this.state.password)
   }
 
   render() { 
@@ -54,7 +56,7 @@ export default class Register extends React.Component {
             <button type="button" className="btn btn-danger btn-block btn-large" onClick={ this.register }>Registrarse</button>
             <div>
               <br />  
-              <h2>Ya tienes cuenta? <Link to={'/'}>Iniciar sesion</Link></h2>
+              <h2>Ya tienes cuenta? <Link to={'/login'}>Iniciar sesion</Link></h2>
             </div>
           </form>
         </div>
