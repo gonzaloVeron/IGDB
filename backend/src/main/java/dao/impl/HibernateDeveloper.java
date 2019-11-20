@@ -17,18 +17,18 @@ public class HibernateDeveloper extends HibernateDAO<Developer> implements Devel
  }
 
     @Override
-    public Developer recuperarJuegoPorNombre(String nombre) {
+    public Developer recoverGameByName(String nombre) {
         Session session = TransactionRunner.getCurrentSession();
         String hql = " from Developer as d "+" where d.name = :nombre";
         Query<Developer> query = session.createQuery(hql, Developer.class);
         query.setParameter("nombre", nombre);
 
-        return this.validacion(query.uniqueResult());
+        return this.validate(query.uniqueResult());
 
     }
 
     @Override
-    public List<Game>juegosDesarrollados(String nombre){
+    public List<Game> developedGames(String nombre){
        Session session = TransactionRunner.getCurrentSession();
 
        String hql = "select dg " +
@@ -50,7 +50,7 @@ public class HibernateDeveloper extends HibernateDAO<Developer> implements Devel
 
         String hql = " select s " +
                      " from Studio as s " +
-                     " join s.desarrolladoresActuales as sd" +
+                     " join s.currentDevelopers as sd" +
                      " where sd.name = :name " +
                      " and sd.lastName = :lastName";
 

@@ -13,7 +13,7 @@ public class DataGameSearch {
 
     public DataGameSearch(Game game){
         this.id = game.getId();
-        this.name = game.getNombre();
+        this.name = game.getName();
         this.genre = game.getGenre();
         this.platform = game.getPlatform();
         this.urlImage = game.getUrlImage();

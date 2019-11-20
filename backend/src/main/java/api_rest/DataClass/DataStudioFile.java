@@ -3,11 +3,8 @@ package api_rest.DataClass;
 import model.Developer;
 import model.Game;
 import model.Studio;
-import org.mockito.cglib.core.Local;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class DataStudioFile {
@@ -22,12 +19,12 @@ public class DataStudioFile {
 
     public DataStudioFile(Studio studio){
         this.id = studio.getId();
-        this.name = studio.getNombre();
-        this.imageUrl = studio.getPortada();
-        this.foundationDate = studio.getFechaDeFundacion().toString();
-        this.isActive = studio.getEstaActivo();
+        this.name = studio.getName();
+        this.imageUrl = studio.getCoverPage();
+        this.foundationDate = studio.getFundationDate().toString();
+        this.isActive = studio.getIsActive();
         this.historicalDevelopers = this.parseToDataDev(studio.getHistoricalDevelopers());
-        this.gamesDeveloped = this.parseToDataGame(studio.getJuegosDesarrollados());
+        this.gamesDeveloped = this.parseToDataGame(studio.getDevelopedGames());
         this.actualDevs = this.parseToDataDev(studio.desarrolladoresActuales());
     }
 

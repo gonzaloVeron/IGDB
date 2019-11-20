@@ -24,11 +24,11 @@ public class ServiceStudioimpl implements ServiceStudio {
 
     @Override
     public Studio searchStudio(String name){
-        return run(()->{ return this.studioDAO.recuperarEstudioPorNombre(name);});    }
+        return run(()->{ return this.studioDAO.recoverStudioByName(name);});    }
 
     @Override
     public Studio searchStudioById(Long id) {
-        return run(()->{return this.studioDAO.recuperar(id);});
+        return run(()->{return this.studioDAO.recover(id);});
     }
 
     @Override

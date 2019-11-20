@@ -1,4 +1,4 @@
-package api_rest;
+package api_rest.Controller;
 
 import api_rest.DataClass.*;
 import dao.impl.*;
@@ -10,7 +10,6 @@ import service.interf.DataService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class AppController {
@@ -22,18 +21,21 @@ public class AppController {
     public Context searchGameById(Context ctx){
         Game game = gameService.searchGameById(Long.parseLong(ctx.pathParam("id")));
         DataGameFile dataGameFile = new DataGameFile(game);
+        ctx.status(200);
         return ctx.json(dataGameFile);
     }
 
     public Context searchDeveloperById(Context ctx){
         Developer developer = developerService.searchDeveloperById(Long.parseLong(ctx.pathParam("id")));
         DataDeveloperFile dataDeveloperFile = new DataDeveloperFile(developer);
+        ctx.status(200);
         return ctx.json(dataDeveloperFile);
     }
 
     public Context searchStudioById(Context ctx){
         Studio studio = studioService.searchStudioById(Long.parseLong(ctx.pathParam("id")));
         DataStudioFile dataStudioFile = new DataStudioFile(studio);
+        ctx.status(200);
         return ctx.json(dataStudioFile);
     }
 
@@ -59,6 +61,7 @@ public class AppController {
         List<DataStudioSearch> dataStudios = parseToDataStudioSearch(studies);
         List<DataDeveloperSearch> dataDevs = parseToDataDeveloperSearch(devs);
 
+        ctx.status(200);
         return ctx.json(new DataSearch(dataGames, dataStudios, dataDevs));
     }
 

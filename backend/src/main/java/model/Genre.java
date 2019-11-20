@@ -12,4 +12,6 @@ public enum Genre {
     Racing,
     Music,
     Fighting,
+    War,
+    Puzzle
 }
