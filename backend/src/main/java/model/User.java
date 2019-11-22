@@ -49,8 +49,8 @@ public class User {
     public List<Review> getMyReviews() {
         return myReviews;
     }
-    public void addReview(Review review,Game game){
+    public void addReview(Review review){
         this.myReviews.add(review);
-        game.addReview(review);
+
     }
 }

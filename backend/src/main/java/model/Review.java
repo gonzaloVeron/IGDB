@@ -14,6 +14,7 @@ public class Review {
     private String description;
     private int star;
     private String nameUser;
+    private String nameGame;
 
     public Review(){
 
@@ -43,4 +44,11 @@ public class Review {
         this.nameUser = nameUser;
     }
 
+    public String getNameGame() {
+        return nameGame;
+    }
+
+    public void setNameGame(String nameGame) {
+        this.nameGame = nameGame;
+    }
 }
