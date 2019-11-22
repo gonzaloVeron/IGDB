@@ -10,6 +10,7 @@ import dao.interf.GameDAO;
 import dao.interf.SearchDAO;
 import dao.interf.StudioDAO;
 import model.Developer;
+import model.Review;
 import model.Studio;
 import org.junit.After;
 import org.junit.Assert;
@@ -65,6 +66,19 @@ public class TestGameServiceImpl {
         Assert.assertTrue(devs.size() == 1);
         Assert.assertEquals(nameDevExpected, devs.get(0).getName());
     }
+
+    @Test
+    public void reviews_of_bastion(){
+        List<Review> reviews = gameService.gamereviews("Bastion");
+        Assert.assertEquals(2,reviews.size());
+    }
+
+    @Test
+    public void average_score_of_bastion(){
+        Double average = gameService.averageScoreOfAGame("Bastion");
+        Assert.assertEquals(new Double(5),average);
+    }
+
 
 
     @After

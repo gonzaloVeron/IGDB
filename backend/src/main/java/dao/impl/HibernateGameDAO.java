@@ -3,6 +3,7 @@ package dao.impl;
 import dao.interf.GameDAO;
 import model.Developer;
 import model.Game;
+import model.Review;
 import model.Studio;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -77,6 +78,34 @@ public class HibernateGameDAO extends HibernateDAO<Game> implements GameDAO {
         query.setParameter("name", name);
 
         return query.getResultList();
+    }
+
+    @Override
+    public List<Review> gamereviews(String name) {
+        Session session = TransactionRunner.getCurrentSession();
+        String hql = "select re " +
+                "from Game g " +
+                "join g.myReviews as re " +
+                "where g.name = :name ";
+        Query<Review> query = session.createQuery(hql, Review.class);
+        query.setParameter("name", name);
+
+        return query.getResultList();
+    }
+
+    @Override
+    public Double averageScoreOfAGame(String name) {
+        Session session = TransactionRunner.getCurrentSession();
+        String hql = "select AVG(re.star)" +
+                "from Game g " +
+                "join g.myReviews as re " +
+                "where g.name = :name ";
+        Query<Double> query = session.createQuery(hql, Double.class);
+        query.setParameter("name", name);
+
+        return query.uniqueResult();
+
+
     }
 
 

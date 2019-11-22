@@ -35,6 +35,11 @@ public class Game {
     @Fetch(value = FetchMode.SELECT)
     private List<String> images;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SELECT)
+    private List<Review> myReviews;
+
+
     public void addDevelopers(Developer developer) {
         this.developers.add(developer);
     }
@@ -43,6 +48,7 @@ public class Game {
         this.developers = new ArrayList<>();
         this.videos = new ArrayList<>();
         this.images = new ArrayList<>();
+        this.myReviews = new ArrayList<>();
     }
 
     public String getUrlImage() {
@@ -115,4 +121,11 @@ public class Game {
     public void removeImage(String image) { this.images.remove(image); }
 
     public List<String> getImages() { return this.images; }
+
+    public List<Review> getMyReviews() {
+        return myReviews;
+    }
+    public void addReview(Review review){
+        this.myReviews.add(review);
+    }
 }
