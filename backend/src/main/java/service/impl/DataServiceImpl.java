@@ -101,6 +101,10 @@ public class DataServiceImpl implements DataService {
     private Studio sCESantaMonicaStudio;
     private Studio generation;
 
+    //Reviews
+    private Review pri;
+    private Review seg;
+
 
     //USUARIOS
 
@@ -126,6 +130,14 @@ public class DataServiceImpl implements DataService {
             gameDAO = new HibernateGameDAO();
             studioDAO = new HibernateStudioDAO();
             developerDAO = new HibernateDeveloper();
+
+            //REVIEWS
+            pri = new Review();
+            pri.setStar(5);
+            pri.setNameUser("Pedro");
+            seg = new Review();
+            seg.setStar(5);
+            seg.setNameUser("Pepe");
 
 
             //Estudios
@@ -386,7 +398,8 @@ public class DataServiceImpl implements DataService {
             bastion.setPlatform(Platform.WII);
             bastion.setSinopsis("Bastion is an experience of role and action that redefines the narration in video games, with a reactive narrator that marks each of your movements. Explore more than 40 lush hand-drawn environments while discovering the secrets of the Great Disaster");
             bastion.setUrlImage("https://lh3.googleusercontent.com/pqaa9nOR5DViX6zMBp18cXvwI7e95-gCNbK5m1p-7s9pOf7eFwNYgPRKiG_VbJpY2TRXnYcV16DbphtyRmqtKUw");
-
+            bastion.addReview(pri);
+            bastion.addReview(seg);
 
             batmanArkhamKnight= new Game();
             batmanArkhamKnight.setName("Batman Arkham knight");

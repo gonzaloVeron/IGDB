@@ -3,6 +3,7 @@ package service.impl;
 import dao.interf.GameDAO;
 import model.Developer;
 import model.Game;
+import model.Review;
 import model.Studio;
 import service.interf.GameService;
 
@@ -45,6 +46,16 @@ public class GameServiceImpl implements GameService {
     @Override
     public List<Developer> recoverAllDevelopersForGameByName(String name) {
         return run(()->{return this.gameDAO.recoverAllDevelopersForGameByName(name);});
+    }
+
+    @Override
+    public List<Review> gamereviews(String name) {
+        return run(()->{return this.gameDAO.gamereviews(name);});
+    }
+
+    @Override
+    public Double averageScoreOfAGame(String name) {
+        return run(()->{return this.gameDAO.averageScoreOfAGame(name);});
     }
 
 }
