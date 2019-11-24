@@ -139,20 +139,15 @@ export default class GameFile extends React.Component {
 
     creators(){
         return(
-            <div style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%"}}>
-                <CollapsibleComponent className="file-content-element" >
-                    <CollapsibleHead className="collapsible-head">Creators</CollapsibleHead>
-                    <CollapsibleContent className="collapsible-content">
-                        <div className="row" >
-                            <div className="col-sm-6">
-                                {this.renderStudioImageColumn()}
-                            </div>
-                            <div className="col-sm-4">
-                                {this.renderDevsColumn()}
-                            </div>  
-                        </div>
-                    </CollapsibleContent>
-                </CollapsibleComponent>
+            <div className="card file-content" style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%"}}>
+                <div className="row" >
+                    <div className="col-sm-6">
+                        {this.renderStudioImageColumn()}
+                    </div>
+                    <div className="col-sm-4">
+                        {this.renderDevsColumn()}
+                    </div>  
+                </div>
             </div>
         )
     }
