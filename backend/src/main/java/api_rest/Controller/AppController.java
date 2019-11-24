@@ -20,7 +20,7 @@ public class AppController {
 
     public Context searchGameById(Context ctx){
         Game game = gameService.searchGameById(Long.parseLong(ctx.pathParam("id")));
-        DataGameFile dataGameFile = new DataGameFile(game);
+        DataGameFile dataGameFile = new DataGameFile(game, gameService.averageScoreOfAGame(game.getName()));
         ctx.status(200);
         return ctx.json(dataGameFile);
     }

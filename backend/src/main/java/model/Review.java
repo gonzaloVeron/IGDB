@@ -20,6 +20,10 @@ public class Review {
 
     }
 
+    public Long getId(){
+        return this.id;
+    }
+
     public String getDescription() {
         return description;
     }
