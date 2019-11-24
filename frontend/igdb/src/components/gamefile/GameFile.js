@@ -1,3 +1,5 @@
+import { render } from 'react-dom'
+import ReactStars from 'react-stars'
 import React from 'react';
 import NavBar from '../navbar/NavBar';
 import { getGame } from '../../api/api.js';
@@ -31,7 +33,6 @@ export default class GameFile extends React.Component {
         console.log(props)
         console.log(this.state)
     }
-
     
     componentDidMount(){
         let { id } = this.props.match.params
@@ -51,6 +52,9 @@ export default class GameFile extends React.Component {
                             </div>
                             <div className="column">
                                 <h1 className="card-header title">{this.state.gameData.name}</h1>
+                            </div>
+                            <div className="column">
+                                <ReactStars count={5} edit={false} size={75} value={3.5} color2={'#ffd700'} />
                             </div>
                     </div>
             </div>
