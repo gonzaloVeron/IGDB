@@ -125,6 +125,7 @@ public class Game {
     public List<Review> getMyReviews() {
         return myReviews;
     }
+
     public void addReview(Review review){
         this.myReviews.add(review);
     }

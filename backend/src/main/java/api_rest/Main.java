@@ -3,6 +3,7 @@ package api_rest;
 import api_rest.Controller.AppController;
 import api_rest.Controller.LogErrorController;
 import api_rest.Controller.LoginController;
+import api_rest.Controller.ReviewControler;
 import io.javalin.Javalin;
 
 import java.io.FileNotFoundException;
@@ -15,6 +16,7 @@ public class Main {
         AppController controller = new AppController();
         LoginController loginController = new LoginController();
         LogErrorController logErrorController = new LogErrorController();
+        ReviewControler reviewControler = new ReviewControler();
 
         controller.initializeDatabase();
 
@@ -49,6 +51,18 @@ public class Main {
             path("game", () -> {
                 path(":id", () -> {
                     get(controller::searchGameById);
+                });
+            });
+
+            path("review", () -> {
+                path(":gameId", () -> {
+                    put(reviewControler::addReviewById);
+                });
+            });
+
+            path("review", () -> {
+                path(":gameId", () -> {
+                    delete(reviewControler::deleteReviewById);
                 });
             });
 
