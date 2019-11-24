@@ -6,6 +6,7 @@ import { getGame } from '../../api/api.js';
 import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from 'react-collapsible-component'
 import './GameFile.css';
 import DevCard2 from '../card/DevCard2';
+import ReviewCard from '../card/ReviewCard';
 const thumbnail = require('../../images/thumbnail.png');
 
 export default class GameFile extends React.Component {
@@ -28,6 +29,8 @@ export default class GameFile extends React.Component {
                     imageUrl: '',
                     name: '',
                 },
+                avScore: 0,
+                reviews: [],
             }
         }
         console.log(props)
@@ -54,7 +57,12 @@ export default class GameFile extends React.Component {
                                 <h1 className="card-header title">{this.state.gameData.name}</h1>
                             </div>
                             <div className="column">
-                                <ReactStars count={5} edit={false} size={75} value={3.5} color2={'#ffd700'} />
+                                <div style={{marginLeft:"31%"}}>
+                                    <h4>average score: {this.state.gameData.avScore}/5 </h4>
+                                </div>
+                                <div style={{marginLeft:"24%"}}>
+                                    <ReactStars count={5} edit={false} size={75} value={this.state.gameData.avScore} color2={'#ffd700'} />
+                                </div>
                             </div>
                     </div>
             </div>
@@ -68,10 +76,10 @@ export default class GameFile extends React.Component {
                     Sinopsis: {this.state.gameData.sinopsis}
                 </div>
                 <div className="file-content-element">
-                    Género: {this.state.gameData.genre}
+                    Genre: {this.state.gameData.genre}
                 </div>
                 <div className="file-content-element">
-                    Plataforma: {this.state.gameData.platform}
+                    Platform: {this.state.gameData.platform}
                 </div>
             </div>
         );
@@ -152,6 +160,27 @@ export default class GameFile extends React.Component {
         )
     }
 
+    renderReviewCards(){
+        return(
+            this.state.gameData.reviews.map((re, i) => {return <ReviewCard key={i} review={re}/>})
+        )
+    }
+
+    reviews(){
+        return(
+            <div className="card file-content" style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%"}}>
+                <div className="row" >
+                    <div style={{marginLeft:"42%"}}>
+                        <h1 style={{color:"white"}}> User Reviews </h1>
+                    </div>
+                </div>
+                <div className="row" style={{marginLeft:"27%"}}>
+                    {this.renderReviewCards()}
+                </div>  
+            </div>
+        )
+    }
+
     render(){
         return(
             <div className="GameFile body-container">
@@ -162,6 +191,7 @@ export default class GameFile extends React.Component {
                     {this.videos()}
                     {this.images()}
                     {this.creators()}
+                    {/*this.reviews()*/}
                 </div>
             </div>
         )
