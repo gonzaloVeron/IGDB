@@ -61,13 +61,13 @@ public class Main {
             });
 
             path("review", () -> {
-                path(":gameId", () -> {
+                path(":id", () -> {
                     put(reviewControler::addReviewById);
                 });
             });
 
             path("review", () -> {
-                path(":gameId", () -> {
+                path(":id", () -> {
                     delete(reviewControler::deleteReviewById);
                 });
             });
