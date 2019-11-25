@@ -17,3 +17,7 @@ export const getSearch = (searchValue, platform, genre) => request('get', `/sear
 export const register = body => request('post', '/register', body);
 
 export const signIn = body => request('post', '/login', body);
+
+export const putReview = (gameID, body) => request('put', `/review/${gameID}`, body);
+
+export const deleteReview = (gameID, body) => request('delete', `/review/${gameID}`, body);

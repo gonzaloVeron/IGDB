@@ -16,8 +16,10 @@ public class DataGameFile {
     public List<String> images;
     public List<DataDeveloperInGame> devs;
     public DataStudioInGame studio;
+    public Double mediumScore;
+    public List<DataReviewClass> reviews;
 
-    public DataGameFile(Game game){
+    public DataGameFile(Game game, Double mediumScore){
         this.id = game.getId();
         this.name = game.getName();
         this.genre = game.getGenre();
@@ -28,5 +30,7 @@ public class DataGameFile {
         this.images = game.getImages();
         this.devs = game.getDevelopers().stream().map(dev -> new DataDeveloperInGame(dev.getId(), dev.getName(), dev.getLastName(), dev.getUrlPhoto())).collect(Collectors.toList());
         this.studio = new DataStudioInGame(game.getStudio());
+        this.reviews = game.getMyReviews().stream().map(DataReviewClass::new).collect(Collectors.toList());
+        this.mediumScore = mediumScore;
     }
 }

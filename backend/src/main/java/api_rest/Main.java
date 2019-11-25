@@ -3,6 +3,8 @@ package api_rest;
 import api_rest.Controller.AppController;
 import api_rest.Controller.LogErrorController;
 import api_rest.Controller.LoginController;
+import api_rest.Controller.ReviewControler;
+import api_rest.Exceptions.ElementAlreadyExistsException;
 import io.javalin.Javalin;
 
 import java.io.FileNotFoundException;
@@ -15,6 +17,7 @@ public class Main {
         AppController controller = new AppController();
         LoginController loginController = new LoginController();
         LogErrorController logErrorController = new LogErrorController();
+        ReviewControler reviewControler = new ReviewControler();
 
         controller.initializeDatabase();
 
@@ -24,6 +27,11 @@ public class Main {
             e.printStackTrace();
         }).start(7000);
 
+        app.exception(ElementAlreadyExistsException.class, (e, ctx) -> {
+            ctx.status(404);
+        }).error(404, ctx -> {
+            ctx.result("BAD_REQUEST");
+        });
 
         app.exception(FileNotFoundException.class, (e, ctx) -> {
             ctx.status(404);
@@ -49,6 +57,18 @@ public class Main {
             path("game", () -> {
                 path(":id", () -> {
                     get(controller::searchGameById);
+                });
+            });
+
+            path("review", () -> {
+                path(":id", () -> {
+                    put(reviewControler::addReviewById);
+                });
+            });
+
+            path("review", () -> {
+                path(":id", () -> {
+                    delete(reviewControler::deleteReviewById);
                 });
             });
 

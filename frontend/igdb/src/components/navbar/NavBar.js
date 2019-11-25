@@ -65,7 +65,7 @@ class NavBar extends React.Component {
 
     logOut(){
       localStorage.removeItem("userName")
-      localStorage.removeItem("password")
+      localStorage.removeItem("id")
       window.location.replace('') //Esto en teoria refresca la pagina
     }
 

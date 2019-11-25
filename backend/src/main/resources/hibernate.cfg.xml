@@ -25,6 +25,7 @@
         <mapping class="model.Developer"/>
         <mapping class="model.Studio"/>
         <mapping class="model.User"/>
+        <mapping class="model.Review"/>
 
 
     </session-factory>

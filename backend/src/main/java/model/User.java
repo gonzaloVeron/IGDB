@@ -1,7 +1,12 @@
 package model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -14,15 +19,21 @@ public class User {
     private String name;
     private String password;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SELECT)
+    private List<Review> myReviews;
+
 
 
     public User(){
+        myReviews = new ArrayList<>();
 
     }
 
     public User(String name, String password){
         this.name = name;
         this.password = password;
+        myReviews = new ArrayList<>();
     }
 
     public String getName() {
@@ -43,4 +54,15 @@ public class User {
         this.password = password;
     }
 
+    public List<Review> getMyReviews() {
+        return myReviews;
+    }
+    public void addReview(Review review){
+        this.myReviews.add(review);
+        review.setUser(this);
+    }
+
+    public void removeReview(Review review) {
+        this.myReviews.remove(review);
+    }
 }

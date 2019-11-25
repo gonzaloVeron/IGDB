@@ -1,6 +1,7 @@
 package api_rest.Controller;
 
 import api_rest.DataClass.DataUser;
+import api_rest.DataClass.DataUserReturn;
 import dao.impl.HibernateUserDAO;
 import jdk.nashorn.internal.runtime.JSONFunctions;
 import model.User;
@@ -32,7 +33,7 @@ public class LoginController {
         DataUser dataUser = ctx.bodyAsClass(DataUser.class);
 
         Pattern pattern = Pattern.compile("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{4,16}$");
-        Boolean match = pattern.matcher(dataUser.password).matches();
+        boolean match = pattern.matcher(dataUser.password).matches();
 
         this.require(dataUser.name.isEmpty(), "Invalid name!");
         this.require(!match,"Invalid password!");
@@ -42,7 +43,9 @@ public class LoginController {
 
         this.require(!user.getName().equals(dataUser.name) && !user.getPassword().equals(dataUser.password), "Invalid name or password!");
 
-        return ctx.json(dataUser);
+        DataUserReturn data = new DataUserReturn(user);
+
+        return ctx.json(data);
     }
 
     public Context register(Context ctx) throws Exception {
@@ -59,7 +62,9 @@ public class LoginController {
 
         serviceUser.createUser(user);
 
-        return ctx.json(dataUser);
+        DataUserReturn data = new DataUserReturn(user);
+
+        return ctx.json(data);
     }
 
     public void require(boolean bool, String messageException) throws Exception {
