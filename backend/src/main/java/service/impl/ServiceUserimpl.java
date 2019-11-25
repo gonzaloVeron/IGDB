@@ -7,6 +7,10 @@ import model.Game;
 import model.Review;
 import model.User;
 import service.interf.ServiceUser;
+
+import java.util.ArrayList;
+import java.util.stream.Collector;
+
 import static service.TransactionRunner.run;
 
 public class ServiceUserimpl implements ServiceUser {
@@ -39,19 +43,32 @@ public class ServiceUserimpl implements ServiceUser {
     }
 
     @Override
-    public void reviewGame(String name,String review,Integer stars,String nameGame) {
+    public void reviewGame(Long userID, String review, Integer stars, Long gameID) {
           run(()->{
               Review newReview = new Review();
               newReview.setDescription(review);
               newReview.setStar(stars);
-              newReview.setNameUser(name);
-              newReview.setNameGame(nameGame);
-              User userRecover = userDAO.searchByName(name);
+              User userRecover = userDAO.recover(userID);
               userRecover.addReview(newReview);
               userDAO.update(userRecover);
-              Game gameRecover = gameDAO.recoverGameByName(nameGame);
+              Game gameRecover = gameDAO.recover(gameID);
               gameRecover.addReview(newReview);
               gameDAO.update(gameRecover);
           });
+    }
+
+    @Override
+    public void deleteReview(Long userID, Long gameID) {
+        run(()->{
+            User userRecover = userDAO.recover(userID);
+            Game gameRecover = gameDAO.recover(gameID);
+            Review review = userRecover.getMyReviews().stream().filter(review1 -> review1.getUser().equals(userRecover) && review1.getGame().equals(gameRecover))
+                    .findAny()
+                    .orElse(null);
+            userRecover.removeReview(review);
+            gameRecover.removeReview(review);
+            gameDAO.update(gameRecover);
+            userDAO.update(userRecover);
+        });
     }
 }
