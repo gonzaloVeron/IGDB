@@ -137,18 +137,5 @@ public class Game {
     }
 
 
-    public void deleteReview(Long id){
-            int n = 0;
-            Iterator<Review> iterator = this.myReviews.iterator();
-            while (iterator.hasNext()){
-                Review review1 = iterator.next();
-                if(!review1.getId().equals(id)){
-                    n++;
-                }
-            }
-            Review review = this.myReviews.get(n);
-            this.myReviews.remove(review);
-
-        }
 
 }
