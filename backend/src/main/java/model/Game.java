@@ -126,8 +126,14 @@ public class Game {
     public List<Review> getMyReviews() {
         return myReviews;
     }
+
     public void addReview(Review review){
         this.myReviews.add(review);
+        review.setGame(this);
+    }
+
+    public void removeReview(Review review) {
+        this.myReviews.remove(review);
     }
 
 

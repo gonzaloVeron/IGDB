@@ -19,13 +19,13 @@ export default class DevCard2 extends React.Component {
     render(){
         console.log(this.props)
         let thumb
-        if (this.props.dev.image === "Ninguna"){
+        if (this.props.dev.imageUrl === "Ninguna"){
             thumb = thumbnail
         } else {
-            thumb = this.props.dev.image
+            thumb = this.props.dev.imageUrl
         }
         return(
-            <div className="card text-white bg-secondary mb-3" style={{ width: '520px' }}>
+            <div className="card text-white bg-secondary mb-3" style={{ width: '510px'}}>
                 <div className="row no-gutters">
                     <div className="col-md-4">
                         <img src={thumb} alt="..." height="200" width="150"/>

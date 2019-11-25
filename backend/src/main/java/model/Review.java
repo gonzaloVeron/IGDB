@@ -12,15 +12,17 @@ public class Review {
     @Column(unique = true)
     private String description;
     private int star;
-    private String nameUser;
-    private String nameGame;
+    @ManyToOne
+    private User user;
+    @ManyToOne
+    private Game game;
 
     public Review(){
 
     }
 
-    public Long getId() {
-        return id;
+    public Long getId(){
+        return this.id;
     }
 
     public String getDescription() {
@@ -39,19 +41,15 @@ public class Review {
         this.star = star;
     }
 
-    public String getNameUser() {
-        return nameUser;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
-    public void setNameUser(String nameUser) {
-        this.nameUser = nameUser;
+    public Game getGame(){return this.game;}
+
+    public void setUser(User user){
+        this.user = user;
     }
 
-    public String getNameGame() {
-        return nameGame;
-    }
-
-    public void setNameGame(String nameGame) {
-        this.nameGame = nameGame;
-    }
+    public User getUser(){return this.user;}
 }

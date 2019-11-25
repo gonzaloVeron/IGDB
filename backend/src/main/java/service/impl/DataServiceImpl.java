@@ -130,15 +130,21 @@ public class DataServiceImpl implements DataService {
             gameDAO = new HibernateGameDAO();
             studioDAO = new HibernateStudioDAO();
             developerDAO = new HibernateDeveloper();
+            UserDAO userDAO = new HibernateUserDAO();
+
+            //USERS
+            User user1 = new User("Pedro", "1234");
+            User user2 = new User("Pepe", "12345");
 
             //REVIEWS
             pri = new Review();
             pri.setStar(5);
-            pri.setNameUser("Pedro");
+            pri.setDescription("Meh, he visto mejores");
+            pri.setUser(user1);
             seg = new Review();
             seg.setStar(5);
-            seg.setNameUser("Pepe");
-
+            seg.setDescription("");
+            seg.setUser(user2);
 
             //Estudios
             //NINTENDO
@@ -207,7 +213,7 @@ public class DataServiceImpl implements DataService {
             hideoKojima.setName("Hideo");
             hideoKojima.setLastName("Kojima");
             hideoKojima.setActuallyWorking("Work at Kojima Productions");
-            hideoKojima.setUrlPhoto("Ninguna");
+            hideoKojima.setUrlPhoto("https://i.blogs.es/04bad7/200315-hideo-kojima/1366_2000.jpg");
             LocalDate nacimiento = LocalDate.of(1975,5,25);
             hideoKojima.setDateOfBirth(nacimiento);
             //markusPersson
@@ -847,8 +853,8 @@ public class DataServiceImpl implements DataService {
             johnRomero.addStudy(nintendo);
             nintendo.addDeveloper(johnRomero);
 
-
-
+            userDAO.save(user1);
+            userDAO.save(user2);
 
             //DAOS ESTUDIOS
             studioDAO.save(nintendo);
@@ -865,8 +871,6 @@ public class DataServiceImpl implements DataService {
             developerDAO.save(markusPersson);
             developerDAO.save(johnRomero);
             developerDAO.save(johnCarmack);
-
-
 
         });
     }
