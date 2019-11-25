@@ -4,6 +4,7 @@ import NavBar from '../navbar/NavBar';
 import { getGame, deleteReview } from '../../api/api.js';
 import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from 'react-collapsible-component'
 import './GameFile.css';
+import {Button} from 'react-bootstrap'
 import DevCard2 from '../card/DevCard2';
 import ReviewCard from '../card/ReviewCard';
 import ReviewBox from './ReviewBox';
@@ -37,8 +38,18 @@ export default class GameFile extends React.Component {
         console.log(this.state)
         this.refreshPage = this.refreshPage.bind(this);
         this.onDeleteReview = this.onDeleteReview.bind(this);
+        this.goToRegister = this.goToRegister.bind(this)
+        this.goToLogin = this.goToLogin.bind(this)
     }
 
+    goToRegister(){
+        this.props.history.push('/register')
+    }
+  
+    goToLogin(){
+        this.props.history.push('/login')
+    }
+    
     onDeleteReview(){
         deleteReview(this.state.gameData.id, {userId: localStorage.getItem("id")})
             .then((res)=>{
@@ -63,6 +74,9 @@ export default class GameFile extends React.Component {
     }
 
     calculateAvScore(reviews){
+        if (reviews.length === 0){
+            return 0
+        }
         let sum = 0
         reviews.forEach(element => {
             sum += element.score
@@ -206,11 +220,11 @@ export default class GameFile extends React.Component {
         return(
             <div className="card file-content" style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%"}}>
                 <div className="row" >
-                    <div style={{marginLeft:"42%"}}>
+                    <div style={{marginLeft:"39%"}}>
                         <h1 style={{color:"white"}}> User Reviews ({this.state.gameData.reviews.length}) </h1>
                     </div>
                 </div>
-                <div className="row" style={{marginLeft:"27%"}}>
+                <div className="row" style={{marginLeft:"25%"}}>
                     {this.renderReviewCards()}
                 </div>  
             </div>
@@ -223,12 +237,12 @@ export default class GameFile extends React.Component {
             return this.renderUserReviewBox(id)
         } else{
             return (
-                <div className="card file-content" style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%"}}>
-                    <div className="row" >
-                        <div style={{marginLeft:"42%"}}>
-                            <h1 style={{color:"white"}}> Login or Register to leave a review! </h1>
-                        </div>
-                    </div>
+                <div className="card file-content" style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%", paddingLeft:"28%"}}>
+                    <h4 style={{color:"white"}}> 
+                        <Button variant="primary" onClick={this.goToLogin} style={{marginRight:"2%"}}>LogIn</Button>or
+                        <Button variant="primary" onClick={this.goToRegister} style={{marginRight:"2%", marginLeft:"2%"}}>Register</Button>
+                        to leave a review!
+                    </h4>
                 </div>
             )
         }
