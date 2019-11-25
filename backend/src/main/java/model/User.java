@@ -6,6 +6,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,10 @@ public class User {
     public User(){
         myReviews = new ArrayList<>();
 
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -53,4 +58,19 @@ public class User {
         this.myReviews.add(review);
 
     }
+
+    public void deleteReview(Long id){
+        int n = 0;
+        Iterator<Review> iterator = this.myReviews.iterator();
+        while (iterator.hasNext()){
+            Review review1 = iterator.next();
+            if(!review1.getId().equals(id)){
+                n++;
+            }
+        }
+        Review review = this.myReviews.get(n);
+        this.myReviews.remove(review);
+
+    }
+
 }

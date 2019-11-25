@@ -93,6 +93,46 @@ public class TestServiceUser {
         Assert.assertEquals(new Double(3),average);
 
     }
+    @Test
+    public void bastion_reseña_cambiada(){
+        serviceUser.createUser(pedro);
+        serviceUser.reviewGame("Pedro","No me gusto el juego",1,"Batman Arkham knight");
+        Game gameBatman = gameService.searchGameByName("Batman Arkham knight");
+        List<Review> reviewsBatman = gameBatman.getMyReviews();
+        Assert.assertEquals("No me gusto el juego",reviewsBatman.get(0).getDescription());
+        Assert.assertEquals(new Long(3),reviewsBatman.get(0).getId());
+        serviceUser.updateReviewGame(new Long(1),new Long(3),new Long(28),"Lo odie",0);
+        Game gameBatmanActualizado = gameService.searchGameByName("Batman Arkham knight");
+        Assert.assertEquals("Lo odie",gameBatmanActualizado.getMyReviews().get(0).getDescription());
+        Assert.assertEquals(new Integer(0),gameBatmanActualizado.getMyReviews().get(0).getStar());
+        User pedroActualizado = serviceUser.searchUser(new Long(1));
+        Assert.assertEquals("Lo odie",pedroActualizado.getMyReviews().get(0).getDescription());
+        Assert.assertEquals(new Integer(0),pedroActualizado.getMyReviews().get(0).getStar());
+
+
+
+
+    }
+    @Test
+    public void delete_Review(){
+        serviceUser.createUser(pedro);
+        serviceUser.reviewGame("Pedro","No me gusto el juego",1,"Batman Arkham knight");
+        serviceUser.createUser(jose);
+        serviceUser.reviewGame("Pedro","el juego es excelent",5,"Batman Arkham knight");
+        Double average = gameService.averageScoreOfAGame("Batman Arkham knight");
+        Game gameBatman = gameService.searchGameByName("Batman Arkham knight");
+        Assert.assertEquals(new Long(28),gameBatman.getId());
+        List<Review> reviewsBatman = gameBatman.getMyReviews();
+        Assert.assertEquals("No me gusto el juego",reviewsBatman.get(0).getDescription());
+        Assert.assertEquals("el juego es excelent",reviewsBatman.get(1).getDescription());
+        Assert.assertEquals(new Double(3),average);
+        serviceUser.deleteReview(new Long(3), new Long(1),new Long(28));
+        Game batman = gameService.searchGameById(new Long(28));
+        Assert.assertEquals(1,batman.getMyReviews().size());
+
+
+
+    }
 
     @After
     public void clear(){

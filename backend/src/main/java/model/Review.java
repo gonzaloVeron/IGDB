@@ -1,9 +1,6 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Review {
@@ -11,6 +8,8 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
     private String description;
     private int star;
     private String nameUser;
@@ -18,6 +17,10 @@ public class Review {
 
     public Review(){
 
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getDescription() {
