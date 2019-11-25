@@ -33,6 +33,7 @@ public class User {
     public User(String name, String password){
         this.name = name;
         this.password = password;
+        myReviews = new ArrayList<>();
     }
 
     public String getName() {
@@ -58,6 +59,10 @@ public class User {
     }
     public void addReview(Review review){
         this.myReviews.add(review);
+        review.setUser(this);
+    }
 
+    public void removeReview(Review review) {
+        this.myReviews.remove(review);
     }
 }

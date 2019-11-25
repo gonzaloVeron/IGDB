@@ -22,7 +22,7 @@ export default class Register extends React.Component {
     register({ name: this.state.name, password: this.state.password })
       .then(result => {
         localStorage.setItem("userName", result.name)
-        localStorage.setItem("password", result.password)
+        localStorage.setItem("id", result.id)
         this.props.history.goBack() 
       })
       .catch(e => this.setState({ error: "Usuario y/o contraseña incorrectos" }))

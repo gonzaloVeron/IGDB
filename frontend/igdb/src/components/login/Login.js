@@ -23,7 +23,7 @@ class Login extends React.Component {
     signIn({name: this.state.username, password: this.state.password })
       .then(result => { 
         localStorage.setItem("userName", result.name)
-        localStorage.setItem("password", result.password)
+        localStorage.setItem("id", result.id)
         this.props.history.goBack();
       })
       .catch(e => this.setState({ error: "Usuario y/o contraseña incorrectos" }))

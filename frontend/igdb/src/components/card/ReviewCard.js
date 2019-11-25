@@ -14,12 +14,6 @@ export default class ReviewCard extends React.Component {
 
     render(){
         console.log(this.props)
-        let thumb
-        if (this.props.review.userImageUrl === "Ninguna"){
-            thumb = thumbnail
-        } else {
-            thumb = this.props.review.userImageUrl
-        }
         return(
             <div className="card text-white bg-secondary mb-3" style={{ width: '510px'}}>
                 <div className="row no-gutters">
@@ -27,21 +21,22 @@ export default class ReviewCard extends React.Component {
                         <div>
                         <Container>
                             <Col xs={6} md={4}>
-                                <Image style={{ width: '80px' }} src={thumb} roundedCircle />
+                                <Image style={{ width: '80px' }} src={thumbnail} roundedCircle />
                             </Col>
                             <div style={{marginRight:"2%", marginLeft:"24%", marginTop:"1%"}}>
-                                {this.props.review.userName}
+                                {this.props.review.nameUser}
                             </div>
                         </Container>
                         </div>
                     </div>
                     <div className="col-md-8">
                         <div className="card-body">
-                            <h6 className="card-title">{this.props.review.text}</h6> 
+                            <h6 className="card-title">{this.props.review.description}</h6> 
                         </div>
                         <div style={{marginLeft:"68%"}}>
-                            <ReactStars count={5} edit={false} size={24} value={this.props.review.score} color2={'#ffd700'} />
+                            <ReactStars count={5} edit={false} size={24} value={this.props.review.score} color2={'#ffd700'} half={false} />
                         </div>
+                        {this.props.children}
                     </div>
                 </div>
             </div>

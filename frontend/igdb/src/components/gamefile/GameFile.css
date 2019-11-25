@@ -66,3 +66,9 @@ tr:hover td {
 .container {
     margin-top: 3%;
 }
+
+.textInput {
+    width: 155%;
+    height: 150%;
+    border: 2px solid black;
+}

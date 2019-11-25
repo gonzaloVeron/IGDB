@@ -103,7 +103,9 @@ public class HibernateGameDAO extends HibernateDAO<Game> implements GameDAO {
         Query<Double> query = session.createQuery(hql, Double.class);
         query.setParameter("name", name);
 
-        return query.uniqueResult();
+        Double result = query.uniqueResult();
+
+        return result;
 
 
     }

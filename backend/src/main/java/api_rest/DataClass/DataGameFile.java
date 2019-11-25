@@ -30,7 +30,7 @@ public class DataGameFile {
         this.images = game.getImages();
         this.devs = game.getDevelopers().stream().map(dev -> new DataDeveloperInGame(dev.getId(), dev.getName(), dev.getLastName(), dev.getUrlPhoto())).collect(Collectors.toList());
         this.studio = new DataStudioInGame(game.getStudio());
-        this.reviews = game.getMyReviews().stream().map(review -> new DataReviewClass(review.getId(), review.getDescription(), review.getStar(), review.getNameUser(), review.getNameGame())).collect(Collectors.toList());
+        this.reviews = game.getMyReviews().stream().map(DataReviewClass::new).collect(Collectors.toList());
         this.mediumScore = mediumScore;
     }
 }
