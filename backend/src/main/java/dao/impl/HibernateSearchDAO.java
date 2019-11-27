@@ -30,9 +30,6 @@ public class HibernateSearchDAO implements SearchDAO {
             return session.createQuery(hql, Game.class).getResultList();
         }
 
-        if (name != "") {
-            games.addAll(this.searchByName(name));
-        }
         if (genre != null) {
             games.addAll(this.searchByGenre(genre));
         }
@@ -40,7 +37,27 @@ public class HibernateSearchDAO implements SearchDAO {
             games.addAll(this.searchByPlatform(platform));
         }
 
+        if (name != "") {
+            List<Game> filerGame = this.searchByName(name);
+            List<Game> games1 = new ArrayList<>();
+
+            Integer n = 0;
+            for(Game g: games){
+                if(filerGame.size() >n){
+                    if(games.contains(filerGame.get(n))){
+                        games1.add(filerGame.get(n));
+                        n++;
+                    }
+
+                }
+
+
+            }
+            Set<Game> lista = new HashSet<Game>(games1);
+            games = lista;
+        }
         return games.stream().collect(Collectors.toList());
+
     }
 
     @Override
