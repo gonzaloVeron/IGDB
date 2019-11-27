@@ -117,14 +117,15 @@ public class TestGameServiceImpl {
     @Test
     public void search_by_name_and_Platform(){
         List<Game> games_platform = searchService.searchAll("Batman",null,Platform.PS4);
-        System.out.println(games_platform.stream().map(n->n.getName()).collect(Collectors.joining()));
         Assert.assertEquals(2,games_platform.size());
         Assert.assertEquals("batman",games_platform.get(0).getName());
         Assert.assertEquals("Batman Arkham knight",games_platform.get(1).getName());
 
 
         List<Game> games = searchService.searchAll("God of war",null,Platform.PS4);
+        System.out.println("lista test " + games.stream().map(n->n.getName()).collect(Collectors.toList()));
         Assert.assertEquals(0,games.size());
+
 
         List<Game> games1 = searchService.searchAll("God of war",null,Platform.PS2);
         Assert.assertEquals(2,games1.size());

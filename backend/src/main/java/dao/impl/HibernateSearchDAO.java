@@ -36,34 +36,17 @@ public class HibernateSearchDAO implements SearchDAO {
         if (platform != null) {
             games.addAll(this.searchByPlatform(platform));
         }
-
         if (name != "") {
-            List<Game> filerGame = this.searchByName(name);
-            List<Game> games1 = new ArrayList<>();
-            Integer n = 0;
-            for(Game g: games){
-                if(filerGame.size() >n){
-                    if(games.contains(filerGame.get(n))){
-                        games1.add(filerGame.get(n));
-                        n++;
-                    }
+            List<Game> filterGame = this.searchByName(name);
 
-                }
-
-
+            if (!games.isEmpty()) {
+                games.retainAll(filterGame);
+            } else {
+                games.addAll(filterGame);
             }
-            Set<Game> lista = new HashSet<Game>(games1);
-            games = lista;
-
-            if(genre == null && platform == null){
-                Set<Game> lista1 = new HashSet<Game>(filerGame);
-                games = lista1;
-            }
-
-
         }
-        return games.stream().collect(Collectors.toList());
 
+        return games.stream().collect(Collectors.toList());
     }
 
 
