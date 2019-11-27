@@ -97,24 +97,6 @@ public class TestServiceUser {
 
     }
 
-//    @Test
-//    public void update_review(){
-//        serviceUser.createUser(pedro);
-//        serviceUser.reviewGame(new Long(1),"No me gusto el juego",1,new Long(2));
-//        Double average = gameService.averageScoreOfAGame("Batman Arkham knight");
-//        Game gameBatman = gameService.searchGameByName("Batman Arkham knight");
-//        Assert.assertEquals(new Long(28),gameBatman.getId());
-//        List<Review> reviewsBatman = gameBatman.getMyReviews();
-//        Assert.assertEquals("No me gusto el juego",reviewsBatman.get(0).getDescription());
-//        Assert.assertEquals("el juego es excelent",reviewsBatman.get(1).getDescription());
-//        Assert.assertEquals(new Double(3),average);
-//        serviceUser.deleteReview(new Long(3), new Long(1),new Long(28));
-//        Game batman = gameService.searchGameById(new Long(28));
-//        Assert.assertEquals(1,batman.getMyReviews().size());
-//
-//
-//
-//    }
 
     @Test
     public void delete_review(){
