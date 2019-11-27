@@ -7,9 +7,37 @@ import model.Platform;
 import org.hibernate.Session;
 import service.TransactionRunner;
 
+import javax.persistence.GeneratedValue;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HibernateSearchDAO implements SearchDAO {
+
+    @Override
+    public List<Game> searchAll(String name, Genre genre, Platform platform) {
+
+        List<Game> games = new ArrayList<>();
+
+        if (name == "" && genre == null && platform == null) {
+            Session session = TransactionRunner.getCurrentSession();
+
+            String hql = "SELECT g from Game as g ";
+
+            return session.createQuery(hql, Game.class).getResultList();
+        }
+
+        if (name != "") {
+            games.addAll(this.searchByName(name));
+        }
+        if (genre != null) {
+            games.addAll(this.searchByGenre(genre));
+        }
+        if (platform != null) {
+            games.addAll(this.searchByPlatform(platform));
+        }
+
+        return games;
+    }
 
     @Override
     public List<Game> searchByGenre(Genre genre) {
