@@ -45,6 +45,11 @@ public class Game {
         this.developers.add(developer);
     }
 
+    public void addReview(Review review){
+        this.myReviews.add(review);
+        review.setGame(this);
+    }
+
     public Game(){
         this.developers = new ArrayList<>();
         this.videos = new ArrayList<>();
@@ -127,10 +132,7 @@ public class Game {
         return myReviews;
     }
 
-    public void addReview(Review review){
-        this.myReviews.add(review);
-        review.setGame(this);
-    }
+
 
     public void removeReview(Review review) {
         this.myReviews.remove(review);

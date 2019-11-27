@@ -9,14 +9,18 @@ import service.TransactionRunner;
 
 import javax.persistence.GeneratedValue;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class HibernateSearchDAO implements SearchDAO {
 
+    
     @Override
     public List<Game> searchAll(String name, Genre genre, Platform platform) {
 
-        List<Game> games = new ArrayList<>();
+        Set<Game> games = new HashSet<>();
 
         if (name == "" && genre == null && platform == null) {
             Session session = TransactionRunner.getCurrentSession();
@@ -36,7 +40,7 @@ public class HibernateSearchDAO implements SearchDAO {
             games.addAll(this.searchByPlatform(platform));
         }
 
-        return games;
+        return games.stream().collect(Collectors.toList());
     }
 
     @Override
@@ -71,4 +75,6 @@ public class HibernateSearchDAO implements SearchDAO {
 
         return session.createQuery(hql, Game.class).setParameter(1, nombre).getResultList();
     }
+
+
 }

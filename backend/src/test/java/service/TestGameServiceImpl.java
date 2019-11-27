@@ -9,19 +9,19 @@ import dao.interf.DataDAO;
 import dao.interf.GameDAO;
 import dao.interf.SearchDAO;
 import dao.interf.StudioDAO;
-import model.Developer;
-import model.Review;
-import model.Studio;
+import model.*;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.omg.CORBA.PUBLIC_MEMBER;
 import service.impl.*;
 import service.interf.DataService;
 import service.interf.GameService;
 import service.interf.ServiceStudio;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TestGameServiceImpl {
     private GameDAO gameDAO;
@@ -74,9 +74,62 @@ public class TestGameServiceImpl {
     }
 
     @Test
-    public void average_score_of_bastion(){
+    public void average_score_of_bastion() {
         Double average = gameService.averageScoreOfAGame("Bastion");
-        Assert.assertEquals(new Double(5),average);
+        Assert.assertEquals(new Double(5), average);
+    }
+
+    @Test
+    public void search_All(){
+        List<Game> games = searchService.searchAll("",null,null);
+        Assert.assertEquals(57,games.size());
+
+    }
+
+    @Test
+    public void search_by_Name(){
+        List<Game> byName = searchService.searchAll("Left 4 dead 2",null,null);
+        Assert.assertEquals(1,byName.size());
+        Assert.assertEquals("Left 4 dead 2",byName.get(0).getName());
+    }
+
+    @Test
+    public void search_Genre(){
+        List<Game> games_genre = searchService.searchAll("", Genre.Strategy,null);
+        Assert.assertEquals(1,games_genre.size());
+        Assert.assertEquals("league of legends",games_genre.get(0).getName());
+    }
+
+    @Test
+    public void search_Platform(){
+        List<Game> games_platform = searchService.searchAll("",null,Platform.PS4);
+        Assert.assertEquals(15,games_platform.size());
+    }
+
+    @Test
+    public void search_by_name_and_Genre(){
+        List<Game> games = searchService.searchAll("league of legends",Genre.Strategy,null);
+        Assert.assertEquals(1,games.size());
+        Assert.assertEquals("league of legends",games.get(0).getName());
+
+    }
+
+    @Test
+    public void search_by_name_and_Platform(){
+        List<Game> games_platform = searchService.searchAll("Batman",null,Platform.PS4);
+        System.out.println(games_platform.stream().map(n->n.getName()).collect(Collectors.joining()));
+        Assert.assertEquals(15,games_platform.size());
+
+//        stream
+//        numbers.stream()
+//                .map( n -> n.toString() )
+//                .collect( Collectors.joining( "," ) );
+    }
+
+    @Test
+    public void search_by_Genre_and_Platform(){
+        List<Game> games_platform = searchService.searchAll("",Genre.Fighting,Platform.PS4);
+        Assert.assertEquals(19,games_platform.size());
     }
 
 
