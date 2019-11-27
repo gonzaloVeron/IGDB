@@ -123,7 +123,6 @@ public class TestGameServiceImpl {
 
 
         List<Game> games = searchService.searchAll("God of war",null,Platform.PS4);
-        System.out.println("lista test " + games.stream().map(n->n.getName()).collect(Collectors.toList()));
         Assert.assertEquals(0,games.size());
 
 
