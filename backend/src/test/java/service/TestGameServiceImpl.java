@@ -119,8 +119,8 @@ public class TestGameServiceImpl {
         List<Game> games_platform = searchService.searchAll("Batman",null,Platform.PS4);
         System.out.println(games_platform.stream().map(n->n.getName()).collect(Collectors.joining()));
         Assert.assertEquals(2,games_platform.size());
-        Assert.assertEquals("Batman Arkham knight",games_platform.get(0).getName());
-        Assert.assertEquals("batman",games_platform.get(1).getName());
+        Assert.assertEquals("batman",games_platform.get(0).getName());
+        Assert.assertEquals("Batman Arkham knight",games_platform.get(1).getName());
 
 
         List<Game> games = searchService.searchAll("God of war",null,Platform.PS4);

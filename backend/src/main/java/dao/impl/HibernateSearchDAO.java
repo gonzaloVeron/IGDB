@@ -40,7 +40,6 @@ public class HibernateSearchDAO implements SearchDAO {
         if (name != "") {
             List<Game> filerGame = this.searchByName(name);
             List<Game> games1 = new ArrayList<>();
-
             Integer n = 0;
             for(Game g: games){
                 if(filerGame.size() >n){
@@ -55,10 +54,19 @@ public class HibernateSearchDAO implements SearchDAO {
             }
             Set<Game> lista = new HashSet<Game>(games1);
             games = lista;
+
+            if(genre == null && platform == null){
+                Set<Game> lista1 = new HashSet<Game>(filerGame);
+                games = lista1;
+            }
+
+
         }
         return games.stream().collect(Collectors.toList());
 
     }
+
+
 
     @Override
     public List<Game> searchByGenre(Genre genre) {
