@@ -111,6 +111,7 @@ public class TestGameServiceImpl {
         List<Game> games = searchService.searchAll("league of legends",Genre.Strategy,null);
         Assert.assertEquals(1,games.size());
         Assert.assertEquals("league of legends",games.get(0).getName());
+        Assert.assertEquals(Genre.Strategy,games.get(0).getGenre());
 
     }
 
@@ -120,6 +121,8 @@ public class TestGameServiceImpl {
         Assert.assertEquals(2,games_platform.size());
         Assert.assertEquals("batman",games_platform.get(0).getName());
         Assert.assertEquals("Batman Arkham knight",games_platform.get(1).getName());
+        Assert.assertEquals(Platform.PS4,games_platform.get(0).getPlatform());
+        Assert.assertEquals(Platform.PS4,games_platform.get(1).getPlatform());
 
 
         List<Game> games = searchService.searchAll("God of war",null,Platform.PS4);
