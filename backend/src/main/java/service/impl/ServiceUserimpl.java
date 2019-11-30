@@ -78,22 +78,5 @@ public class ServiceUserimpl implements ServiceUser {
         });
     }
 
-    @Override
-    public void updateReview(Long userID, Long gameID, String description, Integer stars) {
-        run(()->{
-            User userRecover = userDAO.recover(userID);
-            Game gameRecover = gameDAO.recover(gameID);
-            Review review = userRecover.getMyReviews().stream().filter(review1 -> review1.getUser().equals(userRecover) && review1.getGame().equals(gameRecover))
-                    .findAny()
-                    .orElse(null);
-            userRecover.removeReview(review);
-            gameRecover.removeReview(review);
-            review.setDescription(description);
-            review.setStar(stars);
-            userRecover.addReview(review);
-            gameRecover.addReview(review);
-            gameDAO.update(gameRecover);
-            userDAO.update(userRecover);
-        });
-    }
+
 }

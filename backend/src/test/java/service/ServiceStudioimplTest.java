@@ -69,6 +69,7 @@ public class ServiceStudioimplTest {
         nombreDeEstudiosBuscados.add("Generation");
         nombreDeEstudiosBuscados.add("Activision");
         nombreDeEstudiosBuscados.add("EaDigitalIllusionsCe");
+        nombreDeEstudiosBuscados.add("Interplay Entertainment");
 
         assertEquals(nombreDeEstudiosBuscados, studioService.searchStudies("i").stream().map(g -> g.getName()).collect(Collectors.toList()));
     }
