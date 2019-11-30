@@ -3,7 +3,7 @@ package api_rest;
 import api_rest.Controller.AppController;
 import api_rest.Controller.LogErrorController;
 import api_rest.Controller.LoginController;
-import api_rest.Controller.ReviewControler;
+import api_rest.Controller.ReviewController;
 import api_rest.Exceptions.ElementAlreadyExistsException;
 import io.javalin.Javalin;
 
@@ -17,7 +17,7 @@ public class Main {
         AppController controller = new AppController();
         LoginController loginController = new LoginController();
         LogErrorController logErrorController = new LogErrorController();
-        ReviewControler reviewControler = new ReviewControler();
+        ReviewController reviewController = new ReviewController();
 
         controller.initializeDatabase();
 
@@ -62,13 +62,13 @@ public class Main {
 
             path("review", () -> {
                 path(":id", () -> {
-                    put(reviewControler::addReviewById);
+                    put(reviewController::addReviewById);
                 });
             });
 
             path("review", () -> {
                 path(":id", () -> {
-                    delete(reviewControler::deleteReviewById);
+                    delete(reviewController::deleteReviewById);
                 });
             });
 
