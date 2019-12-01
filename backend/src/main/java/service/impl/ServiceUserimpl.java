@@ -78,5 +78,14 @@ public class ServiceUserimpl implements ServiceUser {
         });
     }
 
+    @Override
+    public void changeProfilePhoto(Long userID, String photo) {
+        run(()->{
+            User userRecover = userDAO.recover(userID);
+            userRecover.setPhoto(photo);
+            userDAO.update(userRecover);
+        });
+    }
+
 
 }
