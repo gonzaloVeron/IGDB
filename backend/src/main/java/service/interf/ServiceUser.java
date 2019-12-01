@@ -9,5 +9,6 @@ public interface ServiceUser {
     User searchByName(String name);
     void reviewGame(Long userID,String review,Integer stars,Long gameID);
     void deleteReview(Long userID, Long gameID);
+    void changeProfilePhoto(Long userID,String photo);
 
 }
