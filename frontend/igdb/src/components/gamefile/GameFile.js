@@ -1,13 +1,16 @@
-import ReactStars from 'react-stars'
+import ReactStars from 'react-stars';
 import React from 'react';
 import NavBar from '../navbar/NavBar';
 import { getGame, deleteReview } from '../../api/api.js';
-import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from 'react-collapsible-component'
+import { getGameData } from '../../api/extRevw';
+import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from 'react-collapsible-component';
 import './GameFile.css';
-import {Button} from 'react-bootstrap'
+import {Button} from 'react-bootstrap';
 import DevCard2 from '../card/DevCard2';
 import ReviewCard from '../card/ReviewCard';
 import ReviewBox from './ReviewBox';
+import RAWGRating from './../card/RAWGRating';
+import Metascore from '../card/Metascore';
 const thumbnail = require('../../images/thumbnail.png');
 
 export default class GameFile extends React.Component {
@@ -32,7 +35,21 @@ export default class GameFile extends React.Component {
                 },
                 avScore: 0,
                 reviews: [],
-            }
+            },
+            externalData: {
+                rating: 0,
+                rating_top: 0,
+                ratings: [
+                    {
+                        id: 0,
+                        title: '',
+                        count: 0,
+                        percent: 0.0,
+                    }
+                ],
+                ratings_count: 0,
+                metacritic: 0,
+            },
         }
         console.log(props)
         console.log(this.state)
@@ -69,8 +86,19 @@ export default class GameFile extends React.Component {
         getGame(id).then(result => {
             console.log(result)
             result.avScore = this.calculateAvScore(result.reviews)
-            this.setState({ gameData : result });
+            this.setState({ gameData : result, },() => this.fetchExternalReviews());
         }).catch(e => {this.setState({ error: e.message })})
+    }
+
+    fetchExternalReviews(){
+        getGameData(this.state.gameData.name)
+            .then((response)=>{
+                this.setState({ externalData: response, });
+            })
+            .catch((error)=>{
+                console.log(error);
+                this.setState({ error: error.message });
+            })
     }
 
     calculateAvScore(reviews){
@@ -102,10 +130,10 @@ export default class GameFile extends React.Component {
                             </div>
                             <div className="column">
                                 <div style={{marginLeft:"25%"}}>
-                                    <h4>average score: {this.state.gameData.avScore}/5 </h4>
+                                    <h5>average score: {this.state.gameData.avScore}/5 </h5>
                                 </div>
                                 <div style={{marginLeft:"24%"}}>
-                                    <ReactStars count={5} edit={false} size={75} value={this.state.gameData.avScore} color2={'#ffd700'} />
+                                    <ReactStars count={5} edit={false} size={50} value={this.state.gameData.avScore} color2={'#ffd700'} />
                                 </div>
                             </div>
                     </div>
@@ -287,6 +315,59 @@ export default class GameFile extends React.Component {
         return this.state.gameData.reviews.find(e => e.userID == id)
     }
 
+    externalContent(){
+        return (
+            <div style={{margin: "1% 2% 1% 2%"}}>
+                <div className="card file-content" style={{paddingLeft:"2%"}}>
+                    <div className="row">
+                        <h4 style={{paddingLeft:"2%", color:"orange"}}><b>External Ratings and Scores</b></h4>
+                    </div>
+                    <div className="row" style={{border:"1px solid red", marginRight:"1%", marginBottom:"1%", paddingTop:"1%", paddingBottom:"1%", backgroundColor:"black", color:"gray"}}>
+                        <div className="col-sm-6">
+                            {this.renderExternalScores()}
+                        </div>
+                        <div className="col-sm-6">
+                            {this.renderMetascore()}
+                        </div>
+                    </div>
+                    <div>
+                        Powered by <a href='https://rawg.io/apidocs' >rawg.io</a>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    renderExternalScores(){
+        return(
+            <div>
+                <h5>Scores according to <a href='https://rawg.io/' style={{color:"white"}}><b>RAWG.io</b></a></h5>
+                Average: {this.state.externalData.rating}/5
+                <br/>
+                <ReactStars count={5} edit={false} size={30} value={this.state.externalData.rating} color2={'blue'} />
+                
+                On account of: {this.state.externalData.ratings_count} ratings
+                {this.state.externalData.ratings.map((value, index)=><RAWGRating value={value} key={index}/>)}
+            </div>
+        )
+    }
+
+    renderMetascore(){
+        if (this.state.externalData.metacritic){
+            return(
+                <div>
+                    <h5>Scores according to <a href='https://www.metacritic.com/' style={{color:"yellow"}}><b>Metacritic</b></a></h5>
+                    <div style={{marginLeft:'5%'}}>
+                        Metascore: 
+                        <div style={{marginLeft:'5%'}}>
+                            <Metascore metascore={this.state.externalData.metacritic}/>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     render(){
         return(
             <div className="GameFile body-container">
@@ -297,6 +378,7 @@ export default class GameFile extends React.Component {
                     {this.videos()}
                     {this.images()}
                     {this.creators()}
+                    {this.externalContent()}
                     {this.renderLeaveReview()}
                     {this.reviews()}
                 </div>

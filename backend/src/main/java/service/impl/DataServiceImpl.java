@@ -807,7 +807,7 @@ public class DataServiceImpl implements DataService {
 
 
             falloutBrotherhoodOfSteel = new Game();
-            falloutBrotherhoodOfSteel.setName("Fallout Brother hood of Steel");
+            falloutBrotherhoodOfSteel.setName("Fallout Brotherhood of Steel");
             falloutBrotherhoodOfSteel.setGenre(Genre.Rol);
             falloutBrotherhoodOfSteel.setPlatform(Platform.PS2);
             falloutBrotherhoodOfSteel.setUrlImage("https://i11c.3djuegos.com/juegos/5151/fallout__brotherhood_of_steel/fotos/ficha/fallout__brotherhood_of_steel-1697650.jpg");
