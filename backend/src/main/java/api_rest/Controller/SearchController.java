@@ -12,11 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class AppController {
+public class SearchController {
     private GameServiceImpl gameService = new GameServiceImpl(new HibernateGameDAO());
     private SearchService searchService = new SearchService(new HibernateSearchDAO());
     private DeveloperServiceimpl developerService = new DeveloperServiceimpl(new HibernateDeveloper());
     private ServiceStudioimpl studioService = new ServiceStudioimpl(new HibernateStudioDAO());
+    private ServiceUserimpl userService = new ServiceUserimpl(new HibernateUserDAO());
 
     public Context searchGameById(Context ctx){
         Game game = gameService.searchGameById(Long.parseLong(ctx.pathParam("id")));
@@ -27,6 +28,13 @@ public class AppController {
         DataGameFile dataGameFile = new DataGameFile(game, score);
         ctx.status(200);
         return ctx.json(dataGameFile);
+    }
+
+    public Context searchUserById(Context ctx){
+        User user = userService.searchUser(Long.parseLong(ctx.pathParam("id")));
+        DataUserSearch dataUserFile = new DataUserSearch(user);
+        ctx.status(200);
+        return ctx.json(dataUserFile);
     }
 
     public Context searchDeveloperById(Context ctx){
