@@ -5,6 +5,7 @@ import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Entity
@@ -42,6 +43,11 @@ public class Game {
 
     public void addDevelopers(Developer developer) {
         this.developers.add(developer);
+    }
+
+    public void addReview(Review review){
+        this.myReviews.add(review);
+        review.setGame(this);
     }
 
     public Game(){
@@ -126,12 +132,12 @@ public class Game {
         return myReviews;
     }
 
-    public void addReview(Review review){
-        this.myReviews.add(review);
-        review.setGame(this);
-    }
+
 
     public void removeReview(Review review) {
         this.myReviews.remove(review);
     }
+
+
+
 }

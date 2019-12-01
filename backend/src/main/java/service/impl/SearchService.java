@@ -30,4 +30,8 @@ public class SearchService {
  public List<Game> searchByPlatform(Platform platform){
      return run(()->{ return this.searchDAO.searchByPlatform(platform);});
  }
+ public List<Game> searchAll(String game,Genre genre,Platform platform){
+     return run(()-> {return this.searchDAO.searchAll(game,genre,platform);});
+ }
+
 }
