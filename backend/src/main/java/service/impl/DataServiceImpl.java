@@ -79,6 +79,11 @@ public class DataServiceImpl implements DataService {
     private Game diablo3;
     private Game justDance;
     private Game qbert;
+    private Game fallout;
+    private Game fallout2;
+    private Game fallout3;
+    private Game falloutTactics;
+    private Game falloutBrotherhoodOfSteel;
 
 
     //Desarrolladores
@@ -87,6 +92,8 @@ public class DataServiceImpl implements DataService {
     private Developer johnRomero;
     private Developer johnCarmack;
     private DeveloperDAO developerDAO;
+    private Developer timCain;
+
 
 
 
@@ -100,6 +107,8 @@ public class DataServiceImpl implements DataService {
     private Studio capcom;
     private Studio sCESantaMonicaStudio;
     private Studio generation;
+    private Studio interplayEntertainment;
+
 
     //Reviews
     private Review pri;
@@ -206,6 +215,16 @@ public class DataServiceImpl implements DataService {
             LocalDate fundaciongeneration = LocalDate.of(1984, 1, 30);
             generation.setFundationDate(fundaciongeneration);
             generation.setCoverPage("https://i.vimeocdn.com/portrait/8390464_300x300");
+            //Interplay Entertainment
+            interplayEntertainment = new Studio();
+            interplayEntertainment.setName("Interplay Entertainment");
+            interplayEntertainment.setIsActive("Currently active");
+            LocalDate fundaInter = LocalDate.of(1983, 1, 30);
+            interplayEntertainment.setFundationDate(fundaInter);
+            interplayEntertainment.setCoverPage("https://vignette.wikia.nocookie.net/fallout/images/5/59/Interplay_Entertainment_logo.png/revision/latest?cb=20180619234822&path-prefix=es");
+
+
+
             //DESARROLLADOR
 
             //hideoKojima
@@ -242,8 +261,14 @@ public class DataServiceImpl implements DataService {
             johnCarmack.setUrlPhoto("https://as.com/meristation/imagenes/2019/11/12/noticias/1573560691_813107_1573560743_noticia_normal.jpg");
             LocalDate fechana = LocalDate.of(1985,1,29);
             johnCarmack.setDateOfBirth(fechana);
-
-
+            //TIM CAIN
+            timCain = new Developer();
+            timCain.setName("Tim");
+            timCain.setLastName("Cain");
+            timCain.setActuallyWorking("Interplay Entertainment");
+            timCain.setUrlPhoto("https://vignette.wikia.nocookie.net/vtmb/images/0/0f/Tim_cain.png/revision/latest?cb=20131104030621&path-prefix=es");
+            LocalDate fechaTimcain = LocalDate.of(1958,2,26);
+            timCain.setDateOfBirth(fechaTimcain);
             //JUEGOS
 
             lol = new Game();
@@ -752,6 +777,50 @@ public class DataServiceImpl implements DataService {
             qbert.setSinopsis("It is a 2D action game with puzzle elements that uses isometric graphics to create a pseudo-3D effect. The objective of each level in the game is to change the color of every cube in a pyramid by making Q*bert while avoiding obstacles and enemies");
             qbert.setUrlImage("https://media.vandal.net/t200/36244/qbert-rebooted-the-xbox-one-edition-20162511514_2.jpg");
 
+            fallout = new Game();
+            fallout.setName("Fallout");
+            fallout.setGenre(Genre.Rol);
+            fallout.setPlatform(Platform.PC);
+            fallout.setUrlImage("https://i11a.3djuegos.com/juegos/15911/fallout_76/fotos/ficha/fallout_76-4689888.jpg");
+            fallout.setSinopsis("Shelter 76 was built in West Virginia in 2076 to celebrate the 300th anniversary of the USA. UU. The shelter was scheduled to open its doors when war and radiation dissipated and settlers could settle in West Virginia at an event called Claim Day.");
+
+            fallout2 = new Game();
+            fallout2.setName("Fallout 2");
+            fallout.setGenre(Genre.Rol);
+            fallout2.setPlatform(Platform.PC);
+            fallout2.setUrlImage("https://s1.gaming-cdn.com/images/products/1932/orig/fallout-2-a-post-nuclear-role-playing-game-cover.jpg");
+            fallout2.setSinopsis("In the year 2241 Arroyo suffers the effects of radiation. The village leader decides to come to you, chosen from the tribe and descended from the first settler of Vault 13 and you are known as the Chosen One.");
+
+            fallout3 = new Game();
+            fallout3.setName("Fallout 3");
+            fallout3.setGenre(Genre.Rol);
+            fallout3.setPlatform(Platform.PS3);
+            fallout3.setUrlImage("https://http2.mlstatic.com/fallout-3-goty-ps3-entrega-gratis-gcpd-D_NQ_NP_671399-MPE26795898058_022018-F.jpg");
+            fallout3.setSinopsis("Fallout 3 takes place in the year 2277, 200 years after a world war for resources culminated in a nuclear holocaust. The setting is a post-apocalyptic and retrofuturist region that encompasses much of the state of Washington D.C.");
+
+            falloutTactics = new Game();
+            falloutTactics.setName("Fallout Tactics");
+            falloutTactics.setGenre(Genre.Rol);
+            falloutTactics.setPlatform(Platform.PC);
+            falloutTactics.setUrlImage("https://pcgamez-download.com/gimgs/fallout-tactics-gog-torrent-downloadgame-pcfree/fallout-tactics-windows-pc-cover-md65.jpg");
+            falloutTactics.setSinopsis("In his initiation ritual, the Warrior directs a squad to free the town of Brahmin Wood from the attack of bandits, because the leader of the town acceded to the Brotherhood's protection treatment.");
+
+
+            falloutBrotherhoodOfSteel = new Game();
+            falloutBrotherhoodOfSteel.setName("Fallout Brotherhood of Steel");
+            falloutBrotherhoodOfSteel.setGenre(Genre.Rol);
+            falloutBrotherhoodOfSteel.setPlatform(Platform.PS2);
+            falloutBrotherhoodOfSteel.setUrlImage("https://i11c.3djuegos.com/juegos/5151/fallout__brotherhood_of_steel/fotos/ficha/fallout__brotherhood_of_steel-1697650.jpg");
+            falloutBrotherhoodOfSteel.setSinopsis("After a worldwide catastrophe the characters in this role-playing game will have to face a totally destroyed and polluted planet.");
+
+
+
+
+
+
+
+
+
             //ESTUDIO y sus Juegos
             nintendo.addGame(marioBros);
             nintendo.addGame(sonic);
@@ -853,6 +922,21 @@ public class DataServiceImpl implements DataService {
             johnRomero.addStudy(nintendo);
             nintendo.addDeveloper(johnRomero);
 
+            ////
+            timCain.addStudy(interplayEntertainment);
+            timCain.addGame(fallout);
+            timCain.addGame(fallout2);
+            timCain.addGame(fallout3);
+            timCain.addGame(falloutBrotherhoodOfSteel);
+            timCain.addGame(falloutTactics);
+            interplayEntertainment.addDeveloper(timCain);
+            interplayEntertainment.addGame(fallout);
+            interplayEntertainment.addGame(fallout2);
+            interplayEntertainment.addGame(fallout3);
+            interplayEntertainment.addGame(falloutBrotherhoodOfSteel);
+            interplayEntertainment.addGame(falloutTactics);
+
+
             userDAO.save(user1);
             userDAO.save(user2);
 
@@ -865,12 +949,14 @@ public class DataServiceImpl implements DataService {
             studioDAO.save(capcom);
             studioDAO.save(sCESantaMonicaStudio);
             studioDAO.save(generation);
+            studioDAO.save(interplayEntertainment);
 
             //DAOS DEVELODER
             developerDAO.save(hideoKojima);
             developerDAO.save(markusPersson);
             developerDAO.save(johnRomero);
             developerDAO.save(johnCarmack);
+            developerDAO.save(timCain);
 
         });
     }

@@ -1,7 +1,9 @@
 package service.impl;
 
 import dao.impl.HibernateGameDAO;
+import dao.impl.HibernateReviewDAO;
 import dao.interf.GameDAO;
+import dao.interf.ReviewDAO;
 import dao.interf.UserDAO;
 import model.Game;
 import model.Review;
@@ -16,12 +18,14 @@ import static service.TransactionRunner.run;
 public class ServiceUserimpl implements ServiceUser {
     private UserDAO userDAO;
     private GameDAO gameDAO;
+    private ReviewDAO reviewDAO;
 
 
     public ServiceUserimpl(UserDAO userDAO){
 
         this.userDAO = userDAO;
         this.gameDAO = new HibernateGameDAO();
+        this.reviewDAO = new HibernateReviewDAO();
     }
 
 
@@ -57,6 +61,8 @@ public class ServiceUserimpl implements ServiceUser {
           });
     }
 
+
+
     @Override
     public void deleteReview(Long userID, Long gameID) {
         run(()->{
@@ -71,4 +77,15 @@ public class ServiceUserimpl implements ServiceUser {
             userDAO.update(userRecover);
         });
     }
+
+    @Override
+    public void changeProfilePhoto(Long userID, String photo) {
+        run(()->{
+            User userRecover = userDAO.recover(userID);
+            userRecover.setPhoto(photo);
+            userDAO.update(userRecover);
+        });
+    }
+
+
 }
