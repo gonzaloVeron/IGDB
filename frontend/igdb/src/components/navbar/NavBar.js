@@ -137,12 +137,7 @@ class NavBar extends React.Component {
                 </form>
 
                 <div>
-
                     {this.renderProfileDropdown()}
-                    {/*
-                    <button active onClick={this.goHome} className="buttonNavBar" >Mis ordenes</button>
-                    <button active onClick={this.logOut} className="buttonNavBar" >Cerrar sesion</button>
-                    */}
                 </div>
             </nav>
         )
