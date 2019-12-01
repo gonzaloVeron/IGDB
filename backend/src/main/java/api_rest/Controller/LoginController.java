@@ -1,17 +1,14 @@
 package api_rest.Controller;
 
-import api_rest.DataClass.DataUser;
+import api_rest.DataClass.DataUserLogin;
 import api_rest.DataClass.DataUserReturn;
 import dao.impl.HibernateUserDAO;
-import jdk.nashorn.internal.runtime.JSONFunctions;
 import model.User;
 import service.impl.ServiceUserimpl;
 import service.interf.ServiceUser;
 
 import io.javalin.Context;
 
-import javax.xml.crypto.Data;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoginController {
@@ -30,7 +27,7 @@ public class LoginController {
             Ejemplo: w3Unpocodet0d0 */
 
     public Context login(Context ctx) throws Exception {
-        DataUser dataUser = ctx.bodyAsClass(DataUser.class);
+        DataUserLogin dataUser = ctx.bodyAsClass(DataUserLogin.class);
 
         Pattern pattern = Pattern.compile("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{4,16}$");
         boolean match = pattern.matcher(dataUser.password).matches();
@@ -49,7 +46,7 @@ public class LoginController {
     }
 
     public Context register(Context ctx) throws Exception {
-        DataUser dataUser = ctx.bodyAsClass(DataUser.class);
+        DataUserLogin dataUser = ctx.bodyAsClass(DataUserLogin.class);
 
         Pattern pattern = Pattern.compile("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{4,16}$");
         Boolean match = pattern.matcher(dataUser.password).matches();

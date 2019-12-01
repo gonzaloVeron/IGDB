@@ -1,12 +1,12 @@
 package api_rest.DataClass;
 
-public class DataUser {
+public class DataUserLogin {
     public String name;
     public String password;
 
-    public  DataUser() {}
+    public DataUserLogin() {}
 
-    public DataUser(String name, String  password){
+    public DataUserLogin(String name, String  password){
         this.name = name;
         this.password = password;
     }
