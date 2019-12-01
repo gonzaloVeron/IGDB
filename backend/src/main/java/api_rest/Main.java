@@ -1,9 +1,6 @@
 package api_rest;
 
-import api_rest.Controller.AppController;
-import api_rest.Controller.LogErrorController;
-import api_rest.Controller.LoginController;
-import api_rest.Controller.ReviewController;
+import api_rest.Controller.*;
 import api_rest.Exceptions.ElementAlreadyExistsException;
 import io.javalin.Javalin;
 
@@ -14,10 +11,11 @@ import static io.javalin.apibuilder.ApiBuilder.*;
 public class Main {
 
     public static void main(String[] args){
-        AppController controller = new AppController();
+        SearchController controller = new SearchController();
         LoginController loginController = new LoginController();
         LogErrorController logErrorController = new LogErrorController();
         ReviewController reviewController = new ReviewController();
+        UserController userController = new UserController();
 
         controller.initializeDatabase();
 
@@ -57,6 +55,18 @@ public class Main {
             path("game", () -> {
                 path(":id", () -> {
                     get(controller::searchGameById);
+                });
+            });
+
+            path("user", () -> {
+                path(":id", () -> {
+                    get(controller::searchUserById);
+                });
+            });
+
+            path("user", () -> {
+                path(":id", () -> {
+                    put(userController::changePhotoUser);
                 });
             });
 
