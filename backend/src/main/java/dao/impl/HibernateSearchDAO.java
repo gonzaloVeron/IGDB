@@ -7,9 +7,49 @@ import model.Platform;
 import org.hibernate.Session;
 import service.TransactionRunner;
 
+import javax.persistence.GeneratedValue;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class HibernateSearchDAO implements SearchDAO {
+
+    
+    @Override
+    public List<Game> searchAll(String name, Genre genre, Platform platform) {
+
+        Set<Game> games = new HashSet<>();
+
+        if (name == "" && genre == null && platform == null) {
+            Session session = TransactionRunner.getCurrentSession();
+
+            String hql = "SELECT g from Game as g ";
+
+            return session.createQuery(hql, Game.class).getResultList();
+        }
+
+        if (genre != null) {
+            games.addAll(this.searchByGenre(genre));
+        }
+        if (platform != null) {
+            games.addAll(this.searchByPlatform(platform));
+        }
+        if (name != "") {
+            List<Game> filterGame = this.searchByName(name);
+
+            if (!games.isEmpty()) {
+                games.retainAll(filterGame);
+            } else {
+                games.addAll(filterGame);
+            }
+        }
+
+        return games.stream().collect(Collectors.toList());
+    }
+
+
 
     @Override
     public List<Game> searchByGenre(Genre genre) {
@@ -43,4 +83,6 @@ public class HibernateSearchDAO implements SearchDAO {
 
         return session.createQuery(hql, Game.class).setParameter(1, nombre).getResultList();
     }
+
+
 }
