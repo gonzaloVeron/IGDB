@@ -5,7 +5,8 @@ import model.Review;
 public class DataReviewClass {
     public Long id;
     public String description;
-    public int score;
+    public
+    int score;
     public String nameUser;
     public Long userID;
     public String nameGame;

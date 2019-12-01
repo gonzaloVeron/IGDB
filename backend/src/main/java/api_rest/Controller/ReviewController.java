@@ -7,15 +7,12 @@ import dao.impl.HibernateGameDAO;
 import dao.impl.HibernateUserDAO;
 import io.javalin.Context;
 import model.Game;
-import model.Review;
 import model.User;
 import service.impl.GameServiceImpl;
 import service.impl.ServiceUserimpl;
 import service.interf.ServiceUser;
 
-import java.util.stream.Collectors;
-
-public class ReviewControler {
+public class ReviewController {
     private GameServiceImpl gameService = new GameServiceImpl(new HibernateGameDAO());
     private ServiceUser serviceUser = new ServiceUserimpl(new HibernateUserDAO());
 
