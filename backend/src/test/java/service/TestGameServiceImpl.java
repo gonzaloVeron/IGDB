@@ -96,7 +96,7 @@ public class TestGameServiceImpl {
     @Test
     public void search_Genre(){
         List<Game> games_genre = searchService.searchAll("", Genre.Strategy,Platform.Any);
-        Assert.assertEquals(1,games_genre.size());
+        Assert.assertEquals(2,games_genre.size());
         Assert.assertEquals("league of legends",games_genre.get(0).getName());
     }
 
