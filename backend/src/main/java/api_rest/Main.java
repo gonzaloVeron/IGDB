@@ -64,7 +64,7 @@ public class Main {
                 });
             });
 
-            path("user", () -> {
+            path("changephotouser", () -> {
                 path(":id", () -> {
                     put(userController::changePhotoUser);
                 });

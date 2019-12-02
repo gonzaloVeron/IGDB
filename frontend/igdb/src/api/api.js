@@ -14,10 +14,14 @@ export const getDevStudio = studioID => request('get', `/studio/${studioID}`)
 
 export const getSearch = (searchValue, platform, genre) => request('get', `/search/${searchValue}/${genre}/${platform}`)
 
-export const register = body => request('post', '/register', body);
+export const register = body => request('post', '/register', body)
 
-export const signIn = body => request('post', '/login', body);
+export const signIn = body => request('post', '/login', body)
 
-export const putReview = (gameID, body) => request('put', `/review/${gameID}`, body);
+export const putReview = (gameID, body) => request('put', `/review/${gameID}`, body)
 
-export const deleteReview = (gameID, body) => request('delete', `/review/${gameID}`, body);
+export const deleteReview = (gameID, body) => request('delete', `/review/${gameID}`, body)
+
+export const getUser = userId => request('get', `/user/${userId}`)
+
+export const changeImage = (userId, body) => request('put', `/changephotouser/${userId}`, body)

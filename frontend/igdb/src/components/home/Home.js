@@ -1,8 +1,11 @@
 import React from 'react';
+import { getUser, changeImage } from '../../api/api'
 import './home.css';
 import NavBar from '../navbar/NavBar'
 import ReviewCard from '../card/ReviewCard';
+import { tsImportEqualsDeclaration } from '@babel/types';
 const thumbnail = require('../../images/thumbnail.png');
+
 
 export default class Home extends React.Component {
 
@@ -10,22 +13,41 @@ export default class Home extends React.Component {
         super(props);
         this.state = {
             userData:{
-                userName:'',
-                urlImage:'',
-                reviews:[],
+                id: -999,
+                name:'',
+                photo:'',
+                myReviews:[],
             },
             error: '',
+            genre:'',
+            platform:'',
+            search:'',
+            imageModal:'',
+            showModal:"false",
         };
-        this.cambiarImagen = this.cambiarImagen.bind(this)
         this.renderUserImage = this.renderUserImage.bind(this)
         this.renderUserReviews = this.renderUserReviews.bind(this)
         this.renderHomeWithoutUser = this.renderHomeWithoutUser.bind(this)
         this.renderNav = this.renderNav.bind(this)
         this.renderHome = this.renderHome.bind(this)
+        this.goToRegister = this.goToRegister.bind(this)
+        this.goToLogin = this.goToLogin.bind(this)
+        this.modal = this.modal.bind(this)
+        this.changeGenre = this.changeGenre.bind(this)
+        this.changeSearch = this.changeSearch.bind(this)
+        this.changePlatform = this.changePlatform.bind(this)
+        this.changePath = this.changePath.bind(this)
+        this.closeButtonModal = this.closeButtonModal.bind(this)
+        this.changeUserImage = this.changeUserImage.bind(this)
+        this.openModal = this.openModal.bind(this)
     }
 
     componentDidMount() {
-        
+        let id = localStorage.getItem("id")
+        getUser(id).then(result => {
+            this.setState({ userData : result });
+            console.log(result)
+        }).catch(e => {this.setState({ error: e.message })})
     }
 
     renderNav(){
@@ -75,6 +97,22 @@ export default class Home extends React.Component {
         )
     }
 
+    changeGenre(event){
+        this.setState({ genre: event.target.value }, () => console.log(this.state.genre))
+    }
+
+    changePlatform(event){
+        this.setState({ platform: event.target.value }, () => console.log(this.state.platform))
+    }
+
+    changeSearch(event) {
+        this.setState({ search: event.target.value }, () => console.log(this.state.search))
+    }
+
+    doSearch() {
+        this.props.history.push(`/search/${this.state.search}/${this.state.platform}/${this.state.genre}`)
+    }
+
     renderHomeWithoutUser(){
         return(
             <div>
@@ -84,15 +122,23 @@ export default class Home extends React.Component {
                 </div>
                 <div className="row" style={{paddingTop:"17%"}}>
                     <div style={{paddingLeft:"30%"}}>
-                        <button type="button" className="btn btn-danger" type="submit">Register</button> 
+                        <button type="button" className="btn btn-danger" type="submit" onClick={this.goToRegister}>Register</button> 
                     </div>
                     <div style={{paddingLeft:"32%"}}>
-                        <button type="button" className="btn btn-danger" type="submit">Login</button>
+                        <button type="button" className="btn btn-danger" type="submit" onClick={this.goToLogin}>Login</button>
                     </div> 
                 </div>
             </div>
 
         )
+    }
+
+    goToRegister(){
+        this.props.history.push('/register')
+    }
+  
+    goToLogin(){
+        this.props.history.push('/login')
     }
 
     renderHomeWithUser(){
@@ -104,9 +150,9 @@ export default class Home extends React.Component {
                         <div className="row">
                             {this.renderUserImage()}
                             <div className="col">
-                                <h1 style={{color:"white"}}>Username: {this.state.userData.userName}</h1>
-                                <h1 style={{color:"white"}}>Register date: {this.state.userData.userName}</h1>
-                                <h1 style={{color:"white"}}>Username: {this.state.userData.userName}</h1>
+                                <h1 style={{color:"white"}}>Username: {this.state.userData.name}</h1>
+                                <h1 style={{color:"white"}}>Register date:</h1>
+                                <h1 style={{color:"white"}}>....</h1>
                             </div>
                         </div>
                     </div>
@@ -119,22 +165,23 @@ export default class Home extends React.Component {
         )
     }
 
-    cambiarImagen(){
-        console.log("Me tocaste")
-    }
-
     renderUserImage(){
-        let thumb = this.state.userData.imageUrl || thumbnail
+        let thumb = this.state.userData.photo || thumbnail
         return(
             <div style={{marginRight:"2%", marginLeft:"2%", marginTop:"1%"}}>
-                <img className="image" src={thumbnail} alt='' onClick={this.cambiarImagen} height="200" width="150"/>
+                <img className="image" src={thumb} alt='' data-toggle="modal" data-target="#exampleModalCenter" onClick={this.openModal} height="200" width="150"/>
             </div>
         )
     }
 
+    openModal(){
+        this.setState({showModal:"true"})
+    }
+
+
     renderUserReviews(){
         return(
-            this.state.userData.reviews.map((re, i) => {return <ReviewCard key={i} review={re}/>})
+            this.state.userData.myReviews.map((re, i) => {return <ReviewCard key={i} review={re}/>})
         )
     }
 
@@ -146,10 +193,55 @@ export default class Home extends React.Component {
         }
     }
 
+    modal(){
+        return(
+            <div show={this.state.showModal} onHide={this.closeButtonModal} className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalCenterTitle">Change Image</h5>
+                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            Insert path:
+                            <input type="search" className="form-control" placeholder="Path image" onChange={this.changePath}/>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal" onClick={this.closeButtonModal}>Close</button>
+                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.changeUserImage}>Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    changeUserImage(){
+        this.setState({showModal:"false"})
+        changeImage(this.state.userData.id, {photo:this.state.imageModal})
+        .then(result => {
+            this.setState({userData: {id:this.state.userData.id, name:this.state.userData.name, photo:this.state.imageModal, myReviews:this.state.userData.myReviews}})
+            this.setState({imageModal:''})
+          })
+          .catch(e => this.setState({ error: "Pasaron cosas" }))
+    }
+
+    closeButtonModal(){
+        this.setState({imageModal:''})
+        this.setState({showModal:"false"})
+    }
+
+    changePath(event){
+        this.setState({ imageModal: event.target.value }, () => console.log(this.state.imageModal))
+    }
+
     render(){
         return (
             <div>
                 {this.renderHome()}
+                {this.modal()}
             </div>
         )
     }
