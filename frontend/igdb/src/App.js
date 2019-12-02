@@ -1,4 +1,4 @@
-import React, {Suspense}  from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route  } from 'react-router-dom';
 import Home from './components/home/Home';
 import Search from './components/search/Search';
@@ -11,10 +11,8 @@ import './App.css';
 
 const App = () => (
   <Router>
-    <Suspense fallback={<div>Loading...</div>}>
       <Switch> 
-        {/*<Route exact path="/register" component={Register}/>*/}
-        <Route path="/search/:searchValue/:platform/:genre" component={Search}/> 
+        <Route path="/search/:platform/:genre/:query" component={Search}/> 
         <Route path="/game/:id" component={GameFile}/>
         <Route path="/home" component={Home}/>
         <Route path="/dev/:id" component={DevFile}/>
@@ -23,7 +21,6 @@ const App = () => (
         <Route path="/login" component={Login}/>
         <Route path="/" component={Home}/> 
       </Switch>
-    </Suspense>
   </Router>
 );
 

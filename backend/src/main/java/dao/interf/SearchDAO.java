@@ -7,7 +7,5 @@ import model.Platform;
 import java.util.List;
 
 public interface SearchDAO {
-    List<Game> searchByGenre(Genre genre);
-    List<Game> searchByPlatform(Platform platform);
-    List<Game> searchByName(String nombre);
+    List<Game> searchAll(String name, Genre genre, Platform platform);
 }

@@ -8,12 +8,15 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true)
     private String description;
     private int star;
     @ManyToOne
     private User user;
     @ManyToOne
     private Game game;
+
 
     public Review(){
 
@@ -50,4 +53,5 @@ public class Review {
     }
 
     public User getUser(){return this.user;}
+
 }

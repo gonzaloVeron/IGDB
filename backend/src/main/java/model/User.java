@@ -19,6 +19,10 @@ public class User {
     private String name;
     private String password;
 
+    private LocalDate registerDate;
+
+    private String photo;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SELECT)
     private List<Review> myReviews;
@@ -30,10 +34,19 @@ public class User {
 
     }
 
-    public User(String name, String password){
+    public User(String name, String password, LocalDate registerDate){
         this.name = name;
         this.password = password;
         myReviews = new ArrayList<>();
+        this.registerDate = registerDate;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getName() {
@@ -57,6 +70,7 @@ public class User {
     public List<Review> getMyReviews() {
         return myReviews;
     }
+
     public void addReview(Review review){
         this.myReviews.add(review);
         review.setUser(this);
@@ -65,4 +79,13 @@ public class User {
     public void removeReview(Review review) {
         this.myReviews.remove(review);
     }
+
+    public LocalDate getRegisterDate(){
+        return registerDate;
+    }
+
+    public void setRegisterDate(LocalDate registerDate){
+        this.registerDate = registerDate;
+    }
+
 }

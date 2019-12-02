@@ -25,7 +25,7 @@ export default class Register extends React.Component {
         localStorage.setItem("id", result.id)
         this.props.history.goBack() 
       })
-      .catch(e => this.setState({ error: "Usuario y/o contraseña incorrectos" }))
+      .catch(e => this.setState({ error: "Wrong user or password" }))
   }
 
   renderInput(value, placeholder, inputType, onChange) {
@@ -51,12 +51,12 @@ export default class Register extends React.Component {
             <h3>{this.state.error}</h3>
           </div>
           <form method="post">
-            {this.renderInput(this.state.username, "Usuario", 'text', this.changeUsername)}
-            {this.renderInput(this.state.password, "Contraseña", 'password', this.changePassword)}
-            <button type="button" className="btn btn-danger btn-block btn-large" onClick={ this.register }>Registrarse</button>
+            {this.renderInput(this.state.username, "User", 'text', this.changeUsername)}
+            {this.renderInput(this.state.password, "Password", 'password', this.changePassword)}
+            <button type="button" className="btn btn-danger btn-block btn-large" onClick={ this.register }>Register</button>
             <div>
               <br />  
-              <h2>Ya tienes cuenta? <Link to={'/login'}>Iniciar sesion</Link></h2>
+              <h2>You have an account? <Link to={'/login'}>Log In</Link></h2>
             </div>
           </form>
         </div>

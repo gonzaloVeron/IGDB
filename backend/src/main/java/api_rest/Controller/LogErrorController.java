@@ -1,6 +1,7 @@
 package api_rest.Controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,10 @@ public class LogErrorController {
         System.out.println(new Date().toString());
         System.out.println("-----------------------");
         System.out.println(err.getMessage());
+        for (StackTraceElement element:
+             err.getStackTrace()) {
+            System.out.println(element);
+        }
         System.out.println("<=====================>");
     }
 

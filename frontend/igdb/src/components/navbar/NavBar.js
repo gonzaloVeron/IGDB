@@ -2,17 +2,20 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './NavBar.css';
 import {Dropdown, Image, Col, Container, Button} from 'react-bootstrap'
+import { getUser } from '../../api/api.js';
 import defaultprofileicon from "./defaultprofileicon.png"
-
+const thumbnail = require('../../images/thumbnail.png');
 
 class NavBar extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+        console.log(props);
+        let {query, platform, genre} = props.match.params
         this.state = {
-            search: '',
-            genre: "Any",
-            platform: "Any",
+            search: query || '',
+            genre: genre || "Any",
+            platform: platform || "Any",
             error: '',
         };
         this.changeSearch = this.changeSearch.bind(this)
@@ -32,7 +35,7 @@ class NavBar extends React.Component {
     }
 
     doSearch() {
-        this.props.history.push(`/search/${this.state.search}/${this.state.platform}/${this.state.genre}`)
+      this.props.history.push(`/search/${this.state.platform}/${this.state.genre}/${this.state.search}`)
     }
 
     goHome() {
@@ -60,12 +63,13 @@ class NavBar extends React.Component {
     }
 
     goToProfle(){
-      console.log("No hago nada")
+      this.props.history.push('/home')
     }
 
     logOut(){
       localStorage.removeItem("userName")
       localStorage.removeItem("id")
+      localStorage.removeItem("userImage")
       window.location.replace('') //Esto en teoria refresca la pagina
     }
 
@@ -73,15 +77,15 @@ class NavBar extends React.Component {
       if(localStorage.getItem("userName") == null){
         return(
           <div>
-            <Button variant="primary" onClick={this.goToRegister}>Register</Button>
-            <Button variant="primary" onClick={this.goToLogin}>LogIn</Button>
+            <Button variant="danger" onClick={this.goToRegister}>Register</Button>
+            <Button variant="danger" onClick={this.goToLogin}>LogIn</Button>
           </div>
         )
       }else{
         return(
           <div>
-            <Button variant="primary" onClick={this.goToProfle}>Go to profile</Button>
-            <Button variant="primary" type="submit" onClick={this.logOut}>LogOut</Button>
+            <Button variant="danger" onClick={this.goToProfle}>Go to profile</Button>
+            <Button variant="danger" type="submit" onClick={this.logOut}>LogOut</Button>
           </div>
         )
       }
@@ -96,7 +100,7 @@ class NavBar extends React.Component {
                 <form>
                     <div className="form-row">
                         <div className="col-9">
-                            <input type="search" className="form-control" placeholder="What game do you want ?" onChange={this.changeSearch}/>
+                            <input type="search" className="form-control" placeholder="What game do you want ?" value={this.state.search} onChange={this.changeSearch}/>
                             <div className='row'>
                               <select className="col btn btn-danger dropdown-toggle" value={this.state.genre} onChange={this.changeGenre}>
                                   <option value={"Any"}>Genre</option>
@@ -137,27 +141,23 @@ class NavBar extends React.Component {
                 </form>
 
                 <div>
-
                     {this.renderProfileDropdown()}
-                    {/*
-                    <button active onClick={this.goHome} className="buttonNavBar" >Mis ordenes</button>
-                    <button active onClick={this.logOut} className="buttonNavBar" >Cerrar sesion</button>
-                    */}
                 </div>
             </nav>
         )
     }
  
     renderProfileDropdown(){
+      let thumb = localStorage.getItem("userImage") || thumbnail
         return (
-          <Dropdown>
+          <Dropdown style={{marginRight:"45%"}}>
             <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
               { this.renderProfileIcon() }
             </Dropdown.Toggle>
     
-            <Dropdown.Menu id="basic-nav-dropdown" alignRight >
+            <Dropdown.Menu className="dropdown-content "id="basic-nav-dropdown" alignRight>
               <div className="text-center">
-                <Image style={{ width: '150px' }} src={defaultprofileicon} roundedCircle />
+                <Image style={{ width: '150px' }} src={thumb} roundedCircle />
                 <h5>{ localStorage.getItem("userName") }</h5>
               </div>
               <div className="text-center">
@@ -170,11 +170,12 @@ class NavBar extends React.Component {
       }
     
       renderProfileIcon(){
+        let thumb = localStorage.getItem("userImage") || thumbnail
         return (
           <div>
             <Container>
               <Col xs={6} md={4}>
-                <Image style={{ width: '40px' }} src={defaultprofileicon} roundedCircle />
+                <Image style={{ width: '40px' }} src={thumb} roundedCircle />
               </Col>
             </Container>
           </div>
