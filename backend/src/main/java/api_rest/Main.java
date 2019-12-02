@@ -103,13 +103,7 @@ public class Main {
             });
 
             path("search", () -> {
-               path(":name", () -> {
-                  path(":genre", () -> {
-                     path(":platform", () -> {
-                        get(controller::searchGameDevStdByNameGenrePlatform);
-                     });
-                  });
-               });
+                get(controller::searchGameDevStdByNameGenrePlatform);
             });
 
         });

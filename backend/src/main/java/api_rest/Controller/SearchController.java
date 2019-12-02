@@ -52,21 +52,16 @@ public class SearchController {
     }
 
     public List<Game> searchGamesByNameGenrePlatform(Context ctx){
-        ArrayList<Game> games = new ArrayList<>();
-        games.addAll(searchService.searchByName(ctx.pathParam("name")));
-        if (!ctx.pathParam("genre").equals("Any")){
-            games.addAll(searchService.searchByGender(Genre.valueOf(ctx.pathParam("genre"))));
-        }
-        if (!ctx.pathParam("platform").equals("Any")) {
-            games.addAll(searchService.searchByPlatform(Platform.valueOf(ctx.pathParam("platform"))));
-        }
-        return games;
+        Genre genre = (ctx.queryParam("genre").equals("Any")) ? null : Genre.valueOf(ctx.queryParam("genre"));
+        Platform platform = (ctx.queryParam("platform").equals("Any")) ? null : Platform.valueOf(ctx.queryParam("platform"));
+
+        return searchService.searchAll(ctx.queryParam("name"), genre, platform);
     }
 
 
     public Context searchGameDevStdByNameGenrePlatform(Context ctx){
-        List<Developer> devs = developerService.searchDeveloper(ctx.pathParam("name"));;
-        List<Studio> studies = studioService.searchStudies(ctx.pathParam("name"));;
+        List<Developer> devs = developerService.searchDeveloper(ctx.queryParam("name"));;
+        List<Studio> studies = studioService.searchStudies(ctx.queryParam("name"));;
         List<Game> games = this.searchGamesByNameGenrePlatform(ctx);
 
         List<DataGameSearch> dataGames = parseToDataGameSearch(this.withoutRepeated(games));

@@ -12,7 +12,14 @@ export const getDev = devID => request('get', `/dev/${devID}`)
 
 export const getDevStudio = studioID => request('get', `/studio/${studioID}`)
 
-export const getSearch = (searchValue, platform, genre) => request('get', `/search/${searchValue}/${genre}/${platform}`)
+export const getSearch = (searchValue, platform, genre) => { request('get', `/search?query=${searchValue}&genre=${genre}&platform=${platform}`) }
+
+export const getSearch = (searchValue, platform, genre) => {
+  const key = "query=" + (searchValue != "") ? searchValue : ""
+  const plat = '&platform=' + platform
+  const get = '&genre=' + genre
+  return request('get', '/search?'+ key + plat + gen)
+})
 
 export const register = body => request('post', '/register', body)
 

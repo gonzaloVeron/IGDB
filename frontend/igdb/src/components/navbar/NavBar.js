@@ -60,7 +60,7 @@ class NavBar extends React.Component {
     }
 
     goToProfle(){
-      console.log("No hago nada")
+      this.props.history.push('/home')
     }
 
     logOut(){

@@ -19,9 +19,9 @@ export default class Home extends React.Component {
                 myReviews:[],
             },
             error: '',
-            genre:'',
-            platform:'',
-            search:'',
+            genre:"Any",
+            platform:"Any",
+            search:"Any",
             imageModal:'',
             showModal:"false",
         };
@@ -40,6 +40,7 @@ export default class Home extends React.Component {
         this.closeButtonModal = this.closeButtonModal.bind(this)
         this.changeUserImage = this.changeUserImage.bind(this)
         this.openModal = this.openModal.bind(this)
+        this.doSearch = this.doSearch.bind(this)
     }
 
     componentDidMount() {
@@ -110,7 +111,11 @@ export default class Home extends React.Component {
     }
 
     doSearch() {
-        this.props.history.push(`/search/${this.state.search}/${this.state.platform}/${this.state.genre}`)
+        if(this.state.search == ""){
+            this.props.history.push(`/search/"Any"/${this.state.platform}/${this.state.genre}`)
+        }else{
+            this.props.history.push(`/search/${this.state.search}/${this.state.platform}/${this.state.genre}`)
+        }
     }
 
     renderHomeWithoutUser(){
@@ -124,7 +129,7 @@ export default class Home extends React.Component {
                     <div style={{paddingLeft:"30%"}}>
                         <button type="button" className="btn btn-danger" type="submit" onClick={this.goToRegister}>Register</button> 
                     </div>
-                    <div style={{paddingLeft:"32%"}}>
+                    <div style={{paddingLeft:"36%"}}>
                         <button type="button" className="btn btn-danger" type="submit" onClick={this.goToLogin}>Login</button>
                     </div> 
                 </div>
@@ -181,7 +186,9 @@ export default class Home extends React.Component {
 
     renderUserReviews(){
         return(
-            this.state.userData.myReviews.map((re, i) => {return <ReviewCard key={i} review={re}/>})
+            <div style={{paddingLeft:"50%"}}>
+                {this.state.userData.myReviews.map((re, i) => {return <ReviewCard key={i} review={re}/>})}
+            </div>
         )
     }
 
@@ -195,7 +202,7 @@ export default class Home extends React.Component {
 
     modal(){
         return(
-            <div show={this.state.showModal} onHide={this.closeButtonModal} className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div show={this.state.showModal} className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                         <div className="modal-header">

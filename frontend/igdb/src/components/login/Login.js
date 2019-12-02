@@ -26,7 +26,7 @@ class Login extends React.Component {
         localStorage.setItem("id", result.id)
         this.props.history.goBack();
       })
-      .catch(e => this.setState({ error: "Usuario y/o contraseña incorrectos" }))
+      .catch(e => this.setState({ error: "Wrong user or password"}))
   }
 
   renderInput(value, placeholder, inputType, onChange) {
@@ -52,12 +52,12 @@ class Login extends React.Component {
               <h3>{this.state.error}</h3>
           </div>
           <form method="post">
-            {this.renderInput(this.state.username, "Usuario", 'text', this.changeUsername)}
-            {this.renderInput(this.state.password, "Contraseña", 'password', this.changePassword)}
-            <button type="button" className="btn btn-danger btn-block btn-large" onClick={ this.login }>Iniciar sesion</button>
+            {this.renderInput(this.state.username, "User", 'text', this.changeUsername)}
+            {this.renderInput(this.state.password, "Password", 'password', this.changePassword)}
+            <button type="button" className="btn btn-danger btn-block btn-large" onClick={ this.login }>Log In</button>
             <div>
               <br />
-              <h2>No tienes cuenta? <Link to={'/register'}>Crea una</Link></h2>
+              <h2>You do not have an account? <Link to={'/register'}>Create one</Link></h2>
             </div>
           </form>
         </div>
