@@ -4,6 +4,7 @@ import api_rest.DataClass.*;
 import dao.impl.*;
 
 import io.javalin.Context;
+import io.javalin.Javalin;
 import model.*;
 import service.impl.*;
 import service.interf.DataService;
@@ -55,8 +56,9 @@ public class SearchController {
     public List<Game> searchGamesByNameGenrePlatform(Context ctx){
         Genre genre = Genre.valueOf(ctx.queryParam("genre"));
         Platform platform = Platform.valueOf(ctx.queryParam("platform"));
+        String name = ctx.queryParam("query");
 
-        return searchService.searchAll(ctx.queryParam("query"), genre, platform);
+        return searchService.searchAll(name, genre, platform);
     }
 
 

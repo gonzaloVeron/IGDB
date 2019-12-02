@@ -9,11 +9,13 @@ const thumbnail = require('../../images/thumbnail.png');
 class NavBar extends React.Component {
 
     constructor(props) {
-        super(props)
+        super(props);
+        console.log(props);
+        let {query, platform, genre} = props.match.params
         this.state = {
-            search: '',
-            genre: "Any",
-            platform: "Any",
+            search: query || '',
+            genre: genre || "Any",
+            platform: platform || "Any",
             error: '',
         };
         this.changeSearch = this.changeSearch.bind(this)
@@ -33,7 +35,7 @@ class NavBar extends React.Component {
     }
 
     doSearch() {
-      this.props.history.push(`/search/${this.state.search}/${this.state.platform}/${this.state.genre}`)
+      this.props.history.push(`/search/${this.state.platform}/${this.state.genre}/${this.state.search}`)
     }
 
     goHome() {
@@ -98,7 +100,7 @@ class NavBar extends React.Component {
                 <form>
                     <div className="form-row">
                         <div className="col-9">
-                            <input type="search" className="form-control" placeholder="What game do you want ?" onChange={this.changeSearch}/>
+                            <input type="search" className="form-control" placeholder="What game do you want ?" value={this.state.search} onChange={this.changeSearch}/>
                             <div className='row'>
                               <select className="col btn btn-danger dropdown-toggle" value={this.state.genre} onChange={this.changeGenre}>
                                   <option value={"Any"}>Genre</option>

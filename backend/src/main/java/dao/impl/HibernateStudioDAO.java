@@ -1,6 +1,7 @@
 package dao.impl;
 
 import dao.interf.StudioDAO;
+import model.Developer;
 import model.Game;
 import model.Studio;
 import org.hibernate.Session;
@@ -41,9 +42,17 @@ public class HibernateStudioDAO extends HibernateDAO<Studio> implements StudioDA
     public List<Studio> searchStudies(String name) {
         Session session = TransactionRunner.getCurrentSession();
 
-        String hql = "from Studio as s " +
-                "where s.name  LIKE CONCAT('%',?1,'%')";
+        String hql = "from Studio as s ";
 
-        return session.createQuery(hql, Studio.class).setParameter(1, name).getResultList();
+        if (!name.isEmpty()){
+            hql += "where s.name  LIKE CONCAT('%',?1,'%')";
+        }
+
+        Query<Studio> query = session.createQuery(hql, Studio.class);
+        if (!name.isEmpty()){
+            query.setParameter(1, name);
+        }
+
+        return query.getResultList();
     }
 }

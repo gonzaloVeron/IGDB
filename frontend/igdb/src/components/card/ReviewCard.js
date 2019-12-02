@@ -14,7 +14,7 @@ export default class ReviewCard extends React.Component {
 
     render(){
         console.log(this.props)
-        let thumb = localStorage.getItem("userImage") || thumbnail
+        let thumb = this.props.review.imageUrl || thumbnail
         return(
             <div className="card text-white bg-secondary mb-3" style={{ width: '510px'}}>
                 <div className="row no-gutters">

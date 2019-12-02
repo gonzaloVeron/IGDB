@@ -6,6 +6,7 @@ import SearchCardStudioGenerator from '../cardGenerator/SearchCardStudioGenerato
 import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from 'react-collapsible-component'
 import './Search.css'
 import SearchCardDevGenerator from '../cardGenerator/SearchCardDevGenerator';
+import queryString from 'querystring';
 
 export default class Search extends React.Component {
 
@@ -24,15 +25,20 @@ export default class Search extends React.Component {
     }
 
     componentDidMount(){
-        let {searchValue, platform, genre} = this.props.match.params
-        getSearch(searchValue, platform, genre).then(result => {
+        //let {query, platform, genre} = queryString.parse(this.props.location.search)
+        let {query, platform, genre} = this.props.match.params
+        if (query == null){
+            query = '';
+        }
+        console.log(query + platform + genre)
+        getSearch(query, platform, genre).then(result => {
             console.log(result)
             this.setState({ queryResults: result }, ()=> console.log(this.state));
         }).catch(e => {this.setState({ error: e.message })})
     }  
 
     componentDidUpdate(prevProps){
-        if(this.props.match.params !== prevProps.match.params){
+        if(this.props.location !== prevProps.location){
             this.componentDidMount()
         }
     }
@@ -64,7 +70,7 @@ export default class Search extends React.Component {
     render() {
         return(
             <div className="Search body-container">
-                <NavBar/>
+                <NavBar inSearch/>
                 <div className="container">
                     <CollapsibleComponent>
                         <CollapsibleHead isExpanded={false} className="collapsible-head"><h1 className="blanco">Search Results for Games</h1></CollapsibleHead>

@@ -3,7 +3,6 @@ import { getUser, changeImage } from '../../api/api'
 import './home.css';
 import NavBar from '../navbar/NavBar'
 import ReviewCard from '../card/ReviewCard';
-import { tsImportEqualsDeclaration } from '@babel/types';
 const thumbnail = require('../../images/thumbnail.png');
 
 
@@ -26,14 +25,8 @@ export default class Home extends React.Component {
             imageModal:'',
             showModal:"false",
         };
-        this.renderUserImage = this.renderUserImage.bind(this)
-        this.renderUserReviews = this.renderUserReviews.bind(this)
-        this.renderHomeWithoutUser = this.renderHomeWithoutUser.bind(this)
-        this.renderNav = this.renderNav.bind(this)
-        this.renderHome = this.renderHome.bind(this)
         this.goToRegister = this.goToRegister.bind(this)
         this.goToLogin = this.goToLogin.bind(this)
-        this.modal = this.modal.bind(this)
         this.changeGenre = this.changeGenre.bind(this)
         this.changeSearch = this.changeSearch.bind(this)
         this.changePlatform = this.changePlatform.bind(this)
@@ -114,7 +107,7 @@ export default class Home extends React.Component {
     }
 
     doSearch() {
-        this.props.history.push(`/search/${this.state.search}/${this.state.platform}/${this.state.genre}`)
+        this.props.history.push(`/search/${this.state.platform}/${this.state.genre}/${this.state.search}`)
     }
 
     renderHomeWithoutUser(){
@@ -228,9 +221,8 @@ export default class Home extends React.Component {
         this.setState({showModal:"false"})
         changeImage(this.state.userData.id, {photo:this.state.imageModal})
         .then(result => {
-            this.setState({userData: {id:this.state.userData.id, name:this.state.userData.name, photo:this.state.imageModal, myReviews:this.state.userData.myReviews}})
-            this.setState({imageModal:''})
             localStorage.setItem("userImage", avatar)
+            this.componentDidMount();
           })
           .catch(e => this.setState({ error: "Pasaron cosas" }))
         window.location.replace('')
