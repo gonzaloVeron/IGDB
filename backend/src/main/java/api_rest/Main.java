@@ -34,19 +34,20 @@ public class Main {
         app.exception(FileNotFoundException.class, (e, ctx) -> {
             ctx.status(404);
         }).error(404,  ctx -> {
-            ctx.result("No se a podido encontrar la consulta");
+            ctx.result("RESOURCE_NOT_FOUND");
         });
 
         app.exception(NullPointerException.class, (e, ctx) -> {
+            System.out.print(e);
             logErrorController.logNullPointerException(e);
             ctx.status(500);
-            ctx.result("No se a podido procesar la consulta");
+            ctx.result("INTERNAL_SERVER_ERROR");
         });
 
         app.exception(IllegalArgumentException.class, (e, ctx) -> {
             logErrorController.log(e);
             ctx.status(400);
-            ctx.result(e.getMessage());
+            ctx.result("BAD_REQUEST");
         });
 
 

@@ -22,7 +22,7 @@ public class HibernateSearchDAO implements SearchDAO {
 
         Set<Game> games = new HashSet<>();
 
-        if (name == "" && genre == null && platform == null) {
+        if (name.equals("") && genre.equals(Genre.Any) && platform.equals(Platform.Any)) {
             Session session = TransactionRunner.getCurrentSession();
 
             String hql = "SELECT g from Game as g ";
@@ -30,13 +30,13 @@ public class HibernateSearchDAO implements SearchDAO {
             return session.createQuery(hql, Game.class).getResultList();
         }
 
-        if (genre != null) {
+        if (!genre.equals(Genre.Any)) {
             games.addAll(this.searchByGenre(genre));
         }
-        if (platform != null) {
+        if (!platform.equals(Platform.Any)) {
             games.addAll(this.searchByPlatform(platform));
         }
-        if (name != "") {
+        if (!name.equals("")) {
             List<Game> filterGame = this.searchByName(name);
 
             if (!games.isEmpty()) {
@@ -46,7 +46,7 @@ public class HibernateSearchDAO implements SearchDAO {
             }
         }
 
-        return games.stream().collect(Collectors.toList());
+        return new ArrayList<>(games);
     }
 
 

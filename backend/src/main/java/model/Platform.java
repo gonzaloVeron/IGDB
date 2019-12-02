@@ -15,4 +15,5 @@ public enum Platform {
     DREAMCAST,
     ANDROID,
     IOS,
+    Any
 }
