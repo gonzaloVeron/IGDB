@@ -81,34 +81,34 @@ public class TestGameServiceImpl {
 
     @Test
     public void search_All(){
-        List<Game> games = searchService.searchAll("",null,null);
+        List<Game> games = searchService.searchAll("",Genre.Any,Platform.Any);
         Assert.assertEquals(62,games.size());
 
     }
 
     @Test
     public void search_by_Name(){
-        List<Game> byName = searchService.searchAll("Left 4 dead 2",null,null);
+        List<Game> byName = searchService.searchAll("Left 4 dead 2",Genre.Any,Platform.Any);
         Assert.assertEquals(1,byName.size());
         Assert.assertEquals("Left 4 dead 2",byName.get(0).getName());
     }
 
     @Test
     public void search_Genre(){
-        List<Game> games_genre = searchService.searchAll("", Genre.Strategy,null);
+        List<Game> games_genre = searchService.searchAll("", Genre.Strategy,Platform.Any);
         Assert.assertEquals(1,games_genre.size());
         Assert.assertEquals("league of legends",games_genre.get(0).getName());
     }
 
     @Test
     public void search_Platform(){
-        List<Game> games_platform = searchService.searchAll("",null,Platform.PS4);
+        List<Game> games_platform = searchService.searchAll("",Genre.Any,Platform.PS4);
         Assert.assertEquals(15,games_platform.size());
     }
 
     @Test
     public void search_by_name_and_Genre(){
-        List<Game> games = searchService.searchAll("league of legends",Genre.Strategy,null);
+        List<Game> games = searchService.searchAll("league of legends",Genre.Strategy,Platform.Any);
         Assert.assertEquals(1,games.size());
         Assert.assertEquals("league of legends",games.get(0).getName());
         Assert.assertEquals(Genre.Strategy,games.get(0).getGenre());
@@ -117,18 +117,18 @@ public class TestGameServiceImpl {
 
     @Test
     public void search_by_name_and_Platform(){
-        List<Game> games_platform = searchService.searchAll("Batman",null,Platform.PS4);
+        List<Game> games_platform = searchService.searchAll("Batman",Genre.Any,Platform.PS4);
         Assert.assertEquals(2,games_platform.size());
 
         Assert.assertEquals(Platform.PS4,games_platform.get(0).getPlatform());
         Assert.assertEquals(Platform.PS4,games_platform.get(1).getPlatform());
 
 
-        List<Game> games = searchService.searchAll("God of war",null,Platform.PS4);
+        List<Game> games = searchService.searchAll("God of war",Genre.Any,Platform.PS4);
         Assert.assertEquals(0,games.size());
 
 
-        List<Game> games1 = searchService.searchAll("God of war",null,Platform.PS2);
+        List<Game> games1 = searchService.searchAll("God of war",Genre.Any,Platform.PS2);
         Assert.assertEquals(2,games1.size());
 
     }
@@ -136,7 +136,7 @@ public class TestGameServiceImpl {
     @Test
     public void search_by_Genre_and_Platform(){
         List<Game> games_platform = searchService.searchAll("",Genre.Fighting,Platform.PS4);
-        Assert.assertEquals(19,games_platform.size());
+        Assert.assertEquals(2,games_platform.size());
 
     }
 

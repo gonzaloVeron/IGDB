@@ -1,7 +1,7 @@
 import ReactStars from 'react-stars';
 import React from 'react';
 import NavBar from '../navbar/NavBar';
-import { getGame, deleteReview } from '../../api/api.js';
+import { getGame, deleteReview, getUser } from '../../api/api.js';
 import { getGameData } from '../../api/extRevw';
 import {CollapsibleComponent, CollapsibleHead, CollapsibleContent} from 'react-collapsible-component';
 import './GameFile.css';
@@ -57,7 +57,16 @@ export default class GameFile extends React.Component {
         this.onDeleteReview = this.onDeleteReview.bind(this);
         this.goToRegister = this.goToRegister.bind(this)
         this.goToLogin = this.goToLogin.bind(this)
+        this.getUserPhoto = this.getUserPhoto.bind(this)
     }
+
+    getUserPhoto(){
+        let id = localStorage.getItem("userName")
+        let photo
+        getUser(id).then(result => {photo = result.photo})
+        return photo
+    }
+
 
     goToRegister(){
         this.props.history.push('/register')
@@ -304,7 +313,7 @@ export default class GameFile extends React.Component {
                         </div>
                     </div>
                     <div className="row" style={{marginLeft:"27%"}}>
-                        <ReviewBox userId={id} gameId={this.state.gameData.id} onSubmit={this.refreshPage} />
+                        <ReviewBox userId={id} gameId={this.state.gameData.id} userImage={this.getUserPhoto} onSubmit={this.refreshPage} />
                     </div>  
                 </div>
             )

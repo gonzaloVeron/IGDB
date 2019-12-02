@@ -14,5 +14,6 @@ public enum Platform {
     PS1,
     DREAMCAST,
     ANDROID,
-    IOS
+    IOS,
+    Any
 }

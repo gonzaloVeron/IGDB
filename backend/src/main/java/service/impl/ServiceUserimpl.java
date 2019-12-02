@@ -47,11 +47,12 @@ public class ServiceUserimpl implements ServiceUser {
     }
 
     @Override
-    public void reviewGame(Long userID, String review, Integer stars, Long gameID) {
+    public void reviewGame(Long userID, String review, Integer stars, Long gameID, String urlImage) {
           run(()->{
               Review newReview = new Review();
               newReview.setDescription(review);
               newReview.setStar(stars);
+              newReview.setUserImage(urlImage);
               User userRecover = userDAO.recover(userID);
               userRecover.addReview(newReview);
               userDAO.update(userRecover);

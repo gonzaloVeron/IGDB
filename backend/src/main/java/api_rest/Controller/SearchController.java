@@ -4,12 +4,14 @@ import api_rest.DataClass.*;
 import dao.impl.*;
 
 import io.javalin.Context;
+import io.javalin.Javalin;
 import model.*;
 import service.impl.*;
 import service.interf.DataService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class SearchController {
@@ -19,7 +21,7 @@ public class SearchController {
     private ServiceStudioimpl studioService = new ServiceStudioimpl(new HibernateStudioDAO());
     private ServiceUserimpl userService = new ServiceUserimpl(new HibernateUserDAO());
 
-    public Context searchGameById(Context ctx){
+    public void searchGameById(Context ctx){
         Game game = gameService.searchGameById(Long.parseLong(ctx.pathParam("id")));
         Double score = gameService.averageScoreOfAGame(game.getName());
         System.out.print(score);
@@ -27,46 +29,42 @@ public class SearchController {
             score = 0.00;
         DataGameFile dataGameFile = new DataGameFile(game, score);
         ctx.status(200);
-        return ctx.json(dataGameFile);
+        ctx.json(dataGameFile);
     }
 
-    public Context searchUserById(Context ctx){
+    public void searchUserById(Context ctx){
         User user = userService.searchUser(Long.parseLong(ctx.pathParam("id")));
         DataUserSearch dataUserFile = new DataUserSearch(user);
         ctx.status(200);
-        return ctx.json(dataUserFile);
+        ctx.json(dataUserFile);
     }
 
-    public Context searchDeveloperById(Context ctx){
+    public void searchDeveloperById(Context ctx){
         Developer developer = developerService.searchDeveloperById(Long.parseLong(ctx.pathParam("id")));
         DataDeveloperFile dataDeveloperFile = new DataDeveloperFile(developer);
         ctx.status(200);
-        return ctx.json(dataDeveloperFile);
+        ctx.json(dataDeveloperFile);
     }
 
-    public Context searchStudioById(Context ctx){
+    public void searchStudioById(Context ctx){
         Studio studio = studioService.searchStudioById(Long.parseLong(ctx.pathParam("id")));
         DataStudioFile dataStudioFile = new DataStudioFile(studio);
         ctx.status(200);
-        return ctx.json(dataStudioFile);
+        ctx.json(dataStudioFile);
     }
 
     public List<Game> searchGamesByNameGenrePlatform(Context ctx){
-        ArrayList<Game> games = new ArrayList<>();
-        games.addAll(searchService.searchByName(ctx.pathParam("name")));
-        if (!ctx.pathParam("genre").equals("Any")){
-            games.addAll(searchService.searchByGender(Genre.valueOf(ctx.pathParam("genre"))));
-        }
-        if (!ctx.pathParam("platform").equals("Any")) {
-            games.addAll(searchService.searchByPlatform(Platform.valueOf(ctx.pathParam("platform"))));
-        }
-        return games;
+        Genre genre = Genre.valueOf(ctx.queryParam("genre"));
+        Platform platform = Platform.valueOf(ctx.queryParam("platform"));
+        String name = ctx.queryParam("query");
+
+        return searchService.searchAll(name, genre, platform);
     }
 
 
-    public Context searchGameDevStdByNameGenrePlatform(Context ctx){
-        List<Developer> devs = developerService.searchDeveloper(ctx.pathParam("name"));;
-        List<Studio> studies = studioService.searchStudies(ctx.pathParam("name"));;
+    public void searchGameDevStdByNameGenrePlatform(Context ctx){
+        List<Developer> devs = developerService.searchDeveloper(ctx.queryParam("query"));;
+        List<Studio> studies = studioService.searchStudies(ctx.queryParam("query"));;
         List<Game> games = this.searchGamesByNameGenrePlatform(ctx);
 
         List<DataGameSearch> dataGames = parseToDataGameSearch(this.withoutRepeated(games));
@@ -74,7 +72,7 @@ public class SearchController {
         List<DataDeveloperSearch> dataDevs = parseToDataDeveloperSearch(devs);
 
         ctx.status(200);
-        return ctx.json(new DataSearch(dataGames, dataStudios, dataDevs));
+        ctx.json(new DataSearch(dataGames, dataStudios, dataDevs));
     }
 
     private List<DataDeveloperSearch> parseToDataDeveloperSearch(List<Developer> devs) {

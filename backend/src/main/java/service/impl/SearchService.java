@@ -17,19 +17,6 @@ public class SearchService {
  }
  public SearchService() {}
 
-
-
-
- public List<Game> searchByName(String nombre){
-     return run(()->{ return this.searchDAO.searchByName(nombre);});
- }
-
- public List<Game> searchByGender(Genre genre){
-     return run(()->{ return this.searchDAO.searchByGenre(genre);});
- }
- public List<Game> searchByPlatform(Platform platform){
-     return run(()->{ return this.searchDAO.searchByPlatform(platform);});
- }
  public List<Game> searchAll(String game,Genre genre,Platform platform){
      return run(()-> {return this.searchDAO.searchAll(game,genre,platform);});
  }

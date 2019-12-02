@@ -5,84 +5,51 @@ import model.Genre;
 import model.Game;
 import model.Platform;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import service.TransactionRunner;
 
-import javax.persistence.GeneratedValue;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class HibernateSearchDAO implements SearchDAO {
-
     
     @Override
     public List<Game> searchAll(String name, Genre genre, Platform platform) {
 
-        Set<Game> games = new HashSet<>();
+        Session session = TransactionRunner.getCurrentSession();
 
-        if (name == "" && genre == null && platform == null) {
-            Session session = TransactionRunner.getCurrentSession();
+        String hql = "SELECT g from Game as g ";
 
-            String hql = "SELECT g from Game as g ";
-
-            return session.createQuery(hql, Game.class).getResultList();
+        if (!name.isEmpty() || !genre.equals(Genre.Any) || !platform.equals(Platform.Any)){
+            hql += "WHERE ";
         }
-
-        if (genre != null) {
-            games.addAll(this.searchByGenre(genre));
+        if (!name.isEmpty()){
+            hql += "g.name  LIKE CONCAT('%',:name,'%')";
         }
-        if (platform != null) {
-            games.addAll(this.searchByPlatform(platform));
-        }
-        if (name != "") {
-            List<Game> filterGame = this.searchByName(name);
-
-            if (!games.isEmpty()) {
-                games.retainAll(filterGame);
-            } else {
-                games.addAll(filterGame);
+        if (!genre.equals(Genre.Any)){
+            if (!name.isEmpty()){
+                hql += "and ";
             }
+            hql += "g.genre = :genre ";
+        }
+        if (!platform.equals(Platform.Any)){
+            if (!name.isEmpty() || !genre.equals(Genre.Any)){
+                hql += "and ";
+            }
+            hql += "g.platform = :platform ";
         }
 
-        return games.stream().collect(Collectors.toList());
+        Query<Game> query = session.createQuery(hql, Game.class);
+        if (!name.isEmpty()) {
+            query.setParameter("name", name);
+        }
+        if (!genre.equals(Genre.Any)){
+            query.setParameter("genre", genre);
+        }
+        if (!platform.equals(Platform.Any)){
+            query.setParameter("platform", platform);
+        }
+
+        return query.getResultList();
     }
-
-
-
-    @Override
-    public List<Game> searchByGenre(Genre genre) {
-        Session session = TransactionRunner.getCurrentSession();
-
-        String hql = " from Game as g " +
-                     " where g.genre = :genre";
-
-        return session.createQuery(hql, Game.class).setParameter("genre", genre).getResultList();
-
-
-
-    }
-
-    @Override
-    public List<Game> searchByPlatform(Platform platform) {
-        Session session = TransactionRunner.getCurrentSession();
-
-        String hql = "from Game as g " +
-                "where g.platform = :platform ";
-
-        return session.createQuery(hql, Game.class).setParameter("platform", platform).getResultList();
-    }
-
-    @Override
-    public List<Game> searchByName(String nombre) {
-        Session session = TransactionRunner.getCurrentSession();
-
-        String hql = "from Game as g " +
-                      "where g.name  LIKE CONCAT('%',?1,'%')";
-
-        return session.createQuery(hql, Game.class).setParameter(1, nombre).getResultList();
-    }
-
 
 }

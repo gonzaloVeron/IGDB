@@ -23,7 +23,7 @@ public class ReviewController {
             throw new ElementAlreadyExistsException();
         }else {
             User user = serviceUser.searchUser(reviewData.userID);
-            serviceUser.reviewGame(user.getId(), reviewData.description, reviewData.score, game.getId());
+            serviceUser.reviewGame(user.getId(), reviewData.description, reviewData.score, game.getId(), user.getPhoto());
             ctx.status(200);
         }
     }

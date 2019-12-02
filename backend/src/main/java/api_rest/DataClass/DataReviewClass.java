@@ -11,6 +11,7 @@ public class DataReviewClass {
     public Long userID;
     public String nameGame;
     public Long gameID;
+    public String imageUrl;
 
     public DataReviewClass(Review review) {
         this.id = review.getId();
@@ -20,5 +21,6 @@ public class DataReviewClass {
         this.userID = review.getUser().getId();
         this.nameGame = review.getGame().getName();
         this.gameID = review.getGame().getId();
+        this.imageUrl = review.getUserImage();
     }
 }
