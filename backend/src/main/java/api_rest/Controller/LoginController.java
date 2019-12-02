@@ -4,11 +4,13 @@ import api_rest.DataClass.DataUserLogin;
 import api_rest.DataClass.DataUserReturn;
 import dao.impl.HibernateUserDAO;
 import model.User;
+import org.mockito.cglib.core.Local;
 import service.impl.ServiceUserimpl;
 import service.interf.ServiceUser;
 
 import io.javalin.Context;
 
+import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 public class LoginController {
@@ -55,7 +57,7 @@ public class LoginController {
         this.require(!match,"Invalid password!" );
         this.require(dataUser.password.isEmpty(), "missing a password");
 
-        User user = new User(dataUser.name, dataUser.password);
+        User user = new User(dataUser.name, dataUser.password, LocalDate.now());
 
         serviceUser.createUser(user);
 

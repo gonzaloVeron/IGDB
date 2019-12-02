@@ -142,8 +142,8 @@ public class DataServiceImpl implements DataService {
             UserDAO userDAO = new HibernateUserDAO();
 
             //USERS
-            User user1 = new User("Pedro", "1234");
-            User user2 = new User("Pepe", "12345");
+            User user1 = new User("Pedro", "1234", LocalDate.now());
+            User user2 = new User("Pepe", "12345", LocalDate.now());
 
             //REVIEWS
             pri = new Review();

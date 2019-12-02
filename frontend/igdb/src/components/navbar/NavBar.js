@@ -2,8 +2,9 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './NavBar.css';
 import {Dropdown, Image, Col, Container, Button} from 'react-bootstrap'
+import { getUser } from '../../api/api.js';
 import defaultprofileicon from "./defaultprofileicon.png"
-
+const thumbnail = require('../../images/thumbnail.png');
 
 class NavBar extends React.Component {
 
@@ -32,7 +33,7 @@ class NavBar extends React.Component {
     }
 
     doSearch() {
-        this.props.history.push(`/search/${this.state.search}/${this.state.platform}/${this.state.genre}`)
+      this.props.history.push(`/search/${this.state.search}/${this.state.platform}/${this.state.genre}`)
     }
 
     goHome() {
@@ -66,6 +67,7 @@ class NavBar extends React.Component {
     logOut(){
       localStorage.removeItem("userName")
       localStorage.removeItem("id")
+      localStorage.removeItem("userImage")
       window.location.replace('') //Esto en teoria refresca la pagina
     }
 
@@ -73,15 +75,15 @@ class NavBar extends React.Component {
       if(localStorage.getItem("userName") == null){
         return(
           <div>
-            <Button variant="primary" onClick={this.goToRegister}>Register</Button>
-            <Button variant="primary" onClick={this.goToLogin}>LogIn</Button>
+            <Button variant="danger" onClick={this.goToRegister}>Register</Button>
+            <Button variant="danger" onClick={this.goToLogin}>LogIn</Button>
           </div>
         )
       }else{
         return(
           <div>
-            <Button variant="primary" onClick={this.goToProfle}>Go to profile</Button>
-            <Button variant="primary" type="submit" onClick={this.logOut}>LogOut</Button>
+            <Button variant="danger" onClick={this.goToProfle}>Go to profile</Button>
+            <Button variant="danger" type="submit" onClick={this.logOut}>LogOut</Button>
           </div>
         )
       }
@@ -144,15 +146,16 @@ class NavBar extends React.Component {
     }
  
     renderProfileDropdown(){
+      let thumb = localStorage.getItem("userImage") || thumbnail
         return (
-          <Dropdown>
+          <Dropdown style={{marginRight:"45%"}}>
             <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
               { this.renderProfileIcon() }
             </Dropdown.Toggle>
     
-            <Dropdown.Menu id="basic-nav-dropdown" alignRight >
+            <Dropdown.Menu className="dropdown-content "id="basic-nav-dropdown" alignRight>
               <div className="text-center">
-                <Image style={{ width: '150px' }} src={defaultprofileicon} roundedCircle />
+                <Image style={{ width: '150px' }} src={thumb} roundedCircle />
                 <h5>{ localStorage.getItem("userName") }</h5>
               </div>
               <div className="text-center">
@@ -165,11 +168,12 @@ class NavBar extends React.Component {
       }
     
       renderProfileIcon(){
+        let thumb = localStorage.getItem("userImage") || thumbnail
         return (
           <div>
             <Container>
               <Col xs={6} md={4}>
-                <Image style={{ width: '40px' }} src={defaultprofileicon} roundedCircle />
+                <Image style={{ width: '40px' }} src={thumb} roundedCircle />
               </Col>
             </Container>
           </div>

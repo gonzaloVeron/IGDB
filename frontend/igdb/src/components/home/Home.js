@@ -17,11 +17,12 @@ export default class Home extends React.Component {
                 name:'',
                 photo:'',
                 myReviews:[],
+                registerDate:'',
             },
             error: '',
             genre:"Any",
             platform:"Any",
-            search:"Any",
+            search:'',
             imageModal:'',
             showModal:"false",
         };
@@ -45,10 +46,12 @@ export default class Home extends React.Component {
 
     componentDidMount() {
         let id = localStorage.getItem("id")
-        getUser(id).then(result => {
-            this.setState({ userData : result });
-            console.log(result)
-        }).catch(e => {this.setState({ error: e.message })})
+        if(id != null){
+            getUser(id).then(result => {
+                this.setState({ userData : result });
+                console.log(result)
+            }).catch(e => {this.setState({ error: e.message })})
+        }
     }
 
     renderNav(){
@@ -111,11 +114,7 @@ export default class Home extends React.Component {
     }
 
     doSearch() {
-        if(this.state.search == ""){
-            this.props.history.push(`/search/"Any"/${this.state.platform}/${this.state.genre}`)
-        }else{
-            this.props.history.push(`/search/${this.state.search}/${this.state.platform}/${this.state.genre}`)
-        }
+        this.props.history.push(`/search/${this.state.search}/${this.state.platform}/${this.state.genre}`)
     }
 
     renderHomeWithoutUser(){
@@ -156,8 +155,7 @@ export default class Home extends React.Component {
                             {this.renderUserImage()}
                             <div className="col">
                                 <h1 style={{color:"white"}}>Username: {this.state.userData.name}</h1>
-                                <h1 style={{color:"white"}}>Register date:</h1>
-                                <h1 style={{color:"white"}}>....</h1>
+                                <h1 style={{color:"white"}}>Register date: {this.state.userData.registerDate}</h1>
                             </div>
                         </div>
                     </div>
@@ -186,7 +184,7 @@ export default class Home extends React.Component {
 
     renderUserReviews(){
         return(
-            <div style={{paddingLeft:"50%"}}>
+            <div style={{paddingLeft:"26%"}}>
                 {this.state.userData.myReviews.map((re, i) => {return <ReviewCard key={i} review={re}/>})}
             </div>
         )
@@ -226,13 +224,16 @@ export default class Home extends React.Component {
     }
 
     changeUserImage(){
+        let avatar = this.state.imageModal
         this.setState({showModal:"false"})
         changeImage(this.state.userData.id, {photo:this.state.imageModal})
         .then(result => {
             this.setState({userData: {id:this.state.userData.id, name:this.state.userData.name, photo:this.state.imageModal, myReviews:this.state.userData.myReviews}})
             this.setState({imageModal:''})
+            localStorage.setItem("userImage", avatar)
           })
           .catch(e => this.setState({ error: "Pasaron cosas" }))
+        window.location.replace('')
     }
 
     closeButtonModal(){

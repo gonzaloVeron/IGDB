@@ -14,6 +14,7 @@ export default class ReviewCard extends React.Component {
 
     render(){
         console.log(this.props)
+        let thumb = localStorage.getItem("userImage") || thumbnail
         return(
             <div className="card text-white bg-secondary mb-3" style={{ width: '510px'}}>
                 <div className="row no-gutters">
@@ -21,7 +22,7 @@ export default class ReviewCard extends React.Component {
                         <div>
                         <Container>
                             <Col xs={6} md={4}>
-                                <Image style={{ width: '80px' }} src={thumbnail} roundedCircle />
+                                <Image style={{ width: '80px' }} src={thumb} roundedCircle />
                             </Col>
                             <div style={{marginRight:"2%", marginLeft:"24%", marginTop:"1%"}}>
                                 {this.props.review.nameUser}

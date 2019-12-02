@@ -24,6 +24,7 @@ class Login extends React.Component {
       .then(result => { 
         localStorage.setItem("userName", result.name)
         localStorage.setItem("id", result.id)
+        localStorage.setItem("userImage", result.userImage)
         this.props.history.goBack();
       })
       .catch(e => this.setState({ error: "Wrong user or password"}))

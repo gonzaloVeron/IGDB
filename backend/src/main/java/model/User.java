@@ -4,6 +4,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class User {
     private String name;
     private String password;
 
+    private LocalDate registerDate;
 
     private String photo;
 
@@ -32,10 +34,11 @@ public class User {
 
     }
 
-    public User(String name, String password){
+    public User(String name, String password, LocalDate registerDate){
         this.name = name;
         this.password = password;
         myReviews = new ArrayList<>();
+        this.registerDate = registerDate;
     }
 
     public String getPhoto() {
@@ -77,6 +80,12 @@ public class User {
         this.myReviews.remove(review);
     }
 
-    
+    public LocalDate getRegisterDate(){
+        return registerDate;
+    }
+
+    public void setRegisterDate(LocalDate registerDate){
+        this.registerDate = registerDate;
+    }
 
 }

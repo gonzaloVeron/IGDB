@@ -63,7 +63,7 @@ public class TestServiceUser {
     public void review_game(){
         serviceUser.createUser(pedro);
         Game gameBatman = gameService.searchGameByName("Batman Arkham knight");
-        serviceUser.reviewGame(pedro.getId(),"No me gusto el juego",3,gameBatman.getId());
+        serviceUser.reviewGame(pedro.getId(),"No me gusto el juego",3,gameBatman.getId(), "LALA");
 
         User pedroRecoveredAgain = serviceUser.searchUser(pedro.getId());
         Game batmanRecovered = gameService.searchGameById(gameBatman.getId());
@@ -83,9 +83,9 @@ public class TestServiceUser {
     public void bastion_Average(){
         serviceUser.createUser(pedro);
         Game gameBatman = gameService.searchGameByName("Batman Arkham knight");
-        serviceUser.reviewGame(pedro.getId(),"No me gusto el juego",1,gameBatman.getId());
+        serviceUser.reviewGame(pedro.getId(),"No me gusto el juego",1,gameBatman.getId(), "LALA");
         serviceUser.createUser(jose);
-        serviceUser.reviewGame(jose.getId(),"el juego es excelent",5,gameBatman.getId());
+        serviceUser.reviewGame(jose.getId(),"el juego es excelent",5,gameBatman.getId(), "LALA");
 
         Double average = gameService.averageScoreOfAGame("Batman Arkham knight");
         Game gameBatmanAgain = gameService.searchGameByName("Batman Arkham knight");
@@ -102,7 +102,7 @@ public class TestServiceUser {
     public void delete_review(){
         User pedro2 = serviceUser.searchByName("Pedro");
         Game gameBatman = gameService.searchGameByName("Batman Arkham knight");
-        serviceUser.reviewGame(pedro2.getId(),"No me gusto el juego",1,gameBatman.getId());
+        serviceUser.reviewGame(pedro2.getId(),"No me gusto el juego",1,gameBatman.getId(), "LALA");
 
         Game gameBatmanAgain = gameService.searchGameByName("Batman Arkham knight");
         List<Review> reviewsBatman = gameBatmanAgain.getMyReviews();
