@@ -17,7 +17,6 @@ public class Review {
     @ManyToOne
     private Game game;
 
-    private String userImage;
 
     public Review(){
 
@@ -55,11 +54,4 @@ public class Review {
 
     public User getUser(){return this.user;}
 
-    public String getUserImage(){
-        return this.userImage;
-    }
-
-    public void setUserImage(String userImage) {
-        this.userImage = userImage;
-    }
 }

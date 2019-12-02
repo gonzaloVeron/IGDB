@@ -800,7 +800,7 @@ public class DataServiceImpl implements DataService {
 
             falloutTactics = new Game();
             falloutTactics.setName("Fallout Tactics");
-            falloutTactics.setGenre(Genre.Rol);
+            falloutTactics.setGenre(Genre.Strategy);
             falloutTactics.setPlatform(Platform.PC);
             falloutTactics.setUrlImage("https://pcgamez-download.com/gimgs/fallout-tactics-gog-torrent-downloadgame-pcfree/fallout-tactics-windows-pc-cover-md65.jpg");
             falloutTactics.setSinopsis("In his initiation ritual, the Warrior directs a squad to free the town of Brahmin Wood from the attack of bandits, because the leader of the town acceded to the Brotherhood's protection treatment.");
@@ -808,7 +808,7 @@ public class DataServiceImpl implements DataService {
 
             falloutBrotherhoodOfSteel = new Game();
             falloutBrotherhoodOfSteel.setName("Fallout Brotherhood of Steel");
-            falloutBrotherhoodOfSteel.setGenre(Genre.Rol);
+            falloutBrotherhoodOfSteel.setGenre(Genre.Shooter);
             falloutBrotherhoodOfSteel.setPlatform(Platform.PS2);
             falloutBrotherhoodOfSteel.setUrlImage("https://i11c.3djuegos.com/juegos/5151/fallout__brotherhood_of_steel/fotos/ficha/fallout__brotherhood_of_steel-1697650.jpg");
             falloutBrotherhoodOfSteel.setSinopsis("After a worldwide catastrophe the characters in this role-playing game will have to face a totally destroyed and polluted planet.");

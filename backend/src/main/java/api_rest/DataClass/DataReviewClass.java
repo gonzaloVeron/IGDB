@@ -21,6 +21,6 @@ public class DataReviewClass {
         this.userID = review.getUser().getId();
         this.nameGame = review.getGame().getName();
         this.gameID = review.getGame().getId();
-        this.imageUrl = review.getUserImage();
+        this.imageUrl = review.getUser().getPhoto();
     }
 }

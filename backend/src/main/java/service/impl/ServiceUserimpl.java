@@ -52,7 +52,6 @@ public class ServiceUserimpl implements ServiceUser {
               Review newReview = new Review();
               newReview.setDescription(review);
               newReview.setStar(stars);
-              newReview.setUserImage(urlImage);
               User userRecover = userDAO.recover(userID);
               userRecover.addReview(newReview);
               userDAO.update(userRecover);
